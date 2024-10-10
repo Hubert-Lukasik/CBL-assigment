@@ -1,6 +1,5 @@
 package src.test.java;
 
-import java.io.File;
 import java.util.ArrayList;
 import org.junit.Assert;
 import org.junit.Test;
