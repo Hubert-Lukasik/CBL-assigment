@@ -87,8 +87,6 @@ public class Map extends JPanel {
                 }
 
                 filePath = file.getAbsolutePath();
-                System.out.println(filePath);
-
 
                 tilePaths.add(filePath);
                 tileX.add(column * TILE_WIDTH);
