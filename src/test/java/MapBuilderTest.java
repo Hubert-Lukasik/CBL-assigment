@@ -1,9 +1,6 @@
 package src.test.java;
 
-
-import java.awt.*;
 import java.util.ArrayList;
-import javax.swing.*;
 import org.junit.Assert;
 import org.junit.Test;
 import src.main.java.Map;
@@ -47,7 +44,7 @@ public class MapBuilderTest {
  
     @Test
     public void testBuildMapEmptyDescription() {
-        JPanel expected = new JPanel();
+        ArrayList<String> expected = new ArrayList<String>();
         ArrayList<ArrayList<String>> emp = new ArrayList<ArrayList<String>>();
         Assert.assertEquals(expected, Map.buildMap(emp));
     }
@@ -56,13 +53,111 @@ public class MapBuilderTest {
     public void testBuildMapCornerPoints() {
         ArrayList<ArrayList<String>> desc = new ArrayList<ArrayList<String>>();
         desc.add(new ArrayList<String>());
-        desc.get(0).add("tileTest");
-        desc.get(0).add("tileTest");
-        desc.get(0).add("tileTest");
+        desc.get(0).add("testTile");
+        desc.get(0).add("testTile");
+        desc.get(0).add("testTile");
 
-        JPanel expected = new JPanel();
-
+        ArrayList<String> expected = new ArrayList<String>();
+        expected.add("testTile.png");
+        expected.add("0");
+        expected.add("0");
+        expected.add("testTile.png");
+        expected.add("40");
+        expected.add("0");
+        expected.add("testTile.png");
+        expected.add("80");
+        expected.add("0");
 
         Assert.assertEquals(expected, Map.buildMap(desc));
     }
+
+    @Test
+    public void testBuildMapDifferentTiles() {
+        ArrayList<ArrayList<String>> desc = new ArrayList<ArrayList<String>>();
+        desc.add(new ArrayList<String>());
+        desc.get(0).add("testTile");
+        desc.get(0).add("testTile2");
+
+        ArrayList<String> expected = new ArrayList<String>();
+        expected.add("testTile.png");
+        expected.add("0");
+        expected.add("0");
+        expected.add("testTile2.png");
+        expected.add("40");
+        expected.add("0");
+
+        Assert.assertEquals(expected, Map.buildMap(desc));
+    }
+
+    @Test
+    public void testBuildMapMoreRows() {
+        ArrayList<ArrayList<String>> desc = new ArrayList<ArrayList<String>>();
+        desc.add(new ArrayList<String>());
+        desc.get(0).add("testTile");
+        desc.add(new ArrayList<String>());
+        desc.get(1).add("testTile");
+
+        ArrayList<String> expected = new ArrayList<String>();
+        expected.add("testTile.png");
+        expected.add("0");
+        expected.add("0");
+        expected.add("testTile.png");
+        expected.add("0");
+        expected.add("40");
+
+        Assert.assertEquals(expected, Map.buildMap(desc));
+    }
+
+    @Test
+    public void testBuildMapDifferentLengthRows() {
+        ArrayList<ArrayList<String>> desc = new ArrayList<ArrayList<String>>();
+        desc.add(new ArrayList<String>());
+        desc.get(0).add("testTile");
+        desc.add(new ArrayList<String>());
+        desc.get(1).add("testTile");
+        desc.get(1).add("testTile");
+
+        ArrayList<String> expected = new ArrayList<String>();
+        expected.add("testTile.png");
+        expected.add("0");
+        expected.add("0");
+        expected.add("testTile.png");
+        expected.add("0");
+        expected.add("40");
+        expected.add("testTile.png");
+        expected.add("40");
+        expected.add("40");
+
+        Assert.assertEquals(expected, Map.buildMap(desc));
+    }
+
+    @Test
+    public void testBuildMapNullValues() {
+        ArrayList<ArrayList<String>> desc = new ArrayList<ArrayList<String>>();
+        desc.add(new ArrayList<String>());
+        desc.get(0).add("testTile");
+        desc.add(new ArrayList<String>());
+        desc.get(1).add("testTile");
+        desc.get(1).add(null);
+        desc.get(1).add("testTile");
+
+        ArrayList<String> expected = new ArrayList<String>();
+        expected.add("testTile.png");
+        expected.add("0");
+        expected.add("0");
+        expected.add("testTile.png");
+        expected.add("0");
+        expected.add("40");
+        expected.add("testTile.png");
+        expected.add("120");
+        expected.add("40");
+
+        Assert.assertEquals(expected, Map.buildMap(desc));
+    }
+
+
+
+
+
+
 }
