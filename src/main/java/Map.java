@@ -118,6 +118,7 @@ public class Map extends JPanel {
                 image = ImageIO.read(new File(tilePaths.get(i)));
             } catch (IOException e) {
                 System.err.println("Something wrong happend while reading image");
+                continue;
             }
 
             g.drawImage(image, tileX.get(i), tileY.get(i), this);
