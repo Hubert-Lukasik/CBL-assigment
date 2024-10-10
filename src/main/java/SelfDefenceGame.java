@@ -18,7 +18,6 @@ public class SelfDefenceGame {
 
 
             frame.setSize(600, 600);
-            frame.setResizable(false);
             frame.setVisible(true);
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             
