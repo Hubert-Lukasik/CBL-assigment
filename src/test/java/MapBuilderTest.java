@@ -1,9 +1,11 @@
 package src.test.java;
 
+import java.io.File;
 import java.util.ArrayList;
 import org.junit.Assert;
 import org.junit.Test;
 import src.main.java.MapBuilder;
+
 
 /**
  * Classes for testing MapBuilder.
@@ -12,10 +14,9 @@ public class MapBuilderTest {
     @Test
     public void testReadMap() {
         ArrayList<ArrayList<String>> expected = new ArrayList<ArrayList<String>>();
-        ArrayList<String> empty = new ArrayList<String>();
-        expected.add(empty);
-        expected.add(empty);
-        expected.add(empty);
+        expected.add(new ArrayList<String>());
+        expected.add(new ArrayList<String>());
+        expected.add(new ArrayList<String>());
 
         expected.get(0).add("1");
         expected.get(0).add("2");
