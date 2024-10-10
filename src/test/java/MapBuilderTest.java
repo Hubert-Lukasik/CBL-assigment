@@ -41,6 +41,18 @@ public class MapBuilderTest {
         ArrayList<ArrayList<String>> expected = new ArrayList<ArrayList<String>>();
         Assert.assertEquals(expected, Map.readMap(""));
     }
+
+    @Test
+    public void testReadMapWithSpace() {
+        ArrayList<ArrayList<String>> expected = new ArrayList<ArrayList<String>>();
+        expected.add(new ArrayList<String>());
+
+        expected.get(0).add("1");
+        expected.get(0).add("-");
+        expected.get(0).add("1");
+        ArrayList<ArrayList<String>> res = Map.readMap("testMapSpace.txt");
+        Assert.assertEquals(expected, res);
+    }
  
     @Test
     public void testBuildMapEmptyDescription() {
@@ -138,7 +150,7 @@ public class MapBuilderTest {
         desc.get(0).add("testTile");
         desc.add(new ArrayList<String>());
         desc.get(1).add("testTile");
-        desc.get(1).add(null);
+        desc.get(1).add(" ");
         desc.get(1).add("testTile");
 
         ArrayList<String> expected = new ArrayList<String>();
@@ -149,7 +161,7 @@ public class MapBuilderTest {
         expected.add("0");
         expected.add("40");
         expected.add("testTile.png");
-        expected.add("120");
+        expected.add("80");
         expected.add("40");
 
         Assert.assertEquals(expected, Map.buildMap(desc));
