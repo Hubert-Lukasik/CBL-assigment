@@ -87,8 +87,16 @@ public class Map extends JPanel {
     */
     public static ArrayList<String> buildMap(ArrayList<ArrayList<String>> mapDescription) {
         
+        tileNames.clear();
+        tileX.clear();
+        tileY.clear();
+
         for (int row = 0; row < mapDescription.size(); ++row) {
             for (int column = 0; column < mapDescription.get(row).size(); ++column) {
+                if (mapDescription.get(row).get(column) == "-") {
+                    continue;
+                }
+
                 tileNames.add(mapDescription.get(row).get(column) + ".png");
                 tileX.add(column * TILE_WIDTH);
                 tileY.add(row * TILE_HEIGHT);
