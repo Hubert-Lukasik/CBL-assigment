@@ -17,6 +17,10 @@ class TestObject extends Entity {
 public class EntityTest {
     static TestObject obj = new TestObject(); 
     
+    /**
+     * Set hps to -4.
+     * Set position to (0, 0).
+     */
     @Before
     public void setup() {
         obj.setHealthPoints(-4);
@@ -64,6 +68,6 @@ public class EntityTest {
         double[] pos = new double[2];
         pos[0] = 3.2;
         pos[1] = -5.99;
-        obj.getPosition(pos, obj.getPosition());
+        Assert.assertEquals(pos, obj.getPosition());
     }
 }
