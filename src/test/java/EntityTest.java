@@ -59,7 +59,10 @@ public class EntityTest {
         double[] pos = new double[2];
         pos[0] = 0;
         pos[1] = 0;
-        Assert.assertEquals(pos, obj.getPosition());
+
+        double[] res = obj.getPosition();
+        Assert.assertEquals(pos[0], res[0], 0.01);
+        Assert.assertEquals(pos[1], res[1], 0.01);
     }
 
     @Test
@@ -68,6 +71,8 @@ public class EntityTest {
         double[] pos = new double[2];
         pos[0] = 3.2;
         pos[1] = -5.99;
-        Assert.assertEquals(pos, obj.getPosition());
+        double[] res = obj.getPosition();
+        Assert.assertEquals(pos[0], res[0], 0.01);
+        Assert.assertEquals(pos[1], res[1], 0.01);
     }
 }
