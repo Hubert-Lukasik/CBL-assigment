@@ -20,9 +20,8 @@ public class EntityTest {
     @Before
     public void setup() {
         obj.setHealthPoints(-4);
+        obj.setPosition(0, 0);
     }
-
-
 
     @Test
     public void testGetHealthPoints() {
@@ -49,5 +48,22 @@ public class EntityTest {
         Assert.assertEquals(true, obj.isDead());
         obj.takeDamage(5);
         Assert.assertEquals(true, obj.isDead());
+    }
+
+    @Test
+    public void testPositionGetter() {
+        double[] pos = new double[2];
+        pos[0] = 0;
+        pos[1] = 0;
+        Assert.assertEquals(pos, obj.getPosition());
+    }
+
+    @Test
+    public void testPositionSetter() {
+        obj.setPosition(3.2, -5.99);
+        double[] pos = new double[2];
+        pos[0] = 3.2;
+        pos[1] = -5.99;
+        obj.getPosition(pos, obj.getPosition());
     }
 }
