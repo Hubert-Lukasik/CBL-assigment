@@ -25,11 +25,11 @@ public abstract class Entity {
      * @param damage - damage taken (negavite damage increases hps)
      */
     public void takeDamage(int damage) {
-        healthPoints = healthPoints + 1;
+        healthPoints = healthPoints - damage;
     }
 
     public boolean isDead() {
-        return false;
+        return (healthPoints <= 0);
     }
 
     
