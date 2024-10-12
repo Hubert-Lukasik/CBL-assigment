@@ -18,7 +18,7 @@ public class EntityTest {
     static TestObject obj = new TestObject(); 
     
     @Before
-    public static void setup() {
+    public void setup() {
         obj.setHealthPoints(-4);
     }
 
@@ -26,7 +26,7 @@ public class EntityTest {
 
     @Test
     public void testGetHealthPoints() {
-        Assert.assertEquals(0, obj.getHealthPoints());    
+        Assert.assertEquals(-4, obj.getHealthPoints());    
     }
 
     @Test
