@@ -2,7 +2,6 @@ package src.test.java;
 
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import src.main.Entity;
 
