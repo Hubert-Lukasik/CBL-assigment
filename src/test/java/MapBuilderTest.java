@@ -59,8 +59,8 @@ public class MapBuilderTest {
     @Test
     @Ignore("Disabled, because buildMap no longer returns elements")
     public void testBuildMapEmptyDescription() {
-        ArrayList<String> expected = new ArrayList<String>();
-        ArrayList<ArrayList<String>> emp = new ArrayList<ArrayList<String>>();
+        //ArrayList<String> expected = new ArrayList<String>();
+        //ArrayList<ArrayList<String>> emp = new ArrayList<ArrayList<String>>();
         //Assert.assertEquals(expected, Map.buildMap(emp));
     }
 
