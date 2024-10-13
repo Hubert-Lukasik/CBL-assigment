@@ -81,7 +81,4 @@ public abstract class Entity {
     public java.awt.image.BufferedImage getImage() {
         return image;
     }
-
-
-    
 }
