@@ -8,7 +8,7 @@ import javax.imageio.ImageIO;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import src.main.Entity;
+import src.main.java.Entity;
 
 /**
  * Dummy class to test Enity class. 
