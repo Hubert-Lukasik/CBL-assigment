@@ -11,8 +11,8 @@ import javax.imageio.ImageIO;
  */
 public abstract class Entity {
     private int healthPoints = 0;
-    private double posX = 0;
-    private double posY = 0;
+    private int posX = 0;
+    private int posY = 0;
 
     private java.awt.image.BufferedImage image = new BufferedImage(1, 1, 1);
 
@@ -46,7 +46,7 @@ public abstract class Entity {
      * @param x - coordinate x of the new position
      * @param y - coordinate y of the new position
      */
-    public void setPosition(double x, double y) {
+    public void setPosition(int x, int y) {
         posX = x;
         posY = y;
     }
@@ -55,8 +55,8 @@ public abstract class Entity {
      * Get the entity position.
      * @return - two-element array with coordinates (X, Y)
      */
-    public double[] getPosition() {
-        double[] pos = new double[2];
+    public int[] getPosition() {
+        int[] pos = new int[2];
         pos[0] = posX;
         pos[1] = posY;
         return pos;

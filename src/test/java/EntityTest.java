@@ -62,24 +62,24 @@ public class EntityTest {
 
     @Test
     public void testPositionGetter() {
-        double[] pos = new double[2];
+        int[] pos = new int[2];
         pos[0] = 0;
         pos[1] = 0;
 
-        double[] res = obj.getPosition();
-        Assert.assertEquals(pos[0], res[0], 0.01);
-        Assert.assertEquals(pos[1], res[1], 0.01);
+        int[] res = obj.getPosition();
+        Assert.assertEquals(pos[0], res[0]);
+        Assert.assertEquals(pos[1], res[1]);
     }
 
     @Test
     public void testPositionSetter() {
-        obj.setPosition(3.2, -5.99);
-        double[] pos = new double[2];
-        pos[0] = 3.2;
-        pos[1] = -5.99;
-        double[] res = obj.getPosition();
-        Assert.assertEquals(pos[0], res[0], 0.01);
-        Assert.assertEquals(pos[1], res[1], 0.01);
+        obj.setPosition(3, -5);
+        int[] pos = new int[2];
+        pos[0] = 3;
+        pos[1] = -5;
+        int[] res = obj.getPosition();
+        Assert.assertEquals(pos[0], res[0]);
+        Assert.assertEquals(pos[1], res[1]);
     }
 
     @Test
