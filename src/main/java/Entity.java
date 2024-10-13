@@ -5,12 +5,11 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import javax.imageio.ImageIO;
-import javax.swing.*;
 
 /**
  * Class defines all methods for mechanics shared by all entities in the game.
  */
-public abstract class Entity extends JPanel {
+public abstract class Entity {
     private int healthPoints = 0;
     private int posX = 0;
     private int posY = 0;
