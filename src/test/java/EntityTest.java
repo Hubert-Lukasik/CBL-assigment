@@ -1,5 +1,10 @@
 package src.test.java;
 
+
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -25,6 +30,7 @@ public class EntityTest {
     public void setup() {
         obj.setHealthPoints(-4);
         obj.setPosition(0, 0);
+        obj.setImage("test_char.png");
     }
 
     @Test
@@ -74,5 +80,43 @@ public class EntityTest {
         double[] res = obj.getPosition();
         Assert.assertEquals(pos[0], res[0], 0.01);
         Assert.assertEquals(pos[1], res[1], 0.01);
+    }
+
+    @Test
+    public void testImageGetter() {
+        java.awt.image.BufferedImage expected = new BufferedImage(0, 0, 0);
+        try {
+            expected = ImageIO.read(new File("files", "test_char.png"));
+        } catch (IOException e) {
+            System.err.println("Image test_char.png not found");
+        }
+
+        Assert.assertEquals(expected, obj.getImage());
+    }
+
+    @Test
+    public void testImageSetter() {
+        java.awt.image.BufferedImage expected = new BufferedImage(0, 0, 0);
+        try {
+            expected = ImageIO.read(new File("files", "test_char2.png"));
+        } catch (IOException e) {
+            System.err.println("Image test_char2.png not found");
+        }
+
+        obj.setImage("test_char2");
+        Assert.assertEquals(expected, obj.getImage());
+    }
+
+    @Test
+    public void testSettingNonExestingImage() {
+        java.awt.image.BufferedImage expected = new BufferedImage(0, 0, 0);
+        try {
+            expected = ImageIO.read(new File("files", "test_char.png"));
+        } catch (IOException e) {
+            System.err.println("Image test_char.png not found");
+        }
+
+        obj.setImage("nonExistingImage");
+        Assert.assertEquals(expected, obj.getImage());
     }
 }
