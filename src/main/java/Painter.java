@@ -6,7 +6,7 @@ import javax.swing.*;
 /**
  * Class responsible for drawing everything on the screen.
  */
-public class Painter extends JPanel{
+public class Painter extends JPanel {
 
     private Player player;
 
@@ -16,6 +16,10 @@ public class Painter extends JPanel{
      */
     public void informAboutPlayer(Player player) {
         this.player = player;
+    }
+
+    public void applyAnimation() {
+        this.repaint();
     }
     
 

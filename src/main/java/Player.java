@@ -5,7 +5,7 @@ import java.awt.*;
 /**
  * Class containt all mechanics related to the player character.
  */
-public class Player extends Entity{
+public class Player extends Entity {
 
     /**
      * Draw Player character.

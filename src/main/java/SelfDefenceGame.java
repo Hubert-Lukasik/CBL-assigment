@@ -1,6 +1,8 @@
 package src.main.java;
 
+import java.awt.*;
 import javax.swing.*;
+
 
 /**
  * Responsible for maintaining game running and calling methods.
@@ -8,12 +10,18 @@ import javax.swing.*;
 public class SelfDefenceGame {
     private static JFrame frame;
     private static Player player;
+    private static Painter gamePanel;
 
     private static void setup() {
         Map.buildMap("map_defend.txt");
         player = new Player();
         player.setImage("test_char");
         player.setPosition(200, 200);
+
+        gamePanel = new Painter();
+        gamePanel.informAboutPlayer(player);
+        PlayerAnimation.informAboutGamePanel(gamePanel);
+        PlayerAnimation.informAboutPlayer(player);
     }
 
     public static void main(String[] args) {
@@ -23,10 +31,13 @@ public class SelfDefenceGame {
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.setSize(600, 600);
 
-            Painter gamePanel = new Painter();
-            gamePanel.informAboutPlayer(player);
+            PlayerAnimation playerAnimation = new PlayerAnimation();
+            gamePanel.addKeyListener(playerAnimation);
 
-            frame.add(gamePanel);
+            frame.add(gamePanel); 
+            
+            gamePanel.setFocusable(true);
+            gamePanel.setFocusTraversalKeysEnabled(false);  
 
             frame.setVisible(true);
         });
