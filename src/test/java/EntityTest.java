@@ -96,7 +96,7 @@ public class EntityTest {
 
     @Test
     public void testImageSetter() {
-        java.awt.image.BufferedImage expected = new BufferedImage(0, 0, 0);
+        java.awt.image.BufferedImage expected = new BufferedImage(1, 1, 1);
         try {
             expected = ImageIO.read(new File("files", "test_char2.png"));
         } catch (IOException e) {
@@ -109,7 +109,7 @@ public class EntityTest {
 
     @Test
     public void testSettingNonExestingImage() {
-        java.awt.image.BufferedImage expected = new BufferedImage(0, 0, 0);
+        java.awt.image.BufferedImage expected = new BufferedImage(1, 1, 1);
         try {
             expected = ImageIO.read(new File("files", "test_char.png"));
         } catch (IOException e) {
