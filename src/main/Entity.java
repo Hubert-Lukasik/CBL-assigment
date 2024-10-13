@@ -1,5 +1,11 @@
 package src.main;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+
 /**
  * Class defines all methods for mechanics shared by all entities in the game.
  */
@@ -7,6 +13,9 @@ public abstract class Entity {
     private int healthPoints = 0;
     private double posX = 0;
     private double posY = 0;
+
+    private java.awt.image.BufferedImage image = new BufferedImage(1, 1, 1);
+
 
     /**
      * Initialise amount of health points the entity has.
@@ -53,5 +62,26 @@ public abstract class Entity {
         return pos;
     }
 
+    /**
+     * Sets current image of an entity to specified image.
+     * @param filename - name of the file containing new image (without extension, png assumed)
+     */
+    public void setImage(String filename) { 
+        filename = filename + ".png";
+        try {  
+            String filePath = new File("files", filename).getAbsolutePath();
+            image = ImageIO.read(new File(filePath));
+        } catch (FileNotFoundException e) {
+            System.err.println("File " + filename + " not found!");
+        } catch (IOException e2) {
+            System.err.println("Can't save image");
+        }
+    }
 
+    public java.awt.image.BufferedImage getImage() {
+        return image;
+    }
+
+
+    
 }
