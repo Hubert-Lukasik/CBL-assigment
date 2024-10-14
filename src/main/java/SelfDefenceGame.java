@@ -26,6 +26,8 @@ public class SelfDefenceGame {
         Timer checkPlayerMovement = new Timer(50, listenerForMovement);
         PlayerAnimation.informAboutTimerForMovement(checkPlayerMovement);
         checkPlayerMovement.start();
+
+        Opponent.addOpponent();
     }
 
     public static void main(String[] args) {
