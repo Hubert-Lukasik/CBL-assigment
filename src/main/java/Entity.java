@@ -70,6 +70,7 @@ public abstract class Entity {
         filename = filename + ".png";
         try {  
             String filePath = new File("files", filename).getAbsolutePath();
+            System.out.println(filePath);
             image = ImageIO.read(new File(filePath));
         } catch (FileNotFoundException e) {
             System.err.println("File " + filename + " not found!");

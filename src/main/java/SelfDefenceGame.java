@@ -1,7 +1,7 @@
 package src.main.java;
 
+import java.awt.event.*;
 import javax.swing.*;
-
 
 /**
  * Responsible for maintaining game running and calling methods.
@@ -21,11 +21,16 @@ public class SelfDefenceGame {
         gamePanel.informAboutPlayer(player);
         PlayerAnimation.informAboutGamePanel(gamePanel);
         PlayerAnimation.informAboutPlayer(player);
+
+        ActionListener listenerForMovement = new PlayerAnimation();
+        Timer checkPlayerMovement = new Timer(50, listenerForMovement);
+        PlayerAnimation.informAboutTimerForMovement(checkPlayerMovement);
+        checkPlayerMovement.start();
     }
 
     public static void main(String[] args) {
-        setup();
         SwingUtilities.invokeLater(() -> {
+            setup();
             frame = new JFrame("Self-defence Game");
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.setSize(600, 600);
