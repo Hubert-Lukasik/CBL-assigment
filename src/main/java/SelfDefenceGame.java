@@ -27,7 +27,10 @@ public class SelfDefenceGame {
         PlayerAnimation.informAboutTimerForMovement(checkPlayerMovement);
         checkPlayerMovement.start();
 
+        Opponent.informAboutPlayer(player);
         Opponent.addOpponent();
+        Opponent.informAboutGamePanel(gamePanel);
+        
     }
 
     public static void main(String[] args) {
