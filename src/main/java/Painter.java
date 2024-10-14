@@ -27,6 +27,7 @@ public class Painter extends JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Map.draw(g, this);
+        Opponent.draw(g, this);
         player.draw(g, this);
     }
 
