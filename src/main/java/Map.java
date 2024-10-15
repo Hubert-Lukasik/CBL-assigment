@@ -8,12 +8,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import javax.imageio.ImageIO;
-import javax.swing.*;
 
 /**
 * MapBuilder class contains method to build a game map. 
 */
-public class Map extends JPanel {
+public class Map {
     /**
      * Read map decription from the text file.
      * @param filename - name of the file with map description
@@ -104,11 +103,12 @@ public class Map extends JPanel {
     private static final int TILE_WIDTH = 40;
     private static final int TILE_HEIGHT = 40;
 
-       
-    @Override
-    public void paintComponent(Graphics g) {
-        super.paintComponent(g);
-
+    
+    /**
+     * Draw map tiles.
+     * @param g - used by Swing
+    */
+    public static void draw(Graphics g, Painter p) {
         for (int i = 0; i < tilePaths.size(); ++i) {
             java.awt.image.BufferedImage image = new BufferedImage(1, 1, 1);
 
@@ -119,7 +119,7 @@ public class Map extends JPanel {
                 continue;
             }
 
-            g.drawImage(image, tileX.get(i), tileY.get(i), this);
+            g.drawImage(image, tileX.get(i), tileY.get(i), p);
 
         }
     }
