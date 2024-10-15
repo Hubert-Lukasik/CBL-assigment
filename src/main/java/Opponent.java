@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Random;
 import javax.swing.*;
 
 /**
@@ -14,11 +15,16 @@ public class Opponent extends Entity implements ActionListener {
     private static Player player;
     private static ArrayList<Opponent> opponents = new ArrayList<Opponent>();
     private static Painter gamePanel;
+    private static final int SPEED = 5;
 
     private Timer checkPlayerPositionTimer;
+    private int xDir = SPEED;
+    private int yDir = SPEED;
+
+    private static Random rand = new Random();
 
     private void setTimer() {
-        this. checkPlayerPositionTimer = new Timer(1000, this);
+        this. checkPlayerPositionTimer = new Timer(500 + rand.nextInt(1000), this);
         checkPlayerPositionTimer.start();
     }
 
@@ -28,7 +34,7 @@ public class Opponent extends Entity implements ActionListener {
     public static void addOpponent() {
         Opponent newOpponent = new Opponent();
         newOpponent.setImage("test_char2");
-        newOpponent.setPosition(300, 300);
+        newOpponent.setPosition(rand.nextInt(500), rand.nextInt(500));
         opponents.add(newOpponent);
         newOpponent.setTimer();
     }
@@ -54,9 +60,33 @@ public class Opponent extends Entity implements ActionListener {
             int[] playerPosition = player.getPosition();            
 
             for (Opponent op : opponents) {
-                op.setPosition(playerPosition[0], playerPosition[1]);
+                int[] opPosition = op.getPosition();
+
+                op.xDir = SPEED;
+                op.yDir = SPEED;
+
+                op.xDir = Math.min(Math.abs(xDir), Math.abs(opPosition[0] - playerPosition[0]));
+                op.yDir = Math.min(Math.abs(yDir), Math.abs(opPosition[1] - playerPosition[1]));
+
+
+                if (playerPosition[0] < opPosition[0]) {
+                    op.xDir = -1 * Math.abs(op.xDir);
+                } else if (playerPosition[0] > opPosition[0]) {
+                    op.xDir = Math.abs(op.xDir);
+                } 
+
+                if (playerPosition[1] < opPosition[1]) {
+                    op.yDir = -1 * Math.abs(op.yDir);
+                } else if (playerPosition[1] > opPosition[1]) {
+                    op.yDir = Math.abs(xDir);
+                } 
             }
 
+            for (Opponent op : opponents) {
+                int[] opPosition = op.getPosition();
+                op.setPosition(opPosition[0] + op.xDir, opPosition[1] + op.yDir);
+            }
+        
             gamePanel.applyAnimation();
         }
     }
