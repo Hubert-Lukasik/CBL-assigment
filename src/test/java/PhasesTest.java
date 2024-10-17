@@ -2,10 +2,12 @@ package src.test.java;
 
 import org.junit.Assert;
 import org.junit.Test;
-
 import src.main.java.Opponent;
 import src.main.java.Phases;
 
+/**
+ * Class contains tests for Phases class.
+ */
 public class PhasesTest {
 
     @Test
