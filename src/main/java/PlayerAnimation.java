@@ -17,6 +17,37 @@ public class PlayerAnimation implements KeyListener, ActionListener {
 
     private static Timer checkPlayerMovement;
 
+    /**
+     * 
+     */
+    public static String getDirection(boolean up, boolean right, boolean down, boolean left) {
+        String direction = "";
+
+        //exclude situation when two opposing keys are pressed
+        if ((up && down) || (left && right)) {
+            return "";
+        }
+
+        if (up) {
+            direction += 'n';
+        } 
+        
+        if (down) {
+            direction += 's';
+        }
+
+        if (left) {
+            direction += 'w';
+        }
+
+        if (right) {
+            direction += 'e';
+        }
+
+        return direction;
+
+    }
+
 
     public static void informAboutGamePanel(Painter p) {
         gamePanel = p;
@@ -57,9 +88,10 @@ public class PlayerAnimation implements KeyListener, ActionListener {
                 y += step;
             }
 
-            
+            String direction = getDirection(up, right, down, left);
 
             player.setPosition(x, y);
+            player.setImage("player_" + direction);
 
             gamePanel.applyAnimation();
         }
