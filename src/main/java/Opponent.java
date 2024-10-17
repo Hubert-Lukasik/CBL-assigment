@@ -24,7 +24,7 @@ public class Opponent extends Entity implements ActionListener {
     private static Random rand = new Random();
 
     private void setTimer() {
-        this. checkPlayerPositionTimer = new Timer(500 + rand.nextInt(1000), this);
+        this. checkPlayerPositionTimer = new Timer(20 + rand.nextInt(50), this);
         checkPlayerPositionTimer.start();
     }
 
@@ -34,7 +34,7 @@ public class Opponent extends Entity implements ActionListener {
     public static void addOpponent() {
         Opponent newOpponent = new Opponent();
         newOpponent.setImage("test_char2");
-        newOpponent.setPosition(rand.nextInt(500), rand.nextInt(500));
+        newOpponent.setPosition(rand.nextInt(100), rand.nextInt(500));
         opponents.add(newOpponent);
         newOpponent.setTimer();
     }
@@ -80,6 +80,7 @@ public class Opponent extends Entity implements ActionListener {
                 } else if (playerPosition[1] > opPosition[1]) {
                     op.yDir = Math.abs(xDir);
                 } 
+
             }
 
             for (Opponent op : opponents) {
