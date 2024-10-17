@@ -57,6 +57,8 @@ public class PlayerAnimation implements KeyListener, ActionListener {
                 y += step;
             }
 
+            
+
             player.setPosition(x, y);
 
             gamePanel.applyAnimation();
