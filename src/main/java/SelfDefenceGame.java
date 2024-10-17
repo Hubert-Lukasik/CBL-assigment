@@ -23,13 +23,13 @@ public class SelfDefenceGame {
         PlayerAnimation.informAboutPlayer(player);
 
         ActionListener listenerForMovement = new PlayerAnimation();
-        Timer checkPlayerMovement = new Timer(20, listenerForMovement);
+        Timer checkPlayerMovement = new Timer(50, listenerForMovement);
         PlayerAnimation.informAboutTimerForMovement(checkPlayerMovement);
         checkPlayerMovement.start();
 
         Opponent.informAboutPlayer(player);
 
-        for (int i = 0; i < 10; ++i) {
+        for (int i = 0; i < 1; ++i) {
             Opponent.addOpponent();
         }
 
