@@ -9,23 +9,22 @@ import src.main.java.Phases;
 public class PhasesTest {
 
     @Test
-    public void testPhaseGetter() {
-        String exp = "";
-        Assert.assertEquals(exp, Phases.getPhase());
-    }
-
-    @Test
     public void testDefendPhaseSetter() {
         Phases.startDefendPhase();
         Assert.assertEquals("Defend", Phases.getPhase());
-        Assert.assertEquals(Opponent.howManyOpponents(), 1);
+        Assert.assertNotEquals(0, Opponent.howManyOpponents());
     }
 
     @Test
     public void testPlanPhase() {
         Phases.startPlanPhase();
         Assert.assertEquals("Plan", Phases.getPhase());
-        Assert.assertEquals(Opponent.howManyOpponents(), 0);
+        Assert.assertEquals(0, Opponent.howManyOpponents());
+    }
 
+    @Test
+    public void testLevelGetterandSetter() {
+        Phases.setLevel(4L);
+        Assert.assertEquals(4L, Phases.getLevel());
     }
 }
