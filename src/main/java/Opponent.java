@@ -39,6 +39,10 @@ public class Opponent extends Entity implements ActionListener {
         newOpponent.setTimer();
     }
 
+    public static void clearOpponentsArray() {
+        opponents.clear();
+    }
+
     public static int howManyOpponents() {
         return opponents.size();
     }
