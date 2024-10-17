@@ -26,5 +26,16 @@ public class PhasesTest {
     public void testLevelGetterandSetter() {
         Phases.setLevel(4L);
         Assert.assertEquals(4L, Phases.getLevel());
+        Phases.setLevel(-1L);
+        Assert.assertEquals(4L, Phases.getLevel());
+        Phases.setLevel(0L);
+        Assert.assertEquals(0L, Phases.getLevel());
+    }
+
+    @Test
+    public void testLevelIncrease() {
+        Phases.setLevel(2L);
+        Phases.increaseLevel();
+        Assert.assertEquals(Phases.getLevel(), 3L);
     }
 }
