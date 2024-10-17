@@ -52,41 +52,39 @@ public class Opponent extends Entity implements ActionListener {
     }
 
     /**
-    * TODO: add going to player direction.
-    * END TODO
-    */
+     * Listener for updating position of the opponents.
+     */
     public void actionPerformed(ActionEvent t) {
         if (t.getSource() == checkPlayerPositionTimer) {
             int[] playerPosition = player.getPosition();            
 
-            for (Opponent op : opponents) {
-                int[] opPosition = op.getPosition();
+            Opponent op = this;
+            // for (Opponent op : opponents) {
+                
+            int[] opPosition = op.getPosition();
 
-                op.xDir = SPEED;
-                op.yDir = SPEED;
+            op.xDir = SPEED;
+            op.yDir = SPEED;
 
-                op.xDir = Math.min(Math.abs(xDir), Math.abs(opPosition[0] - playerPosition[0]));
-                op.yDir = Math.min(Math.abs(yDir), Math.abs(opPosition[1] - playerPosition[1]));
+            op.xDir = Math.min(Math.abs(xDir), Math.abs(opPosition[0] - playerPosition[0]));
+            op.yDir = Math.min(Math.abs(yDir), Math.abs(opPosition[1] - playerPosition[1]));
 
 
-                if (playerPosition[0] < opPosition[0]) {
-                    op.xDir = -1 * Math.abs(op.xDir);
-                } else if (playerPosition[0] > opPosition[0]) {
-                    op.xDir = Math.abs(op.xDir);
-                } 
+            if (playerPosition[0] < opPosition[0]) {
+                op.xDir = -1 * Math.abs(op.xDir);
+            } else if (playerPosition[0] > opPosition[0]) {
+                op.xDir = Math.abs(op.xDir);
+            } 
 
-                if (playerPosition[1] < opPosition[1]) {
-                    op.yDir = -1 * Math.abs(op.yDir);
-                } else if (playerPosition[1] > opPosition[1]) {
-                    op.yDir = Math.abs(xDir);
-                } 
+            if (playerPosition[1] < opPosition[1]) {
+                op.yDir = -1 * Math.abs(op.yDir);
+            } else if (playerPosition[1] > opPosition[1]) {
+                op.yDir = Math.abs(xDir);
+            } 
 
-            }
+            //}
 
-            for (Opponent op : opponents) {
-                int[] opPosition = op.getPosition();
-                op.setPosition(opPosition[0] + op.xDir, opPosition[1] + op.yDir);
-            }
+            op.setPosition(opPosition[0] + op.xDir, opPosition[1] + op.yDir);
         
             gamePanel.applyAnimation();
         }
