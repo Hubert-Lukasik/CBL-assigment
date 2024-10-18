@@ -40,6 +40,7 @@ public class Phases implements ActionListener {
      */
     public void startDefendPhase() {
         currentPhase = "Defend";
+        this.increaseLevel();
         for (long i = 0; i < level; ++i) {
             Opponent.addOpponent();
         }
@@ -51,7 +52,6 @@ public class Phases implements ActionListener {
     public void startPlanPhase() {
         currentPhase = "Plan";
         Opponent.clearOpponentsArray();
-        level += 1;
         planPhaseTimer = new Timer(2000 + randomGen.nextInt(1000), this);
         planPhaseTimer.start();
     }
