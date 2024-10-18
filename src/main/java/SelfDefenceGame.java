@@ -29,11 +29,9 @@ public class SelfDefenceGame {
 
         Opponent.informAboutPlayer(player);
 
-        for (int i = 0; i < 10; ++i) {
-            Opponent.addOpponent();
-        }
-
         Opponent.informAboutGamePanel(gamePanel);
+
+        Phases.startDefendPhase();
         
     }
 
