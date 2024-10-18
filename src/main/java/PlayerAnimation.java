@@ -90,8 +90,12 @@ public class PlayerAnimation implements KeyListener, ActionListener {
 
             String direction = getDirection(up, right, down, left);
 
+            //player is moving
+            if (direction != "") {
+                player.setImage("player_" + direction);
+            }
+
             player.setPosition(x, y);
-            player.setImage("player_" + direction);
 
             gamePanel.applyAnimation();
         }
