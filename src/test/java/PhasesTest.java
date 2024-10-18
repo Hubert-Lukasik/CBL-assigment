@@ -12,32 +12,36 @@ public class PhasesTest {
 
     @Test
     public void testDefendPhaseSetter() {
-        Phases.startDefendPhase();
-        Assert.assertEquals("Defend", Phases.getPhase());
+        Phases p = new Phases();
+        p.startDefendPhase();
+        Assert.assertEquals("Defend", p.getPhase());
         Assert.assertNotEquals(0, Opponent.howManyOpponents());
     }
 
     @Test
     public void testPlanPhase() {
-        Phases.startPlanPhase();
-        Assert.assertEquals("Plan", Phases.getPhase());
+        Phases p = new Phases();
+        p.startPlanPhase();
+        Assert.assertEquals("Plan", p.getPhase());
         Assert.assertEquals(0, Opponent.howManyOpponents());
     }
 
     @Test
     public void testLevelGetterandSetter() {
-        Phases.setLevel(4L);
-        Assert.assertEquals(4L, Phases.getLevel());
-        Phases.setLevel(-1L);
-        Assert.assertEquals(4L, Phases.getLevel());
-        Phases.setLevel(0L);
-        Assert.assertEquals(0L, Phases.getLevel());
+        Phases p = new Phases();
+        p.setLevel(4L);
+        Assert.assertEquals(4L, p.getLevel());
+        p.setLevel(-1L);
+        Assert.assertEquals(4L, p.getLevel());
+        p.setLevel(0L);
+        Assert.assertEquals(0L, p.getLevel());
     }
 
     @Test
     public void testLevelIncrease() {
-        Phases.setLevel(2L);
-        Phases.increaseLevel();
-        Assert.assertEquals(Phases.getLevel(), 3L);
+        Phases p = new Phases();
+        p.setLevel(2L);
+        p.increaseLevel();
+        Assert.assertEquals(p.getLevel(), 3L);
     }
 }
