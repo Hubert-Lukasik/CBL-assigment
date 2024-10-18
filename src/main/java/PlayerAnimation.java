@@ -17,6 +17,42 @@ public class PlayerAnimation implements KeyListener, ActionListener {
 
     private static Timer checkPlayerMovement;
 
+    /**
+     * Determine geographic direction towards the player character is moving.
+     * @param up - is character moving up
+     * @param right - is character moving right
+     * @param down - is character moving down
+     * @param left - is character moiving left
+     * @return - String containing letters corresponding the direction of the player character movement (empty if direction is undetermined)
+     */
+    public static String getDirection(boolean up, boolean right, boolean down, boolean left) {
+        String direction = "";
+
+        //exclude situation when two opposing keys are pressed
+        if ((up && down) || (left && right)) {
+            return "";
+        }
+
+        if (up) {
+            direction += 'n';
+        } 
+        
+        if (down) {
+            direction += 's';
+        }
+
+        if (left) {
+            direction += 'w';
+        }
+
+        if (right) {
+            direction += 'e';
+        }
+
+        return direction;
+
+    }
+
 
     public static void informAboutGamePanel(Painter p) {
         gamePanel = p;
@@ -57,7 +93,12 @@ public class PlayerAnimation implements KeyListener, ActionListener {
                 y += step;
             }
 
-            
+            String direction = getDirection(up, right, down, left);
+
+            //player is moving
+            if (direction != "") {
+                player.setImage("player_" + direction);
+            }
 
             player.setPosition(x, y);
 

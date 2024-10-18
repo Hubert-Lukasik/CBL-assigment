@@ -14,7 +14,7 @@ public class SelfDefenceGame {
     private static void setup() {
         Map.buildMap("map_defend.txt");
         player = new Player();
-        player.setImage("test_char");
+        player.setImage("player_s");
         player.setPosition(200, 200);
 
         gamePanel = new Painter();
