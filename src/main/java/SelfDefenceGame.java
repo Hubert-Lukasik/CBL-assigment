@@ -31,7 +31,8 @@ public class SelfDefenceGame {
 
         Opponent.informAboutGamePanel(gamePanel);
 
-        Phases.startDefendPhase();
+        Phases phasesManager = new Phases();
+        phasesManager.startDefendPhase();
         
     }
 
