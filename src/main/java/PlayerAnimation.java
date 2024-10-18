@@ -18,7 +18,12 @@ public class PlayerAnimation implements KeyListener, ActionListener {
     private static Timer checkPlayerMovement;
 
     /**
-     * 
+     * Determine geographic direction towards the player character is moving.
+     * @param up - is character moving up
+     * @param right - is character moving right
+     * @param down - is character moving down
+     * @param left - is character moiving left
+     * @return - String containing letters corresponding the direction of the player character movement (empty if direction is undetermined)
      */
     public static String getDirection(boolean up, boolean right, boolean down, boolean left) {
         String direction = "";
