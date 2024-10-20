@@ -29,23 +29,20 @@ public class PlayerAnimation implements KeyListener, ActionListener {
         String direction = "";
 
         //exclude situation when two opposing keys are pressed
-        if ((up && down) || (left && right)) {
-            return "";
-        }
 
-        if (up) {
+        if (up && !down) {
             direction += 'n';
         } 
         
-        if (down) {
+        if (down && !up) {
             direction += 's';
         }
 
-        if (left) {
+        if (left && !right) {
             direction += 'w';
         }
 
-        if (right) {
+        if (right && !left) {
             direction += 'e';
         }
 
@@ -74,6 +71,7 @@ public class PlayerAnimation implements KeyListener, ActionListener {
             int[] pos = player.getPosition();
             int x = pos[0];
             int y = pos[1];
+            
 
             if (right) {
                 x += step;

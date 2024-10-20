@@ -1,5 +1,6 @@
 package src.main.java;
 
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -81,4 +82,17 @@ public abstract class Entity {
     public java.awt.image.BufferedImage getImage() {
         return image;
     }
+
+
+    /**
+     * Get a rectangle with the size and the current position of the image of the entity.
+     * @return - a rectangle with a size and posstion.
+     */
+    public Rectangle getHitbox() {
+        int with = image.getWidth();
+        int hight = image.getHeight();
+        Rectangle hitboxRectangle = new Rectangle(posX, posY, with, hight);
+        return hitboxRectangle;
+    }
+
 }
