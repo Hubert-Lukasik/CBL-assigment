@@ -1,6 +1,5 @@
 package src.test.java;
 
-import java.util.Scanner;
 import org.junit.Assert;
 import org.junit.Test;
 import src.main.java.Phases;
