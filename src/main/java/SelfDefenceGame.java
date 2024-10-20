@@ -1,6 +1,5 @@
 package src.main.java;
 
-import java.awt.event.*;
 import javax.swing.*;
 
 /**
