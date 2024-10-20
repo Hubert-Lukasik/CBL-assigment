@@ -12,6 +12,7 @@ public class Phases implements ActionListener {
     private static long level = 0;
     private static Timer planPhaseTimer; 
     private static Random randomGen = new Random();
+    private static Shop shop;
 
     public String getPhase() {
         return currentPhase;
@@ -35,12 +36,23 @@ public class Phases implements ActionListener {
         level += 1L;
     }
 
+    public static void informAboutShop(Shop s) {
+        shop = s;
+    }
+
     /**
      * Start the "Defend" phase when enemies appears.
      */
     public void startDefendPhase() {
+        //set name of the phase
         currentPhase = "Defend";
+
+        //increase level
         this.increaseLevel();
+
+        //hide shop
+        shop.hideShop();
+
         for (long i = 0; i < level; ++i) {
             Opponent.addOpponent();
         }
@@ -50,8 +62,16 @@ public class Phases implements ActionListener {
      * Start the "Plan" phase when enemies are defeated.
      */
     public void startPlanPhase() {
+        //set name of the phase
         currentPhase = "Plan";
+        
+        //delete all opponents
         Opponent.clearOpponentsArray();
+        
+        //show shop
+        shop.showShop();
+
+
         planPhaseTimer = new Timer(2000 + randomGen.nextInt(1000), this);
         planPhaseTimer.start();
     }
