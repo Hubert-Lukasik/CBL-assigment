@@ -6,7 +6,7 @@ import java.awt.*;
  * Contains methods and variables relevant for in-game shop.
  */
 public class Shop {
-    private boolean isShown = false;
+    private boolean isShown;
 
     public boolean isShown() {
         return this.isShown;
@@ -21,7 +21,7 @@ public class Shop {
     }
 
     public Shop() {
-        Phases.informAboutShop(this);
+        isShown = false;
     }
 
     /**

@@ -9,14 +9,7 @@ import javax.swing.*;
 public class Painter extends JPanel {
 
     private Player player;
-
-    /**
-     * Inform Painter class about player object.
-     * @param player - player character object
-     */
-    public void informAboutPlayer(Player player) {
-        this.player = player;
-    }
+    private Map map;
 
     public void applyAnimation() {
         this.repaint();
@@ -26,10 +19,19 @@ public class Painter extends JPanel {
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        Map.draw(g, this);
+        map.draw(g, this);
         Opponent.draw(g, this);
         player.draw(g, this);
     }
 
+    /**
+     * Contructor for Painter instance.
+     * @param p - Player instance
+     * @param m - Map instance
+     */
+    public Painter(Player p, Map m) {
+        player = p;
+        map = m;
+    }
     
 }
