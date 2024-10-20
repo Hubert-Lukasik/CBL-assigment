@@ -16,5 +16,13 @@ public class Constants {
     public static int getMapWidth() {
         return TILES_IN_ROW * TILE_WIDTH;
     }
+
+    public static int getTileWidht() {
+        return TILE_WIDTH;
+    }
+
+    public static int getTileHeight() {
+        return TILE_HEIGHT;
+    }
     
 }
