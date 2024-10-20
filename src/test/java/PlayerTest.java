@@ -34,9 +34,9 @@ public class PlayerTest {
     public void testBuy() {
         Player pl = new Player();
         pl.giveCurrency(13L);
-        Assert.assertEquals(true, pl.buy(12));
+        Assert.assertEquals(true, pl.buy(12L));
         Assert.assertEquals(1L, pl.getCurrency);
-        Assert.assertEquals(false, pl.buy(2));
+        Assert.assertEquals(false, pl.buy(2L));
         Assert.assertEquals(1L, pl.getCurrency());
     }
 }
