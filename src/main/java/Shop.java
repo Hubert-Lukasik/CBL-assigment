@@ -9,6 +9,7 @@ import javax.swing.*;
 public class Shop {
     private boolean isShown;
     private JButton buyTurretButton;
+    private Player player;
 
     public boolean isShown() {
         return this.isShown;
@@ -20,18 +21,19 @@ public class Shop {
 
     /**
      * Let the program know shop should be shown.
+     * @param p - Player object
      */
     public void showShop() {
         isShown = true;
-        buyTurretButton = new JButton(new ImageIcon("files/turretTest.png"));
     }
 
     /**
      * Constructor for Shop class.
      */
-    public Shop() {
+    public Shop(Player p) {
         isShown = false;
-
+        buyTurretButton = new JButton(new ImageIcon("files/turretTest.png"));
+        player = p;
     }
 
     /**
@@ -39,7 +41,6 @@ public class Shop {
      * @param g - used by Swing
      */
     public void draw(Graphics g, Painter p) {
-        System.out.println(this.isShown());
         if (this.isShown()) {
             Graphics2D g2d = (Graphics2D) g; 
 
@@ -54,6 +55,11 @@ public class Shop {
                 20 + Constants.getTurretButtonWidth(), 
                     Constants.getTileWidht() + Constants.getTurretButtonHeight());
             p.add(buyTurretButton);
+
+            g.setColor(Color.BLACK);
+            g.setFont(new Font("Arial", Font.PLAIN, 15));
+            g2d.drawString("Your current balance: " + player.getCurrency() , 300, Constants.getMapHeight() + 20);
+        
         } else {
             p.remove(buyTurretButton);
         }
