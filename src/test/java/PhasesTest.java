@@ -5,6 +5,8 @@ import org.junit.Before;
 import org.junit.Test;
 import src.main.java.Opponent;
 import src.main.java.Phases;
+import src.main.java.Shop;
+
 
 /**
  * Class contains tests for Phases class.
@@ -14,7 +16,7 @@ public class PhasesTest {
 
     @Before
     public void init() {
-        p = new Phases();
+        p = new Phases((new Shop()));
     }
 
     @Test
