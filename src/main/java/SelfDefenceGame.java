@@ -12,13 +12,26 @@ public class SelfDefenceGame {
     private static Painter gamePanel;
 
     private static void setup() {
-        Map.buildMap("map_defend.txt");
-        player = new Player();
-        player.setImage("player_s");
-        player.setPosition(200, 200);
+        //Define game map
+        Map map = new Map();
+        map.buildMap("map_defend.txt");
+        
+        //Define player instance
+        player = new Player("player_s", 200, 200);
 
-        gamePanel = new Painter();
-        gamePanel.informAboutPlayer(player);
+        //Define shop
+        Shop shop = new Shop();
+
+        //Define phases manager
+        Phases phasesManager = new Phases(shop);
+
+        phasesManager.startDefendPhase();
+
+        //Define Painter instance, responsible for drawing
+        gamePanel = new Painter(player, map);
+
+        Opponent.informAboutPlayer(player);
+        Opponent.informAboutGamePanel(gamePanel);
         PlayerAnimation.informAboutGamePanel(gamePanel);
         PlayerAnimation.informAboutPlayer(player);
 
@@ -26,14 +39,6 @@ public class SelfDefenceGame {
         Timer checkPlayerMovement = new Timer(50, listenerForMovement);
         PlayerAnimation.informAboutTimerForMovement(checkPlayerMovement);
         checkPlayerMovement.start();
-
-        Opponent.informAboutPlayer(player);
-
-        Opponent.informAboutGamePanel(gamePanel);
-
-        Phases phasesManager = new Phases();
-        phasesManager.startDefendPhase();
-        
     }
 
     public static void main(String[] args) {
