@@ -1,10 +1,8 @@
 package src.test.java;
 
-import static org.junit.Assert.assertArrayEquals;
 
 import org.junit.Assert;
 import org.junit.Test;
-
 import src.main.java.Player;
 
 /**
@@ -35,7 +33,7 @@ public class PlayerTest {
         Player pl = new Player();
         pl.giveCurrency(13L);
         Assert.assertEquals(true, pl.buy(12L));
-        Assert.assertEquals(1L, pl.getCurrency);
+        Assert.assertEquals(1L, pl.getCurrency());
         Assert.assertEquals(false, pl.buy(2L));
         Assert.assertEquals(1L, pl.getCurrency());
     }
