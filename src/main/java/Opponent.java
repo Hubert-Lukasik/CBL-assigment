@@ -14,7 +14,6 @@ public class Opponent extends Entity implements ActionListener {
     
     private static Player player;
     private static ArrayList<Opponent> opponents = new ArrayList<Opponent>();
-    private static Painter gamePanel;
     private static final int SPEED = 5;
 
     private Timer checkPlayerPositionTimer;
@@ -51,10 +50,6 @@ public class Opponent extends Entity implements ActionListener {
         player = p;
     }
 
-    public static void informAboutGamePanel(Painter p) {
-        gamePanel = p;
-    }
-
     /**
      * Listener for updating position of the opponents.
      */
@@ -89,8 +84,6 @@ public class Opponent extends Entity implements ActionListener {
             //}
 
             op.setPosition(opPosition[0] + op.xDir, opPosition[1] + op.yDir);
-        
-            gamePanel.applyAnimation();
         }
     }
 
