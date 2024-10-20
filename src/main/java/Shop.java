@@ -1,5 +1,7 @@
 package src.main.java;
 
+import java.awt.*;
+
 /**
  * Contains methods and variables relevant for in-game shop.
  */
@@ -18,8 +20,15 @@ public class Shop {
         isShown = true;
     }
 
-
     public Shop() {
         Phases.informAboutShop(this);
+    }
+
+    /**
+     * Drawing method for shop.
+     * @param g - used by Swing
+     */
+    public void draw(Graphics g) {
+        g.drawLine(Constants.getMapHeight(), 0, Constants.getMapHeight(), Constants.getMapWidth());
     }
 }
