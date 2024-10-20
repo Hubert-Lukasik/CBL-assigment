@@ -28,7 +28,7 @@ public class SelfDefenceGame {
         phasesManager.startDefendPhase();
 
         //Define Painter instance, responsible for drawing
-        gamePanel = new Painter(player, map);
+        gamePanel = new Painter(player, map, shop);
 
         Opponent.informAboutPlayer(player);
         Opponent.informAboutGamePanel(gamePanel);
