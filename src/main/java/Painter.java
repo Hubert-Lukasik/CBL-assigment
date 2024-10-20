@@ -12,7 +12,7 @@ public class Painter extends JPanel {
     private Map map;
     private Shop shop;
 
-    public void applyAnimation() {
+    public void update() {
         this.repaint();
     }
     
@@ -23,7 +23,7 @@ public class Painter extends JPanel {
         map.draw(g, this);
         Opponent.draw(g, this);
         player.draw(g, this);
-        shop.draw(g);
+        shop.draw(g, this);
     }
 
     /**
