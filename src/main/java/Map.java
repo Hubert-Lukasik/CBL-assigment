@@ -13,12 +13,16 @@ import javax.imageio.ImageIO;
 * MapBuilder class contains method to build a game map. 
 */
 public class Map {
+    private ArrayList<String> tilePaths;
+    private ArrayList<Integer> tileX; 
+    private ArrayList<Integer> tileY;
+
     /**
      * Read map decription from the text file.
      * @param filename - name of the file with map description
      * @return ArrayList of ArrayList containing strings - ids of the tiles from specified file 
      */
-    public static ArrayList<ArrayList<String>> readMap(String filename) {
+    public ArrayList<ArrayList<String>> readMap(String filename) {
         ArrayList<ArrayList<String>> obtainedMap = new ArrayList<ArrayList<String>>();
 
         Scanner input;
@@ -63,8 +67,8 @@ public class Map {
     * Take filename of the file with mape and change it to list of tiles (.png format) to draw.
     * @param filename - name of the file containing map
     */
-    public static void buildMap(String filename) {
-        ArrayList<ArrayList<String>> mapDescription = Map.readMap(filename);
+    public void buildMap(String filename) {
+        ArrayList<ArrayList<String>> mapDescription = this.readMap(filename);
 
         tilePaths.clear();
         tileX.clear();
@@ -88,27 +92,17 @@ public class Map {
                 filePath = file.getAbsolutePath();
 
                 tilePaths.add(filePath);
-                tileX.add(column * TILE_WIDTH);
-                tileY.add(row * TILE_HEIGHT);
+                tileX.add(column * Constants.getTileWidht());
+                tileY.add(row * Constants.getTileHeight());
             }
         }
     }
 
-    //DRAWING SECTION
-
-    private static ArrayList<String> tilePaths = new ArrayList<String>();
-    private static ArrayList<Integer> tileX = new ArrayList<Integer>();
-    private static ArrayList<Integer> tileY = new ArrayList<Integer>();
-   
-    private static final int TILE_WIDTH = 40;
-    private static final int TILE_HEIGHT = 40;
-
-    
     /**
      * Draw map tiles.
      * @param g - used by Swing
     */
-    public static void draw(Graphics g, Painter p) {
+    public void draw(Graphics g, Painter p) {
         for (int i = 0; i < tilePaths.size(); ++i) {
             java.awt.image.BufferedImage image = new BufferedImage(1, 1, 1);
 
@@ -123,4 +117,15 @@ public class Map {
 
         }
     }
+
+    /**
+     * Constructor for Map instance.
+     */
+    public Map() {
+        tilePaths = new ArrayList<String>();
+        tileX = new ArrayList<Integer>();
+        tileY = new ArrayList<Integer>();
+    }
+
+
 }

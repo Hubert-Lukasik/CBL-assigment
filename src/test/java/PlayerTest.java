@@ -12,14 +12,14 @@ public class PlayerTest {
     
     @Test
     public void testGettingCurrentAmountOfCurrency() {
-        Player pl = new Player();
+        Player pl = new Player("test_char", 0, 0);
         pl.giveCurrency(5L);
         Assert.assertEquals(5L, pl.getCurrency());
     }
 
     @Test
     public void testGivingCurrency() {
-        Player pl = new Player();
+        Player pl = new Player("test_char", 0, 0);
         pl.giveCurrency(6L);
         Assert.assertEquals(6L, pl.getCurrency());
         pl.giveCurrency(7L);
@@ -30,7 +30,7 @@ public class PlayerTest {
 
     @Test 
     public void testBuy() {
-        Player pl = new Player();
+        Player pl = new Player("test_char", 0, 0);
         pl.giveCurrency(13L);
         Assert.assertEquals(true, pl.buy(12L));
         Assert.assertEquals(1L, pl.getCurrency());

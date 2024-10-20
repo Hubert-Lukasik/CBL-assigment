@@ -8,11 +8,11 @@ import javax.swing.*;
  * Class contains methods and variables connected to managing in-game phases.
  */
 public class Phases implements ActionListener {
-    private static String currentPhase = "";
-    private static long level = 0;
-    private static Timer planPhaseTimer; 
-    private static Random randomGen = new Random();
-    private static Shop shop;
+    private String currentPhase;
+    private long level;
+    private Timer planPhaseTimer; 
+    private Random randomGen;
+    private Shop shop;
 
     public String getPhase() {
         return currentPhase;
@@ -34,10 +34,6 @@ public class Phases implements ActionListener {
 
     public void increaseLevel() {
         level += 1L;
-    }
-
-    public static void informAboutShop(Shop s) {
-        shop = s;
     }
 
     /**
@@ -86,5 +82,15 @@ public class Phases implements ActionListener {
         }
     }
 
-    
+
+    /**
+     * Constructor for Phases instance.
+     * @param s - shop
+     */
+    public Phases(Shop s) {
+        currentPhase = "Plan";
+        level = 0;
+        randomGen = new Random();
+        shop = s;
+    }
 }

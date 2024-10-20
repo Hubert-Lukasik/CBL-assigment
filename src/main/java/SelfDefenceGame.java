@@ -1,6 +1,5 @@
 package src.main.java;
 
-import java.awt.event.*;
 import javax.swing.*;
 
 /**
@@ -8,32 +7,41 @@ import javax.swing.*;
  */
 public class SelfDefenceGame {
     private static JFrame frame;
-    private static Player player;
     private static Painter gamePanel;
+    private static Map map;
+    private static Player player;
+    private static Shop shop;
+    private static Phases phasesManager;
+    private static PlayerAnimation playerAnimator;
 
     private static void setup() {
-        Map.buildMap("map_defend.txt");
-        player = new Player();
-        player.setImage("player_s");
-        player.setPosition(200, 200);
-
-        gamePanel = new Painter();
-        gamePanel.informAboutPlayer(player);
-        PlayerAnimation.informAboutGamePanel(gamePanel);
-        PlayerAnimation.informAboutPlayer(player);
-
-        ActionListener listenerForMovement = new PlayerAnimation();
-        Timer checkPlayerMovement = new Timer(50, listenerForMovement);
-        PlayerAnimation.informAboutTimerForMovement(checkPlayerMovement);
-        checkPlayerMovement.start();
-
-        Opponent.informAboutPlayer(player);
-
-        Opponent.informAboutGamePanel(gamePanel);
-
-        Phases phasesManager = new Phases();
-        phasesManager.startDefendPhase();
+        //Define game map
+        map = new Map();
+        map.buildMap("map_defend.txt");
         
+        //Define player instance
+        player = new Player("player_s", 200, 200);
+
+        //Define shop
+        shop = new Shop();
+
+        //Define phases manager
+        phasesManager = new Phases(shop);
+
+        phasesManager.startDefendPhase();
+
+        //Define Painter instance, responsible for drawing
+        gamePanel = new Painter(player, map, shop);
+
+        //Define PlayerAnimation object, responsible for animating player character
+        playerAnimator = new PlayerAnimation(player, gamePanel);
+        
+        //detect pressing keys
+        gamePanel.addKeyListener(playerAnimator);
+
+        
+        Opponent.informAboutPlayer(player);
+        Opponent.informAboutGamePanel(gamePanel);
     }
 
     public static void main(String[] args) {
@@ -42,9 +50,6 @@ public class SelfDefenceGame {
             frame = new JFrame("Self-defence Game");
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.setSize(600, 600);
-
-            PlayerAnimation playerAnimation = new PlayerAnimation();
-            gamePanel.addKeyListener(playerAnimation);
 
             frame.add(gamePanel); 
             

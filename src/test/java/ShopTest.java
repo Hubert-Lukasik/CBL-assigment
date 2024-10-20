@@ -22,7 +22,7 @@ public class ShopTest {
     @Test
     public void isShownOnlyDuringPlanPhase() {
         Shop s = new Shop();
-        Phases p = new Phases();
+        Phases p = new Phases(s);
         p.startDefendPhase();
         Assert.assertEquals(false, s.isShown());
         p.startPlanPhase();

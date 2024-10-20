@@ -40,5 +40,17 @@ public class Player extends Entity {
 
         g.drawImage(this.getImage(), position[0], position[1], p);
     }
+
+
+    /**
+     * Constructor for Player instance.
+     * @param filename - name of the file containng starting image (.png file) for player
+     * @param positionX - starting position x coordinate
+     * @param positionY - starting position y coordinate
+     */
+    public Player(String filename, int positionX, int positionY) {
+        this.setImage(filename);
+        this.setPosition(positionX, positionY);
+    }
 }
 
