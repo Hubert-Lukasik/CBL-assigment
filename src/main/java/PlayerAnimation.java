@@ -7,15 +7,14 @@ import javax.swing.*;
  * Class is responsible for animating player character.
  */
 public class PlayerAnimation implements KeyListener, ActionListener {
-    private static Painter gamePanel;
-    private static Player player;
-    private static boolean right = false;
-    private static boolean left = false;
-    private static boolean up = false;
-    private static boolean down = false;
-    private static int step = 10;
-
-    private static Timer checkPlayerMovement;
+    private Painter gamePanel;
+    private Player player;
+    private boolean right;
+    private boolean left;
+    private boolean up;
+    private boolean down;
+    private int step;
+    private Timer checkPlayerMovement;
 
     /**
      * Determine geographic direction towards the player character is moving.
@@ -23,9 +22,11 @@ public class PlayerAnimation implements KeyListener, ActionListener {
      * @param right - is character moving right
      * @param down - is character moving down
      * @param left - is character moiving left
-     * @return - String containing letters corresponding the direction of the player character movement (empty if direction is undetermined)
+     * @return - String containing letters corresponding to 
+     *     the direction of the player character movement 
+     *     (empty if direction is undetermined)
      */
-    public static String getDirection(boolean up, boolean right, boolean down, boolean left) {
+    public String getDirection(boolean up, boolean right, boolean down, boolean left) {
         String direction = "";
 
         //exclude situation when two opposing keys are pressed
@@ -47,20 +48,6 @@ public class PlayerAnimation implements KeyListener, ActionListener {
         }
 
         return direction;
-
-    }
-
-
-    public static void informAboutGamePanel(Painter p) {
-        gamePanel = p;
-    }
-
-    public static void informAboutPlayer(Player pl) {
-        player = pl;
-    }
-
-    public static void informAboutTimerForMovement(Timer t) {
-        checkPlayerMovement = t;
     }
 
     /**
@@ -150,5 +137,22 @@ public class PlayerAnimation implements KeyListener, ActionListener {
         if (key == 'd') {
             right = false;
         }
-    }    
+    } 
+    
+    /**
+     * Constructor for PlayerAnimation class.
+     * @param p - Player object
+     * @param g - Painter object
+     */
+    public PlayerAnimation(Player p, Painter g) {
+        player = p;
+        gamePanel = g;
+        up = false;
+        right = false;
+        down = false;
+        left = false;
+        step = Constants.getPlayerStep();
+        checkPlayerMovement = new Timer(Constants.howOftenPlayerPositionIsUpdated(), this);
+        checkPlayerMovement.start();
+    }
 }

@@ -11,11 +11,13 @@ public class OpponentTest {
     
     @Test
     public void testGettingNumOfOpponents() {
+        Opponent.clearOpponentsArray();
         Assert.assertEquals(0, Opponent.howManyOpponents());
     }
 
     @Test
     public void testAddingOpponent() {
+        Opponent.clearOpponentsArray();
         Opponent.addOpponent();
         Assert.assertEquals(1, Opponent.howManyOpponents());
     }
