@@ -29,6 +29,11 @@ public class Shop {
      * @param g - used by Swing
      */
     public void draw(Graphics g) {
-        g.drawLine(Constants.getMapHeight(), 0, Constants.getMapHeight(), Constants.getMapWidth());
+        Graphics2D g2d = (Graphics2D) g; 
+        Stroke str = new BasicStroke(4f);
+        g2d.setStroke(str);
+        g2d.setColor(Color.GREEN);
+        g2d.drawLine(0, Constants.getMapHeight(), 
+            Constants.getMapWidth(), Constants.getMapHeight());
     }
 }
