@@ -31,7 +31,7 @@ public class SelfDefenceGame implements ActionListener{
         player = new Player("player_s", 200, 200);
 
         //Define shop
-        shop = new Shop();
+        shop = new Shop(player);
 
         //Define phases manager
         phasesManager = new Phases(shop);
