@@ -141,7 +141,6 @@ public class PlayerAnimation implements KeyListener, ActionListener {
     /**
      * Constructor for PlayerAnimation class.
      * @param p - Player object
-     * @param g - Painter object
      */
     public PlayerAnimation(Player p) {
         player = p;

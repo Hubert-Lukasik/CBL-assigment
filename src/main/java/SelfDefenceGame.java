@@ -6,7 +6,7 @@ import javax.swing.*;
 /**
  * Responsible for maintaining game running and calling methods.
  */
-public class SelfDefenceGame implements ActionListener{
+public class SelfDefenceGame implements ActionListener {
     private JFrame frame;
     private Painter gamePanel;
     private Map map;
@@ -16,6 +16,9 @@ public class SelfDefenceGame implements ActionListener{
     private PlayerAnimation playerAnimator;
     private Timer updateTimer;
 
+    /**
+     * ActionListener for updating the content on the screen.
+     */
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == updateTimer) {
             gamePanel.update();

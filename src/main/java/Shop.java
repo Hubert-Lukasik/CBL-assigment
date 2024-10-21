@@ -21,7 +21,6 @@ public class Shop {
 
     /**
      * Let the program know shop should be shown.
-     * @param p - Player object
      */
     public void showShop() {
         isShown = true;
@@ -29,6 +28,7 @@ public class Shop {
 
     /**
      * Constructor for Shop class.
+     * @param p - Player object
      */
     public Shop(Player p) {
         isShown = false;
@@ -58,7 +58,8 @@ public class Shop {
 
             g.setColor(Color.BLACK);
             g.setFont(new Font("Arial", Font.PLAIN, 15));
-            g2d.drawString("Your current balance: " + player.getCurrency() , 300, Constants.getMapHeight() + 20);
+            g2d.drawString("Your current balance: " + player.getCurrency(), 
+                300, Constants.getMapHeight() + 20);
         
         } else {
             p.remove(buyTurretButton);

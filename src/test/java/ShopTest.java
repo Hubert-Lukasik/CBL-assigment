@@ -3,6 +3,7 @@ package src.test.java;
 import org.junit.Assert;
 import org.junit.Test;
 import src.main.java.Phases;
+import src.main.java.Player;
 import src.main.java.Shop;
 
 /**
@@ -21,7 +22,7 @@ public class ShopTest {
 
     @Test
     public void isShownOnlyDuringPlanPhase() {
-        Shop s = new Shop();
+        Shop s = new Shop(new Player("test_char", 0, 0));
         Phases p = new Phases(s);
         p.startDefendPhase();
         Assert.assertEquals(false, s.isShown());
