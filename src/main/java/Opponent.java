@@ -35,6 +35,7 @@ public class Opponent extends Entity implements ActionListener {
         Opponent newOpponent = new Opponent();
         newOpponent.setImage("test_char2");
         newOpponent.setPosition(rand.nextInt(100), rand.nextInt(500));
+        newOpponent.addCollision();
         opponents.add(newOpponent);
         newOpponent.setTimer();
     }
@@ -89,6 +90,10 @@ public class Opponent extends Entity implements ActionListener {
             //}
 
             op.setPosition(opPosition[0] + op.xDir, opPosition[1] + op.yDir);
+
+            if (op.checkCollision()) {
+                op.setPosition(opPosition[0] - op.xDir, opPosition[1] - op.yDir);
+            }
         
             gamePanel.applyAnimation();
         }

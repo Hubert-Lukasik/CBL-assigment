@@ -5,6 +5,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.imageio.ImageIO;
 
 /**
@@ -14,6 +15,7 @@ public abstract class Entity {
     private int healthPoints = 0;
     private int posX = 0;
     private int posY = 0;
+    private static ArrayList<Entity> collisionEntities = new ArrayList();
 
     private java.awt.image.BufferedImage image = new BufferedImage(1, 1, 1);
 
@@ -93,6 +95,25 @@ public abstract class Entity {
         int hight = image.getHeight();
         Rectangle hitboxRectangle = new Rectangle(posX, posY, with, hight);
         return hitboxRectangle;
+    }
+
+    public void addCollision() {
+        collisionEntities.add(this);
+    }
+
+    public boolean checkCollision() {
+        Rectangle r1 = this.getHitbox();
+        for (int i = 0; i < collisionEntities.size(); ++i) {
+        
+            if (collisionEntities.get(i) != this) {
+                Rectangle r2 = collisionEntities.get(i).getHitbox();
+                boolean isOverlapping = r1.intersects(r2);
+                if (isOverlapping) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
 }

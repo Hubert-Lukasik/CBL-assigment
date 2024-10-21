@@ -22,6 +22,9 @@ public class SelfDefenceGame {
         //Define player instance
         player = new Player("player_s", 200, 200);
 
+        //Add collision to player
+        player.addCollision();
+
         //Define shop
         shop = new Shop();
 
