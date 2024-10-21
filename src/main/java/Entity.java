@@ -90,30 +90,39 @@ public abstract class Entity {
      * Get a rectangle with the size and the current position of the image of the entity.
      * @return - a rectangle with a size and posstion.
      */
-    public Rectangle getHitbox() {
-        int with = image.getWidth();
-        int hight = image.getHeight();
-        Rectangle hitboxRectangle = new Rectangle(posX, posY, with, hight);
-        return hitboxRectangle;
+    public Rectangle[] getHitbox() {
+        Rectangle[] hitbox = new Rectangle[5];
+        int width = image.getWidth();
+        int height = image.getHeight();
+        hitbox[0] = new Rectangle(posX, posY, width, height);
+        hitbox[1] = new Rectangle(posX, posY -4, width, 4);
+        hitbox[2] = new Rectangle(posX + width, posY, 4, height);
+        hitbox[3] = new Rectangle(posX, posY + height, width, 4);
+        hitbox[4] = new Rectangle(posX - 4, posY, 4, height);
+        return hitbox;
     }
 
     public void addCollision() {
         collisionEntities.add(this);
     }
 
-    public boolean checkCollision() {
-        Rectangle r1 = this.getHitbox();
+    public boolean[] checkCollision() {
+        boolean[] collision = new boolean[5];
+        Rectangle[] r1 = this.getHitbox();
         for (int i = 0; i < collisionEntities.size(); ++i) {
         
             if (collisionEntities.get(i) != this) {
-                Rectangle r2 = collisionEntities.get(i).getHitbox();
-                boolean isOverlapping = r1.intersects(r2);
-                if (isOverlapping) {
-                    return true;
+                Rectangle[] r2 = collisionEntities.get(i).getHitbox();
+                for (int j = 0; j <= 4; j++) {
+                    boolean isOverlapping = r1[j].intersects(r2[0]);
+                    if (isOverlapping) {
+                        System.out.println(j);
+                        collision[j] = true;
+                    }
                 }
             }
         }
-        return false;
+        return collision;
     }
 
 }
