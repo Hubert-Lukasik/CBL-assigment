@@ -27,7 +27,7 @@ public class Constants {
     }
 
     //PLAYER
-    private static final int PLAYER_STEP = 4;
+    private static final int PLAYER_STEP = 8;
     private static final int HOW_OFTEN_PLAYER_POSITION_UPDATED = 20;
 
     public static int getPlayerStep() {
@@ -38,4 +38,10 @@ public class Constants {
         return HOW_OFTEN_PLAYER_POSITION_UPDATED;
     }
     
+    //OPPONENT
+    private static final int OPPONENT_STEP = 5;
+
+    public static int getOpponentStep() {
+        return OPPONENT_STEP;
+    }
 }

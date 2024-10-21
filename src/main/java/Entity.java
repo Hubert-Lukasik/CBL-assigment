@@ -94,11 +94,12 @@ public abstract class Entity {
         Rectangle[] hitbox = new Rectangle[5];
         int width = image.getWidth();
         int height = image.getHeight();
+        int accuracy = Constants.getPlayerStep();
         hitbox[0] = new Rectangle(posX, posY, width, height);
-        hitbox[1] = new Rectangle(posX, posY -4, width, 4);
-        hitbox[2] = new Rectangle(posX + width, posY, 4, height);
-        hitbox[3] = new Rectangle(posX, posY + height, width, 4);
-        hitbox[4] = new Rectangle(posX - 4, posY, 4, height);
+        hitbox[1] = new Rectangle(posX, posY - accuracy, width, accuracy);
+        hitbox[2] = new Rectangle(posX + width, posY, accuracy, height);
+        hitbox[3] = new Rectangle(posX, posY + height, width, accuracy);
+        hitbox[4] = new Rectangle(posX - accuracy, posY, accuracy, height);
         return hitbox;
     }
 
@@ -106,19 +107,20 @@ public abstract class Entity {
         collisionEntities.add(this);
     }
 
+
+    /**
+     * Checks for collision between the current enitities hitboxes and every other entity's base hitbox.
+     * @return
+     */
     public boolean[] checkCollision() {
         boolean[] collision = new boolean[5];
         Rectangle[] r1 = this.getHitbox();
         for (int i = 0; i < collisionEntities.size(); ++i) {
-        
             if (collisionEntities.get(i) != this) {
                 Rectangle[] r2 = collisionEntities.get(i).getHitbox();
                 for (int j = 0; j <= 4; j++) {
                     boolean isOverlapping = r1[j].intersects(r2[0]);
-                    if (isOverlapping) {
-                        System.out.println(j);
-                        collision[j] = true;
-                    }
+                    collision[j] = isOverlapping;
                 }
             }
         }

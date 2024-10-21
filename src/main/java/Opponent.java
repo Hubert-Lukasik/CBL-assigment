@@ -3,6 +3,7 @@ package src.main.java;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.security.cert.PolicyQualifierInfo;
 import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.*;
@@ -18,9 +19,6 @@ public class Opponent extends Entity implements ActionListener {
     private static final int SPEED = 5;
 
     private Timer checkPlayerPositionTimer;
-    private int xDir = SPEED;
-    private int yDir = SPEED;
-
     private static Random rand = new Random();
 
     private void setTimer() {
@@ -61,35 +59,67 @@ public class Opponent extends Entity implements ActionListener {
      */
     public void actionPerformed(ActionEvent t) {
         if (t.getSource() == checkPlayerPositionTimer) {
-            int[] playerPosition = player.getPosition();            
+            int[] playerPosition = player.getPosition();    
+            int[] targetPosition = new int[2];        
 
             Opponent op = this;
             // for (Opponent op : opponents) {
                 
             int[] opPosition = op.getPosition();
+            boolean[] collision = op.checkCollision();
 
-            op.xDir = SPEED;
-            op.yDir = SPEED;
+            int x = opPosition[0];
+            int y = opPosition[1];
 
-            op.xDir = Math.min(Math.abs(xDir), Math.abs(opPosition[0] - playerPosition[0]));
-            op.yDir = Math.min(Math.abs(yDir), Math.abs(opPosition[1] - playerPosition[1]));
+            boolean up = false;
+            boolean right = false;
+            boolean left = false;
+            boolean down = false;
 
+            int step = Constants.getOpponentStep();
 
-            if (playerPosition[0] < opPosition[0]) {
-                op.xDir = -1 * Math.abs(op.xDir);
-            } else if (playerPosition[0] > opPosition[0]) {
-                op.xDir = Math.abs(op.xDir);
-            } 
+            if (Math.abs(x - playerPosition[0]) > Constants.getPlayerStep()) {
+                if (x < playerPosition[0]) {
+                    right = true;
+                } else if (x > playerPosition[0]) {
+                    left = true;
+                }
+            }
 
-            if (playerPosition[1] < opPosition[1]) {
-                op.yDir = -1 * Math.abs(op.yDir);
-            } else if (playerPosition[1] > opPosition[1]) {
-                op.yDir = Math.abs(xDir);
-            } 
+            if (Math.abs(y - playerPosition[1]) > Constants.getPlayerStep()) {
+                if (y < playerPosition[1]) {
+                    down = true;
+                } else if (y > playerPosition[1]) {
+                    up = true;
+                } 
+            }
+
+            if (right && !collision[2]) {
+                x += step;
+            }
+
+            if (left && !collision[4]) {
+                x -= step;
+            }
+
+            
+            if (up && !collision[1]) {
+                y -= step;
+            }
+
+            
+            if (down && !collision[3]) {
+                y += step;
+            }
 
             //}
 
-            //op.setPosition(opPosition[0] + op.xDir, opPosition[1] + op.yDir);
+            up = false;
+            right = false;
+            left = false;
+            down = false;
+
+            op.setPosition(x, y);
 
             gamePanel.applyAnimation();
         }
