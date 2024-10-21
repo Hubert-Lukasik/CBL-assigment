@@ -37,5 +37,22 @@ public class Constants {
     public static int howOftenPlayerPositionIsUpdated() {
         return HOW_OFTEN_PLAYER_POSITION_UPDATED;
     }
+
+    //SHOP
+    private static final int TURRET_BUTTON_WIDTH = 50;
+    private static final int TURRET_BUTTON_HEIGHT = 50;
+
+    public static int getTurretButtonWidth() {
+        return TURRET_BUTTON_WIDTH;
+    }
+
+    public static int getTurretButtonHeight() {
+        return TURRET_BUTTON_HEIGHT;
+    }
+
+   
+
+
+    
     
 }

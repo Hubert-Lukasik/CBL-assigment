@@ -48,6 +48,7 @@ public class Phases implements ActionListener {
 
         //hide shop
         shop.hideShop();
+        
 
         for (long i = 0; i < level; ++i) {
             Opponent.addOpponent();
@@ -68,7 +69,7 @@ public class Phases implements ActionListener {
         shop.showShop();
 
 
-        planPhaseTimer = new Timer(2000 + randomGen.nextInt(1000), this);
+        planPhaseTimer = new Timer(10000 + randomGen.nextInt(10000), this);
         planPhaseTimer.start();
     }
 
