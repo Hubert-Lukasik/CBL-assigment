@@ -89,12 +89,8 @@ public class Opponent extends Entity implements ActionListener {
 
             //}
 
-            op.setPosition(opPosition[0] + op.xDir, opPosition[1] + op.yDir);
+            //op.setPosition(opPosition[0] + op.xDir, opPosition[1] + op.yDir);
 
-            if (op.checkCollision()) {
-                op.setPosition(opPosition[0] - op.xDir, opPosition[1] - op.yDir);
-            }
-        
             gamePanel.applyAnimation();
         }
     }

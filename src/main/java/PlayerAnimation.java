@@ -56,25 +56,27 @@ public class PlayerAnimation implements KeyListener, ActionListener {
     public void actionPerformed(ActionEvent t) {
         if (t.getSource() == checkPlayerMovement) {
             int[] pos = player.getPosition();
+            boolean[] collision = player.checkCollision();
             int x = pos[0];
             int y = pos[1];
+
             
 
-            if (right) {
+            if (right && !collision[2]) {
                 x += step;
             }
 
-            if (left) {
+            if (left && !collision[4]) {
                 x -= step;
             }
 
             
-            if (up) {
+            if (up && !collision[1]) {
                 y -= step;
             }
 
             
-            if (down) {
+            if (down && !collision[3]) {
                 y += step;
             }
 
