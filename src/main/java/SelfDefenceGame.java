@@ -62,7 +62,8 @@ public class SelfDefenceGame implements ActionListener {
             setup();
             frame = new JFrame("Self-defence Game");
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.setSize(600, 600);
+            frame.setSize(Constants.getScreenWidth(), Constants.getScreenHeight());
+            frame.setResizable(false);
 
             frame.add(gamePanel); 
             

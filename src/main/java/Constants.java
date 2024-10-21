@@ -50,7 +50,15 @@ public class Constants {
         return TURRET_BUTTON_HEIGHT;
     }
 
+    //GAME SCREEN
    
+    public static int getScreenWidth() {
+        return getMapWidth();
+    }
+
+    public static int getScreenHeight() {
+        return getMapHeight() + 150; 
+    }
 
 
     
