@@ -110,7 +110,7 @@ public abstract class Entity {
 
     /**
      * Checks for collision between the current enitities hitboxes and every other entity's base hitbox.
-     * @return
+     * @return boolean array with true in each direction it is colliding with a collisionEntity.
      */
     public boolean[] checkCollision() {
         boolean[] collision = new boolean[5];
@@ -126,5 +126,19 @@ public abstract class Entity {
         }
         return collision;
     }
+
+    public boolean checkDamage(Rectangle r1) {
+        for (int i = 0; i < collisionEntities.size(); ++i) {
+            if (collisionEntities.get(i) != this) {
+                Rectangle[] r2 = collisionEntities.get(i).getHitbox();
+                if (r1.intersects(r2[0])) {
+                    return collisionEntities.get(i);
+                }
+            }
+        }
+        return false;
+    }
+
+
 
 }

@@ -58,6 +58,12 @@ public class Opponent extends Entity implements ActionListener {
      * Listener for updating position of the opponents.
      */
     public void actionPerformed(ActionEvent t) {
+
+        boolean up = false;
+        boolean down = false;
+        boolean left = false;
+        boolean right = false;
+        
         if (t.getSource() == checkPlayerPositionTimer) {
             int[] playerPosition = player.getPosition();    
             int[] targetPosition = new int[2];        
@@ -70,11 +76,6 @@ public class Opponent extends Entity implements ActionListener {
 
             int x = opPosition[0];
             int y = opPosition[1];
-
-            boolean up = false;
-            boolean right = false;
-            boolean left = false;
-            boolean down = false;
 
             int step = Constants.getOpponentStep();
 
@@ -115,9 +116,10 @@ public class Opponent extends Entity implements ActionListener {
             //}
 
             up = false;
-            right = false;
-            left = false;
             down = false;
+            left = false;            
+            right = false;
+
 
             op.setPosition(x, y);
 
