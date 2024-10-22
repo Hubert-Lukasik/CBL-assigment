@@ -60,7 +60,26 @@ public class Constants {
         return getMapHeight() + 150; 
     }
 
+    //CURRENCY
 
-    
-    
+    private static final long CURRENCY_FOR_SURVIVING_DEFEDN_PHASE = 10;
+
+    public static long getCurrencyForSurviving() {
+        return CURRENCY_FOR_SURVIVING_DEFEDN_PHASE;
+    }
+
+    //TURRETS
+
+    private static final long TURRET_PRICE = 10;
+    private static final int TURRET_HEALTH_POINTS = 20;
+
+    public static long getTurretPrice() {
+        return TURRET_PRICE;
+    }
+
+    public static int getTurretHealthPoints() {
+        return TURRET_HEALTH_POINTS;
+    }
+
+
 }
