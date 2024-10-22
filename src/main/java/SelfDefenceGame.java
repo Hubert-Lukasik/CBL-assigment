@@ -15,6 +15,7 @@ public class SelfDefenceGame implements ActionListener {
     private Phases phasesManager;
     private PlayerAnimation playerAnimator;
     private Timer updateTimer;
+    private TurretManager turretManager;
 
     /**
      * ActionListener for updating the content on the screen.
@@ -33,8 +34,11 @@ public class SelfDefenceGame implements ActionListener {
         //Define player instance
         player = new Player("player_s", 200, 200);
 
+        //Define TurretManager instance
+        turretManager = new TurretManager();
+
         //Define shop
-        shop = new Shop(player);
+        shop = new Shop(player, turretManager);
 
         //Define phases manager
         phasesManager = new Phases(shop);
