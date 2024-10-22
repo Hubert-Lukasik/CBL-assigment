@@ -19,8 +19,12 @@ public class Weapon {
     public void swingWeapon(boolean up, boolean down, boolean left, boolean right) {
         Image swingImage;
         Rectangle swingRectangle = new Rectangle();
+        String direction = Entity.getDirection(up, down, left, right);
+
         
-        if (userEntity.checkDamage(swingRectangle)) {
+
+
+        if (userEntity.checkHit(swingRectangle) != null) {
 
         }
 

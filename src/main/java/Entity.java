@@ -127,7 +127,13 @@ public abstract class Entity {
         return collision;
     }
 
-    public boolean checkDamage(Rectangle r1) {
+
+    /**
+     * Checks if a rectangle intersects (hits) an object which has collision.
+     * @param r1 - Rectangle you want to check.
+     * @return The object the rectangle hits (null if no object is hit).
+     */
+    public Entity checkHit(Rectangle r1) {
         for (int i = 0; i < collisionEntities.size(); ++i) {
             if (collisionEntities.get(i) != this) {
                 Rectangle[] r2 = collisionEntities.get(i).getHitbox();
@@ -136,9 +142,41 @@ public abstract class Entity {
                 }
             }
         }
-        return false;
+        return null;
     }
 
+    /**
+     * Determine geographic direction of the object as a string from booleans with directions.
+     * @param up - is object facing up.
+     * @param right - is object facing right.
+     * @param down - is object facing down.
+     * @param left - is object facing left.
+     * @return - String containing letters corresponding to 
+     *     the direction of the player character movement 
+     *     (empty if direction is undetermined).
+     */
+    public static String getDirection(boolean up, boolean right, boolean down, boolean left) {
+        String direction = "";
 
+        //exclude situation when two opposing keys are pressed
+
+        if (up && !down) {
+            direction += 'n';
+        } 
+        
+        if (down && !up) {
+            direction += 's';
+        }
+
+        if (left && !right) {
+            direction += 'w';
+        }
+
+        if (right && !left) {
+            direction += 'e';
+        }
+
+        return direction;
+    }
 
 }

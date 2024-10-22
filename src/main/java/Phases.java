@@ -49,7 +49,7 @@ public class Phases implements ActionListener {
         //hide shop
         shop.hideShop();
 
-        for (long i = 0; i < level; ++i) {
+        for (long i = 0; i < 3; ++i) {
             Opponent.addOpponent();
         }
     }
