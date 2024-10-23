@@ -120,7 +120,9 @@ public abstract class Entity {
                 Rectangle[] r2 = collisionEntities.get(i).getHitbox();
                 for (int j = 0; j <= 4; j++) {
                     boolean isOverlapping = r1[j].intersects(r2[0]);
-                    collision[j] = isOverlapping;
+                    if (isOverlapping) {
+                        collision[j] = true;
+                    } 
                 }
             }
         }

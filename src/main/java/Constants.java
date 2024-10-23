@@ -39,7 +39,7 @@ public class Constants {
     }
     
     //OPPONENT
-    private static final int OPPONENT_STEP = 5;
+    private static final int OPPONENT_STEP = 2;
 
     public static int getOpponentStep() {
         return OPPONENT_STEP;

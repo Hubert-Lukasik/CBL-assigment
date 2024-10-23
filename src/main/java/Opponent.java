@@ -59,8 +59,7 @@ public class Opponent extends Entity implements ActionListener {
      */
     public void actionPerformed(ActionEvent t) {
         if (t.getSource() == checkPlayerPositionTimer) {
-            int[] playerPosition = player.getPosition();    
-            int[] targetPosition = new int[2];        
+            int[] playerPosition = player.getPosition();     
 
             Opponent op = this;
             // for (Opponent op : opponents) {
