@@ -15,7 +15,7 @@ public class BulletTest {
     
     @Before
     public void init() {
-        bullet = new Bullet(300, 300, 0);
+        bullet = new Bullet(300, 300, 600, 300);
     }
 
     @Test
