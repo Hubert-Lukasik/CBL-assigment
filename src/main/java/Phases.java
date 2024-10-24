@@ -70,8 +70,8 @@ public class Phases implements ActionListener {
         //set name of the phase
         currentPhase = "Plan";
         
-        //delete all opponents
-        Opponent.clearOpponentsArray();
+        //kills all opponents
+        Opponent.killOpponents();
         
         //show shop
         shop.showShop();

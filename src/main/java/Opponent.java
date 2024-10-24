@@ -14,7 +14,7 @@ import javax.swing.*;
 public class Opponent extends Entity implements ActionListener {
     
     private static Player player;
-    private static ArrayList<Opponent> opponents = new ArrayList<Opponent>();
+    private static ArrayList<Entity> opponents = new ArrayList<Entity>();
     private static Painter gamePanel;
     private static final int SPEED = 5;
 
@@ -38,7 +38,8 @@ public class Opponent extends Entity implements ActionListener {
         newOpponent.setTimer();
     }
 
-    public static void clearOpponentsArray() {
+    public static void killOpponents() {
+        kill(opponents);
         opponents.clear();
     }
 
@@ -135,6 +136,10 @@ public class Opponent extends Entity implements ActionListener {
         for (int i = 0; i < opponents.size(); ++i) {
             int[] position = opponents.get(i).getPosition();
             g.drawImage(opponents.get(i).getImage(), position[0], position[1], p);
+            // Rectangle[] r = opponents.get(i).getHitbox();
+            // for (int j = 0; j < 5; j++) {
+            //     g.drawRect(r[j].x, r[j].y, r[j].width, r[j].height);
+            // }
         }
     }
 }

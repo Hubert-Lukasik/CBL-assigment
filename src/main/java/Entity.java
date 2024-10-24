@@ -48,6 +48,14 @@ public abstract class Entity {
         return (healthPoints <= 0);
     }
 
+    public static void kill(Entity e) {
+        collisionEntities.remove(e);
+    }
+
+    public static void kill(ArrayList<Entity> e) {
+        collisionEntities.removeAll(e);
+    }
+
     /**
      * Sets position of the entity.
      * @param x - coordinate x of the new position
