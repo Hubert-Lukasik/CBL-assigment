@@ -7,7 +7,6 @@ import java.awt.*;
  */
 public class Bullet extends Entity {
 
-    private double angle;
     private int xChange;
     private int yChange;
 
@@ -60,13 +59,28 @@ public class Bullet extends Entity {
      * Constructor for Bullet class.
      * @param x - starting position x-coordinate
      * @param y - starting position y-coordinate
-     * @param angleRadians - angle it should be rotated at
+     * @param destX - y-coordinate of the destination
+     * @param destY - y-coordinate of the destination
      */
-    public Bullet(int x, int y, double angleRadians) {
+    public Bullet(int x, int y, int destX, int destY) {
         this.setPosition(x, y);
         this.setImage("bulletTest");
-        angle = angleRadians;
-        xChange = (int) (Math.cos(angle) * (double) Constants.getBulletStep());
-        yChange = (int) (Math.sin(angle) * (double) Constants.getBulletStep());
+
+        double yDifference = destY - y;
+        double xDifference = destX - x;
+        double step = Constants.getBulletStep();
+
+        if (xDifference == 0.0) {
+            xChange = 0;
+            yChange = (int) step;
+        } else {
+            double ratio = Math.abs(yDifference) / Math.abs(xDifference);
+            yChange = (int) (step * (ratio / (ratio + 1.0) ));
+            xChange = (int) (step * (1.0 / (ratio + 1.0) ) );
+        }
+
+        //Set correct direction
+        xChange = xChange * (int) xDifference / Math.abs((int) xDifference);
+        yChange = yChange * (int) yDifference / Math.abs((int) yDifference); 
     }    
 }
