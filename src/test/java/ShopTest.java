@@ -3,7 +3,9 @@ package src.test.java;
 import org.junit.Assert;
 import org.junit.Test;
 import src.main.java.Phases;
+import src.main.java.Player;
 import src.main.java.Shop;
+import src.main.java.TurretManager;
 
 /**
  * Tests for shop with defences.
@@ -21,7 +23,7 @@ public class ShopTest {
 
     @Test
     public void isShownOnlyDuringPlanPhase() {
-        Shop s = new Shop();
+        Shop s = new Shop(new Player("test_char", 0, 0), new TurretManager());
         Phases p = new Phases(s);
         p.startDefendPhase();
         Assert.assertEquals(false, s.isShown());

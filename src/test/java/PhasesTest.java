@@ -5,7 +5,9 @@ import org.junit.Before;
 import org.junit.Test;
 import src.main.java.Opponent;
 import src.main.java.Phases;
+import src.main.java.Player;
 import src.main.java.Shop;
+import src.main.java.TurretManager;
 
 
 /**
@@ -16,7 +18,7 @@ public class PhasesTest {
 
     @Before
     public void init() {
-        p = new Phases((new Shop()));
+        p = new Phases((new Shop(new Player("test_char", 0, 0), new TurretManager())));
     }
 
     @Test

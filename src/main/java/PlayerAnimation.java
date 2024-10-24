@@ -7,7 +7,6 @@ import javax.swing.*;
  * Class is responsible for animating player character.
  */
 public class PlayerAnimation implements KeyListener, ActionListener {
-    private Painter gamePanel;
     private Player player;
     private boolean right;
     private boolean left;
@@ -62,8 +61,6 @@ public class PlayerAnimation implements KeyListener, ActionListener {
             }
 
             player.setPosition(x, y);
-
-            gamePanel.applyAnimation();
         }
     }
 
@@ -123,11 +120,9 @@ public class PlayerAnimation implements KeyListener, ActionListener {
     /**
      * Constructor for PlayerAnimation class.
      * @param p - Player object
-     * @param g - Painter object
      */
-    public PlayerAnimation(Player p, Painter g) {
+    public PlayerAnimation(Player p) {
         player = p;
-        gamePanel = g;
         up = false;
         right = false;
         down = false;
