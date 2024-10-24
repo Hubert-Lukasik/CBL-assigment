@@ -46,7 +46,7 @@ public class SelfDefenceGame implements ActionListener {
         phasesManager.startDefendPhase();
 
         //Define Painter instance, responsible for drawing
-        gamePanel = new Painter(player, map, shop);
+        gamePanel = new Painter(player, map, shop, turretManager);
 
         //Define PlayerAnimation object, responsible for animating player character
         playerAnimator = new PlayerAnimation(player);
