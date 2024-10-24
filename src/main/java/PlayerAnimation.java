@@ -22,6 +22,13 @@ public class PlayerAnimation implements KeyListener, ActionListener {
      */
     public void actionPerformed(ActionEvent t) {
         if (t.getSource() == checkPlayerMovement) {
+
+            if (player.isAttacking()) {
+                step = Constants.getPlayerAttackStep();
+            } else {
+                step = Constants.getPlayerStep();
+            }
+
             int[] pos = player.getPosition();
             boolean[] collision = player.checkCollision();
             int x = pos[0];
@@ -49,7 +56,8 @@ public class PlayerAnimation implements KeyListener, ActionListener {
             String direction = Entity.getDirection(up, right, down, left);
 
             //player is moving
-            if (direction != "") {
+            if (direction != "" && !player.isAttacking()) {
+                player.setCurrentDirection(up, right, down, left);
                 player.setImage("player_" + direction);
             }
 
@@ -65,6 +73,11 @@ public class PlayerAnimation implements KeyListener, ActionListener {
     public void keyPressed(KeyEvent e) {
         char key = e.getKeyChar();
         
+        if (key == 'j') {
+            boolean curDir[] = player.getCurrentDirection(); 
+            player.getWeapon().swingWeapon(curDir[0], curDir[1], curDir[2], curDir[3]);;
+        }
+
         if (key == 'w') {
             up = true;
         }
@@ -119,7 +132,6 @@ public class PlayerAnimation implements KeyListener, ActionListener {
         right = false;
         down = false;
         left = false;
-        step = Constants.getPlayerStep();
         checkPlayerMovement = new Timer(Constants.howOftenPlayerPositionIsUpdated(), this);
         checkPlayerMovement.start();
     }

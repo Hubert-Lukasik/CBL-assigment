@@ -24,6 +24,7 @@ public class Painter extends JPanel {
         Opponent.draw(g, this);
         player.draw(g, this);
         shop.draw(g);
+        player.getWeapon().draw(g, this);
     }
 
     /**

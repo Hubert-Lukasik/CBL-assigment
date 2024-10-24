@@ -24,7 +24,8 @@ public class SelfDefenceGame {
 
         //Add collision to player
         player.addCollision();
-
+        
+        
         //Define shop
         shop = new Shop();
 
@@ -45,6 +46,8 @@ public class SelfDefenceGame {
         
         Opponent.informAboutPlayer(player);
         Opponent.informAboutGamePanel(gamePanel);
+
+        Weapon.informAboutGamePanel(gamePanel);
     }
 
     public static void main(String[] args) {

@@ -16,6 +16,10 @@ public abstract class Entity {
     private int posX = 0;
     private int posY = 0;
     private static ArrayList<Entity> collisionEntities = new ArrayList();
+    private Weapon weapon = new Weapon(this);
+    private boolean[] currentDirection = {false, false, false, false};
+
+    private boolean isAttacking = false;
 
     private java.awt.image.BufferedImage image = new BufferedImage(1, 1, 1);
 
@@ -115,12 +119,14 @@ public abstract class Entity {
     public boolean[] checkCollision() {
         boolean[] collision = new boolean[5];
         Rectangle[] r1 = this.getHitbox();
-        for (int i = 0; i < collisionEntities.size(); ++i) {
-            if (collisionEntities.get(i) != this) {
-                Rectangle[] r2 = collisionEntities.get(i).getHitbox();
+        for (Entity e: collisionEntities) {
+            if (e != this) {
+                Rectangle[] r2 = e.getHitbox();
                 for (int j = 0; j <= 4; j++) {
                     boolean isOverlapping = r1[j].intersects(r2[0]);
-                    collision[j] = isOverlapping;
+                    if (isOverlapping) {
+                        collision[j] = true;
+                    }
                 }
             }
         }
@@ -133,16 +139,29 @@ public abstract class Entity {
      * @param r1 - Rectangle you want to check.
      * @return The object the rectangle hits (null if no object is hit).
      */
-    public Entity checkHit(Rectangle r1) {
+    public ArrayList<Entity> checkHit(Rectangle r1) {
+        ArrayList<Entity> hitEntities = new ArrayList();
         for (int i = 0; i < collisionEntities.size(); ++i) {
             if (collisionEntities.get(i) != this) {
                 Rectangle[] r2 = collisionEntities.get(i).getHitbox();
                 if (r1.intersects(r2[0])) {
-                    return collisionEntities.get(i);
+                    hitEntities.add(collisionEntities.get(i));
                 }
             }
         }
-        return null;
+        return hitEntities;
+    }
+
+    public Weapon getWeapon() {
+        return weapon;
+    }
+
+    public void setIsAttacking(boolean a) {
+        isAttacking = a;
+    }
+
+    public boolean isAttacking() {
+        return isAttacking;
     }
 
     /**
@@ -177,6 +196,17 @@ public abstract class Entity {
         }
 
         return direction;
+    }
+
+    public void setCurrentDirection(boolean up, boolean right, boolean down, boolean left) {
+        currentDirection[0] = up;
+        currentDirection[1] = right;
+        currentDirection[2] = down;
+        currentDirection[3] = left;
+    }
+
+    public boolean[] getCurrentDirection() {
+        return currentDirection;
     }
 
 }

@@ -66,7 +66,6 @@ public class Opponent extends Entity implements ActionListener {
         
         if (t.getSource() == checkPlayerPositionTimer) {
             int[] playerPosition = player.getPosition();    
-            int[] targetPosition = new int[2];        
 
             Opponent op = this;
             // for (Opponent op : opponents) {
@@ -112,6 +111,8 @@ public class Opponent extends Entity implements ActionListener {
             if (down && !collision[3]) {
                 y += step;
             }
+
+            
 
             //}
 
