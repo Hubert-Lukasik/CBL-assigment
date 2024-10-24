@@ -10,7 +10,7 @@ import javax.swing.*;
 public class Phases implements ActionListener {
     private String currentPhase;
     private long level;
-    private Timer planPhaseTimer; 
+    private static Timer planPhaseTimer; 
     private Random randomGen;
     private Shop shop;
 
@@ -20,6 +20,14 @@ public class Phases implements ActionListener {
 
     public long getLevel() {
         return level;
+    }
+
+    public static void stopPlanPhaseTimer() {
+        planPhaseTimer.stop();
+    }
+
+    public static void resumePlanPhaseTimer() {
+        planPhaseTimer.start();
     }
 
     /**
