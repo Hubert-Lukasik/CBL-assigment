@@ -11,17 +11,6 @@ public class Bullet extends Entity {
     private int xChange;
     private int yChange;
 
-    /**public void draw(Graphics g, Painter p) {
-        Graphics2D g2 = (Graphics2D) g;
-        int[] pos = this.getPosition();
-        if(cnt == 0) {
-            g2.rotate(Math.toRadians(angleDeg), this.getImage().getWidth() / 2, this.getImage().getHeight() / 2);
-        }
-
-        g2.drawImage(this.getImage(), pos[0], pos[1], p);
-    }
-    */
-
     public int getXChange() {
         return xChange;
     }
@@ -57,6 +46,11 @@ public class Bullet extends Entity {
         return !this.isOutOfGameArea();
     }
 
+    /**
+     * Drawing method for the bullet.
+     * @param g - Graphics used by Swing
+     * @param p - Painter object, game panel
+     */
     public void draw(Graphics g, Painter p) {
         g.drawImage(this.getImage(), this.getPosition()[0], this.getPosition()[1], p);
     }
