@@ -34,6 +34,8 @@ public class SelfDefenceGame implements ActionListener {
         //Define player instance
         player = new Player("player_s", 200, 200);
 
+        player.giveCurrency(30);
+
         //Define TurretManager instance
         turretManager = new TurretManager();
 
@@ -45,7 +47,7 @@ public class SelfDefenceGame implements ActionListener {
         shop = new Shop(player, turretManager);
 
         //Define phases manager
-        phasesManager = new Phases(shop);
+        phasesManager = new Phases(shop, turretManager);
 
         phasesManager.startDefendPhase();
 

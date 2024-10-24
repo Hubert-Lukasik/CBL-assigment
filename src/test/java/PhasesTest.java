@@ -16,9 +16,13 @@ import src.main.java.TurretManager;
 public class PhasesTest {
     Phases p;
 
+    /**
+     * Initialisation before tests.
+     */
     @Before
     public void init() {
-        p = new Phases((new Shop(new Player("test_char", 0, 0), new TurretManager())));
+        p = new Phases((new Shop(new Player("test_char", 0, 0), new TurretManager())), 
+            new TurretManager());
     }
 
     @Test
