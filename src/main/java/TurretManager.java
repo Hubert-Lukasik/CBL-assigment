@@ -37,7 +37,7 @@ public class TurretManager implements ActionListener {
     TODO: add calculating angle. 
     */
     private void addBullet(int x, int y) {
-        Bullet b = new Bullet(x, y, 0);
+        Bullet b = new Bullet(x, y, Math.toRadians(135));
         bullets.add(b);
     } 
 
