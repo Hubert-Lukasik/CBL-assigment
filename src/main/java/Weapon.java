@@ -59,7 +59,7 @@ public class Weapon implements ActionListener {
         }
         if (t.getSource() == animationTimer && i < 4) {
             this.setImage("swing_" + direction + "_" + i);
-            gamePanel.applyAnimation();
+            gamePanel.update();
             i++;
         }
 

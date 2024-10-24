@@ -26,7 +26,7 @@ public class Painter extends JPanel {
         turretManager.draw(g, this);
         Opponent.draw(g, this);
         player.draw(g, this);
-        shop.draw(g);
+        shop.draw(g, this);
         player.getWeapon().draw(g, this);
     }
 

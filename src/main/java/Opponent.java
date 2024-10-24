@@ -124,7 +124,7 @@ public class Opponent extends Entity implements ActionListener {
 
             op.setPosition(x, y);
 
-            gamePanel.applyAnimation();
+            gamePanel.update();
         }
     }
 
