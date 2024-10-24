@@ -25,6 +25,11 @@ public class Turret extends Entity {
     }
 
     
+    /**
+     * Method to draw the turret.
+     * @param g - used by Swing
+     * @param p - game panel
+     */
     public void draw(Graphics g, Painter p) {
         int[] position = getPosition();
     
