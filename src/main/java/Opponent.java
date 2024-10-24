@@ -66,6 +66,10 @@ public class Opponent extends Entity implements ActionListener {
         boolean right = false;
         
         if (t.getSource() == checkPlayerPositionTimer) {
+
+            if (this.isAttacking()) {
+                return;
+            }
             int[] playerPosition = player.getPosition();    
 
             Opponent op = this;
@@ -113,8 +117,13 @@ public class Opponent extends Entity implements ActionListener {
                 y += step;
             }
 
-            
+            String direction = Entity.getDirection(up, right, down, left);
 
+            //opponent is moving
+            if (direction != "") {
+                this.setCurrentDirection(up, right, down, left);
+                this.setImage("opponent_" + direction);
+            }
             //}
 
             up = false;
