@@ -24,7 +24,7 @@ public class ShopTest {
     @Test
     public void isShownOnlyDuringPlanPhase() {
         Shop s = new Shop(new Player("test_char", 0, 0), new TurretManager());
-        Phases p = new Phases(s);
+        Phases p = new Phases(s, new TurretManager());
         p.startDefendPhase();
         Assert.assertEquals(false, s.isShown());
         p.startPlanPhase();
