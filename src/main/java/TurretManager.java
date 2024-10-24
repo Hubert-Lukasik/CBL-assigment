@@ -34,10 +34,14 @@ public class TurretManager implements ActionListener {
     }
 
     /**
-    TODO: add calculating angle. 
+    TODO: add setting direction to nearest opponent. 
     */
     private void addBullet(int x, int y) {
-        Bullet b = new Bullet(x, y, Math.toRadians(135));
+
+        int destinationX = 233;
+        int destinationY = 539;
+
+        Bullet b = new Bullet(x, y, destinationX, destinationY);
         bullets.add(b);
     } 
 
