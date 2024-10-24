@@ -11,6 +11,7 @@ public class Painter extends JPanel {
     private Player player;
     private Map map;
     private Shop shop;
+    private TurretManager turretManager;
 
     public void update() {
         this.repaint();
@@ -21,9 +22,10 @@ public class Painter extends JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         map.draw(g, this);
+        shop.draw(g, this);
+        turretManager.draw(g, this);
         Opponent.draw(g, this);
         player.draw(g, this);
-        shop.draw(g, this);
     }
 
     /**
@@ -32,10 +34,12 @@ public class Painter extends JPanel {
      * @param m - Map instance
      * @param s - Shop instance
      */
-    public Painter(Player p, Map m, Shop s) {
+    public Painter(Player p, Map m, Shop s, TurretManager t) {
         player = p;
         map = m;
         shop = s;
+        turretManager = t;
+        this.addMouseListener(shop);
     }
     
 }
