@@ -23,7 +23,7 @@ public class Player extends Entity {
      * @return - true if player can buy item and deduce the cost, return false otherwise
      */
     public boolean buy(long x) {
-        if (x <= currency) {
+        if (x <= this.getCurrency()) {
             this.giveCurrency(-x);
             return true;
         }
@@ -53,4 +53,3 @@ public class Player extends Entity {
         this.setPosition(positionX, positionY);
     }
 }
-
