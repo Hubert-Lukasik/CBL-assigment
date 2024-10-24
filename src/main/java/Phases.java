@@ -13,6 +13,7 @@ public class Phases implements ActionListener {
     private static Timer planPhaseTimer; 
     private Random randomGen;
     private Shop shop;
+    private TurretManager turretManager;
 
     public String getPhase() {
         return currentPhase;
@@ -56,6 +57,9 @@ public class Phases implements ActionListener {
 
         //hide shop
         shop.hideShop();
+
+        //make turrets online
+        turretManager.startDefendPhase();
         
 
         for (long i = 0; i < level; ++i) {
@@ -75,6 +79,9 @@ public class Phases implements ActionListener {
         
         //show shop
         shop.showShop();
+
+        //turn off turrets
+        turretManager.startPlanPhase();
 
 
         planPhaseTimer = new Timer(10000 + randomGen.nextInt(10000), this);
@@ -96,10 +103,11 @@ public class Phases implements ActionListener {
      * Constructor for Phases instance.
      * @param s - shop
      */
-    public Phases(Shop s) {
+    public Phases(Shop s, TurretManager t) {
         currentPhase = "Plan";
         level = 0;
         randomGen = new Random();
         shop = s;
+        turretManager = t;
     }
 }
