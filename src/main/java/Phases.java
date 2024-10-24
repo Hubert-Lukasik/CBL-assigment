@@ -58,7 +58,7 @@ public class Phases implements ActionListener {
         shop.hideShop();
         
 
-        for (long i = 0; i < level; ++i) {
+        for (long i = 0; i < 3; ++i) {
             Opponent.addOpponent();
         }
     }
@@ -70,8 +70,8 @@ public class Phases implements ActionListener {
         //set name of the phase
         currentPhase = "Plan";
         
-        //delete all opponents
-        Opponent.clearOpponentsArray();
+        //kills all opponents
+        Opponent.killOpponents();
         
         //show shop
         shop.showShop();

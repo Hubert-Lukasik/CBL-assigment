@@ -3,6 +3,7 @@ package src.main.java;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.security.cert.PolicyQualifierInfo;
 import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.*;
@@ -13,13 +14,11 @@ import javax.swing.*;
 public class Opponent extends Entity implements ActionListener {
     
     private static Player player;
-    private static ArrayList<Opponent> opponents = new ArrayList<Opponent>();
+    private static ArrayList<Entity> opponents = new ArrayList<Entity>();
+    private static Painter gamePanel;
     private static final int SPEED = 5;
 
     private Timer checkPlayerPositionTimer;
-    private int xDir = SPEED;
-    private int yDir = SPEED;
-
     private static Random rand = new Random();
 
     private void setTimer() {
@@ -34,11 +33,13 @@ public class Opponent extends Entity implements ActionListener {
         Opponent newOpponent = new Opponent();
         newOpponent.setImage("test_char2");
         newOpponent.setPosition(rand.nextInt(100), rand.nextInt(500));
+        newOpponent.addCollision();
         opponents.add(newOpponent);
         newOpponent.setTimer();
     }
 
-    public static void clearOpponentsArray() {
+    public static void killOpponents() {
+        kill(opponents);
         opponents.clear();
     }
 
@@ -50,40 +51,81 @@ public class Opponent extends Entity implements ActionListener {
         player = p;
     }
 
+    public static void informAboutGamePanel(Painter p) {
+        gamePanel = p;
+    }
+
     /**
      * Listener for updating position of the opponents.
      */
     public void actionPerformed(ActionEvent t) {
+
+        boolean up = false;
+        boolean down = false;
+        boolean left = false;
+        boolean right = false;
+        
         if (t.getSource() == checkPlayerPositionTimer) {
-            int[] playerPosition = player.getPosition();            
+            int[] playerPosition = player.getPosition();    
 
             Opponent op = this;
             // for (Opponent op : opponents) {
                 
             int[] opPosition = op.getPosition();
+            boolean[] collision = op.checkCollision();
 
-            op.xDir = SPEED;
-            op.yDir = SPEED;
+            int x = opPosition[0];
+            int y = opPosition[1];
 
-            op.xDir = Math.min(Math.abs(xDir), Math.abs(opPosition[0] - playerPosition[0]));
-            op.yDir = Math.min(Math.abs(yDir), Math.abs(opPosition[1] - playerPosition[1]));
+            int step = Constants.getOpponentStep();
 
+            if (Math.abs(x - playerPosition[0]) > Constants.getPlayerStep()) {
+                if (x < playerPosition[0]) {
+                    right = true;
+                } else if (x > playerPosition[0]) {
+                    left = true;
+                }
+            }
 
-            if (playerPosition[0] < opPosition[0]) {
-                op.xDir = -1 * Math.abs(op.xDir);
-            } else if (playerPosition[0] > opPosition[0]) {
-                op.xDir = Math.abs(op.xDir);
-            } 
+            if (Math.abs(y - playerPosition[1]) > Constants.getPlayerStep()) {
+                if (y < playerPosition[1]) {
+                    down = true;
+                } else if (y > playerPosition[1]) {
+                    up = true;
+                } 
+            }
 
-            if (playerPosition[1] < opPosition[1]) {
-                op.yDir = -1 * Math.abs(op.yDir);
-            } else if (playerPosition[1] > opPosition[1]) {
-                op.yDir = Math.abs(xDir);
-            } 
+            if (right && !collision[2]) {
+                x += step;
+            }
+
+            if (left && !collision[4]) {
+                x -= step;
+            }
+
+            
+            if (up && !collision[1]) {
+                y -= step;
+            }
+
+            
+            if (down && !collision[3]) {
+                y += step;
+            }
+
+            
 
             //}
 
-            op.setPosition(opPosition[0] + op.xDir, opPosition[1] + op.yDir);
+            up = false;
+            down = false;
+            left = false;            
+            right = false;
+
+
+            op.setPosition(x, y);
+
+            gamePanel.update();
         }
     }
 
@@ -94,6 +136,10 @@ public class Opponent extends Entity implements ActionListener {
         for (int i = 0; i < opponents.size(); ++i) {
             int[] position = opponents.get(i).getPosition();
             g.drawImage(opponents.get(i).getImage(), position[0], position[1], p);
+            // Rectangle[] r = opponents.get(i).getHitbox();
+            // for (int j = 0; j < 5; j++) {
+            //     g.drawRect(r[j].x, r[j].y, r[j].width, r[j].height);
+            // }
         }
     }
 }

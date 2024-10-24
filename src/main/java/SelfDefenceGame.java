@@ -37,6 +37,10 @@ public class SelfDefenceGame implements ActionListener {
         //Define TurretManager instance
         turretManager = new TurretManager();
 
+        //Add collision to player
+        player.addCollision();
+        
+        
         //Define shop
         shop = new Shop(player, turretManager);
 
@@ -56,6 +60,9 @@ public class SelfDefenceGame implements ActionListener {
 
         
         Opponent.informAboutPlayer(player);
+        Opponent.informAboutGamePanel(gamePanel);
+
+        Weapon.informAboutGamePanel(gamePanel);
 
         updateTimer = new Timer(15, this);
         updateTimer.start();
