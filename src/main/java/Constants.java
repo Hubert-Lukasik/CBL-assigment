@@ -81,5 +81,11 @@ public class Constants {
         return TURRET_HEALTH_POINTS;
     }
 
+    //BULLETS
+    private static final int BULLET_STEP = 10;
+
+    public static int getBulletStep() {
+        return BULLET_STEP;
+    }
 
 }
