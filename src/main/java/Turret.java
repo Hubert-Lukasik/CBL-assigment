@@ -1,8 +1,10 @@
 package src.main.java;
 
+import java.awt.*;
+
 /**
- * Class describing all methods and variables relating to turrets.
- */
+* Class describing all methods and variables relating to turrets.
+*/
 public class Turret extends Entity {
     private boolean online;
 
@@ -22,6 +24,13 @@ public class Turret extends Entity {
         return online;
     }
 
+    
+    public void draw(Graphics g, Painter p) {
+        int[] position = getPosition();
+    
+        g.drawImage(this.getImage(), position[0], position[1], p);
+    }
+
     /**
      * Constructor for Turret class.
      * @param x - coordinate x of the turret
@@ -29,7 +38,7 @@ public class Turret extends Entity {
      */
     public Turret(int x, int y) {
         this.setPosition(x, y);
-        this.setImage("turret.png");
+        this.setImage("turretExample");
         this.setHealthPoints(Constants.getTurretHealthPoints());
     }
 }

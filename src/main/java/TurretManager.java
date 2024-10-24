@@ -1,5 +1,6 @@
 package src.main.java;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 /**
@@ -85,10 +86,20 @@ public class TurretManager {
         return counter;
     }
 
+    public void draw(Graphics g, Painter p) {
+        for (Turret t: turrets) {
+            t.draw(g, p);
+        }    
+    }
+
+    
+
     /**
     * Constructor for TurretManager class. 
     */
     public TurretManager() {
         this.turrets = new ArrayList<Turret>();
     }
+
+    
 }
