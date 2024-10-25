@@ -38,11 +38,13 @@ public class TurretManager implements ActionListener {
     */
     private void addBullet(int x, int y) {
 
-        int destinationX = 233;
-        int destinationY = 539;
-
-        Bullet b = new Bullet(x, y, destinationX, destinationY);
-        bullets.add(b);
+        int[] nearestOpponent = Opponent.findNearestOpponent(x, y);
+        
+        //there is at least one opponent to target
+        if (nearestOpponent[0] > -1) {
+            Bullet b = new Bullet(x, y, nearestOpponent[0], nearestOpponent[1]);
+            bullets.add(b);
+        }
     } 
 
 

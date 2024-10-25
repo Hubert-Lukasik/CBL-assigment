@@ -56,6 +56,33 @@ public class Opponent extends Entity implements ActionListener {
     }
 
     /**
+     * Find the nearest opponent to the specified coordinates.
+     * @param x - x-coordinate of the specified position
+     * @param y x-coordinate of the specified position
+     * @return - array containg two ints of the closest enemy or [-1, -1] is no enemy was found
+     */
+    public static int[] findNearestOpponent(int x, int y) {
+        int[] nearestOpponent = new int[2];
+        nearestOpponent[0] = -1;
+        nearestOpponent[0] = -1;
+
+        int smallestDistance = Integer.MAX_VALUE;
+        int actDistance;
+
+        for (Entity o : opponents) {
+            int[] opponentPos = o.getPosition();
+            actDistance = (opponentPos[0] - x) * (opponentPos[0] - x) 
+                + (opponentPos[1] - y) * (opponentPos[1] - y);
+            if (actDistance < smallestDistance) {
+                nearestOpponent = opponentPos;
+                smallestDistance = actDistance;
+            }
+        }
+
+        return nearestOpponent;
+    }
+
+    /**
      * Listener for updating position of the opponents.
      */
     public void actionPerformed(ActionEvent t) {
