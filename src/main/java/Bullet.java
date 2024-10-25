@@ -73,20 +73,24 @@ public class Bullet extends Entity {
         double xDifference = destX - x;
         double step = Constants.getBulletStep();
 
-        if (xDifference == 0.0) {
+        //Double can be inprecisive, check for xDifference == 0
+        if (xDifference <= 0.001 && xDifference >= -0.001) {
             xChange = 0;
             yChange = (int) step;
-            yChange = yChange * (int) yDifference / Math.abs((int) yDifference);
         } else {
             double ratio = Math.abs(yDifference) / Math.abs(xDifference);
             yChange = (int) (step * (ratio / (ratio + 1.0)));
             xChange = (int) (step * (1.0 / (ratio + 1.0)));
-
-            //Set correct direction
-            xChange = xChange * (int) xDifference / Math.abs((int) xDifference);
-            yChange = yChange * (int) yDifference / Math.abs((int) yDifference);
         }
 
+        //Set correct direction
+        if (x > destX) {
+            xChange *= -1;
+        }
+
+        if (y > destY) {
+            yChange *= -1;
+        }
          
     }    
 }
