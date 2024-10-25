@@ -21,7 +21,7 @@ public class BulletTest {
     @Test
     public void directionTest() {
         Assert.assertEquals(0, bullet.getYChange());
-        Assert.assertEquals(10, bullet.getXChange());
+        Assert.assertEquals(Constants.getBulletStep(), bullet.getXChange());
     }
 
     @Test
