@@ -27,7 +27,14 @@ public class Bullet extends Entity {
         int x = pos[0];
         int y = pos[1];
 
-        return (x < 0 || y < 0 || x > Constants.getMapWidth() || y > Constants.getMapHeight()); 
+        //To determine when bullets should vanish more accurately
+        int leftUpperX = x;
+        int leftUpperY = y;
+        int rightBottomX = x + this.getImage().getWidth();
+        int rightBottomY = y + this.getImage().getHeight();
+
+        return (leftUpperX < 0 || leftUpperY < 0 
+            || rightBottomX > Constants.getMapWidth() || rightBottomY > Constants.getMapHeight()); 
     }
 
     /**
@@ -69,14 +76,17 @@ public class Bullet extends Entity {
         if (xDifference == 0.0) {
             xChange = 0;
             yChange = (int) step;
+            yChange = yChange * (int) yDifference / Math.abs((int) yDifference);
         } else {
             double ratio = Math.abs(yDifference) / Math.abs(xDifference);
-            yChange = (int) (step * (ratio / (ratio + 1.0) ));
-            xChange = (int) (step * (1.0 / (ratio + 1.0) ) );
+            yChange = (int) (step * (ratio / (ratio + 1.0)));
+            xChange = (int) (step * (1.0 / (ratio + 1.0)));
+
+            //Set correct direction
+            xChange = xChange * (int) xDifference / Math.abs((int) xDifference);
+            yChange = yChange * (int) yDifference / Math.abs((int) yDifference);
         }
 
-        //Set correct direction
-        xChange = xChange * (int) xDifference / Math.abs((int) xDifference);
-        yChange = yChange * (int) yDifference / Math.abs((int) yDifference); 
+         
     }    
 }
