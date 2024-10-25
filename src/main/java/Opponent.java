@@ -3,7 +3,6 @@ package src.main.java;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.security.cert.PolicyQualifierInfo;
 import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.*;
@@ -16,7 +15,6 @@ public class Opponent extends Entity implements ActionListener {
     private static Player player;
     private static ArrayList<Entity> opponents = new ArrayList<Entity>();
     private static Painter gamePanel;
-    private static final int SPEED = 5;
 
     private Timer checkPlayerPositionTimer;
     private static Random rand = new Random();
@@ -38,6 +36,9 @@ public class Opponent extends Entity implements ActionListener {
         newOpponent.setTimer();
     }
 
+    /**
+     * Kills all opponents.
+     */
     public static void killOpponents() {
         kill(opponents);
         opponents.clear();

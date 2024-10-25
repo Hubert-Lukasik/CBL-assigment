@@ -92,7 +92,7 @@ public class Shop implements ActionListener, MouseListener {
             int x = e.getX() - Constants.getTileWidht();
             int y = e.getY() - Constants.getTileHeight();
 
-            /**
+            /*
             * TODO: now allow to put turret beyond the game window.
             * TODO: collision detection with player.
             */

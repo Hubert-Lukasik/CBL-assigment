@@ -15,7 +15,7 @@ public abstract class Entity {
     private int healthPoints = 0;
     private int posX = 0;
     private int posY = 0;
-    private static ArrayList<Entity> collisionEntities = new ArrayList();
+    private static ArrayList<Entity> collisionEntities = new ArrayList<Entity>();
     private Weapon weapon = new Weapon(this);
     private boolean[] currentDirection = {false, false, false, false};
 
@@ -121,7 +121,8 @@ public abstract class Entity {
 
 
     /**
-     * Checks for collision between the current enitities hitboxes and every other entity's base hitbox.
+     * Checks for collision between the current enitities hitboxes 
+     * and every other entity's base hitbox.
      * @return boolean array with true in each direction it is colliding with a collisionEntity.
      */
     public boolean[] checkCollision() {
@@ -148,7 +149,7 @@ public abstract class Entity {
      * @return The object the rectangle hits (null if no object is hit).
      */
     public ArrayList<Entity> checkHit(Rectangle r1) {
-        ArrayList<Entity> hitEntities = new ArrayList();
+        ArrayList<Entity> hitEntities = new ArrayList<Entity>();
         for (int i = 0; i < collisionEntities.size(); ++i) {
             if (collisionEntities.get(i) != this) {
                 Rectangle[] r2 = collisionEntities.get(i).getHitbox();
