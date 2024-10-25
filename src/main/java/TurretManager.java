@@ -34,7 +34,7 @@ public class TurretManager implements ActionListener {
     }
 
     /**
-    TODO: add setting direction to nearest opponent. 
+    * Add new bullet targeting the nearest opponent.  
     */
     private void addBullet(int x, int y) {
 
