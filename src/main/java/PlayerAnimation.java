@@ -72,7 +72,7 @@ public class PlayerAnimation implements KeyListener, ActionListener {
         
         if (key == 'j') {
             boolean[] curDir = player.getCurrentDirection(); 
-            player.getWeapon().swingWeapon(curDir[0], curDir[1], curDir[2], curDir[3]);;
+            player.getWeapon().swingWeapon(curDir[0], curDir[1], curDir[2], curDir[3]);
         }
 
         if (key == 'w') {

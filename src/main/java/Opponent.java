@@ -133,6 +133,7 @@ public class Opponent extends Entity implements ActionListener {
 
             if (left && !collision[4]) {
                 x -= step;
+                this.getWeapon().swingWeapon(up, right, down, left);
             }
 
             
@@ -144,6 +145,8 @@ public class Opponent extends Entity implements ActionListener {
             if (down && !collision[3]) {
                 y += step;
             }
+
+
 
             String direction = Entity.getDirection(up, right, down, left);
 
@@ -173,6 +176,7 @@ public class Opponent extends Entity implements ActionListener {
         for (int i = 0; i < opponents.size(); ++i) {
             int[] position = opponents.get(i).getPosition();
             g.drawImage(opponents.get(i).getImage(), position[0], position[1], p);
+            opponents.get(i).getWeapon().draw(g, p);
             // Rectangle[] r = opponents.get(i).getHitbox();
             // for (int j = 0; j < 5; j++) {
             //     g.drawRect(r[j].x, r[j].y, r[j].width, r[j].height);
