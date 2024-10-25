@@ -1,12 +1,11 @@
 package src.main.java;
 
-import java.awt.event.*;
 import javax.swing.*;
 
 /**
  * Responsible for maintaining game running and calling methods.
  */
-public class SelfDefenceGame implements ActionListener {
+public class SelfDefenceGame extends Thread {
     private JFrame frame;
     private Painter gamePanel;
     private Map map;
@@ -17,11 +16,11 @@ public class SelfDefenceGame implements ActionListener {
     private Timer updateTimer;
     private TurretManager turretManager;
 
-    /**
-     * ActionListener for updating the content on the screen.
-     */
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == updateTimer) {
+
+
+    @Override
+    public void run() {
+        while (true) {
             gamePanel.update();
         }
     }
@@ -54,6 +53,7 @@ public class SelfDefenceGame implements ActionListener {
 
         //Define PlayerAnimation object, responsible for animating player character
         playerAnimator = new PlayerAnimation(player);
+        playerAnimator.start();
         
         //detect pressing keys
         gamePanel.addKeyListener(playerAnimator);
@@ -63,9 +63,10 @@ public class SelfDefenceGame implements ActionListener {
         Opponent.informAboutGamePanel(gamePanel);
 
         Weapon.informAboutGamePanel(gamePanel);
+        this.setPriority(10);
+        this.start();
 
-        updateTimer = new Timer(15, this);
-        updateTimer.start();
+        
     }
 
     private void runGame() {

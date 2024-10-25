@@ -12,16 +12,18 @@ public class Painter extends JPanel {
     private Map map;
     private Shop shop;
     private TurretManager turretManager;
+    public static boolean updateMap;
 
     public void update() {
         this.repaint();
     }
+
     
 
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        map.draw(g, this);
+        //map.draw(g, this);
         shop.draw(g, this);
         turretManager.draw(g, this);
         Opponent.draw(g, this);

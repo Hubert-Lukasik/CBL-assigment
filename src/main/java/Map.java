@@ -96,6 +96,9 @@ public class Map {
                 tileY.add(row * Constants.getTileHeight());
             }
         }
+        Painter.updateMap = true;
+        System.out.println("kurva");
+        
     }
 
     /**

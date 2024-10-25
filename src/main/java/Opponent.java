@@ -1,7 +1,6 @@
 package src.main.java;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.security.cert.PolicyQualifierInfo;
 import java.util.ArrayList;
@@ -11,31 +10,26 @@ import javax.swing.*;
 /**
  * Class containing methods for opponents.
  */
-public class Opponent extends Entity implements ActionListener {
+public class Opponent extends Entity implements Runnable {
     
     private static Player player;
     private static ArrayList<Entity> opponents = new ArrayList<Entity>();
     private static Painter gamePanel;
     private static final int SPEED = 5;
-
-    private Timer checkPlayerPositionTimer;
     private static Random rand = new Random();
 
-    private void setTimer() {
-        this. checkPlayerPositionTimer = new Timer(20 + rand.nextInt(50), this);
-        checkPlayerPositionTimer.start();
-    }
 
     /**
      * Add new opponent to show it on the screen.
      */
     public static void addOpponent() {
         Opponent newOpponent = new Opponent();
+        Thread opponentThread = new Thread(newOpponent);
         newOpponent.setImage("test_char2");
         newOpponent.setPosition(rand.nextInt(100), rand.nextInt(500));
         newOpponent.addCollision();
         opponents.add(newOpponent);
-        newOpponent.setTimer();
+        opponentThread.start();
     }
 
     public static void killOpponents() {
@@ -55,22 +49,24 @@ public class Opponent extends Entity implements ActionListener {
         gamePanel = p;
     }
 
-    /**
-     * Listener for updating position of the opponents.
-     */
-    public void actionPerformed(ActionEvent t) {
-
-        boolean up = false;
-        boolean down = false;
-        boolean left = false;
-        boolean right = false;
-        
-        if (t.getSource() == checkPlayerPositionTimer) {
+    @Override
+    public void run() {
+        while (opponents.contains(this)) {
+            boolean up = false;
+            boolean down = false;
+            boolean left = false;
+            boolean right = false;
+            
             int[] playerPosition = player.getPosition();    
 
             Opponent op = this;
             // for (Opponent op : opponents) {
-                
+            try {
+                Thread.sleep(50);
+            } catch (InterruptedException ex) {
+
+            }
+
             int[] opPosition = op.getPosition();
             boolean[] collision = op.checkCollision();
 
@@ -124,9 +120,9 @@ public class Opponent extends Entity implements ActionListener {
 
 
             op.setPosition(x, y);
-
             gamePanel.update();
         }
+        
     }
 
     /**

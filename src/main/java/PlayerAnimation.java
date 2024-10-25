@@ -1,26 +1,30 @@
 package src.main.java;
 
 import java.awt.event.*;
-import javax.swing.*;
 
 /**
  * Class is responsible for animating player character.
  */
-public class PlayerAnimation implements KeyListener, ActionListener {
+public class PlayerAnimation extends Thread implements KeyListener {
     private Player player;
     private boolean right;
     private boolean left;
     private boolean up;
     private boolean down;
     private int step;
-    private Timer checkPlayerMovement;
-
+    private long checkPlayerMovement;
 
     /**
      * Update player position whenever timer issues actionPerformed.
      */
-    public void actionPerformed(ActionEvent t) {
-        if (t.getSource() == checkPlayerMovement) {
+    @Override
+    public void run() {
+        while (true) {
+            try {
+                Thread.sleep(checkPlayerMovement);
+            } catch (InterruptedException ex) {
+            }
+
 
             if (player.isAttacking()) {
                 step = Constants.getPlayerAttackStep();
@@ -62,6 +66,7 @@ public class PlayerAnimation implements KeyListener, ActionListener {
 
             player.setPosition(x, y);
         }
+            
     }
 
     /**
@@ -127,7 +132,6 @@ public class PlayerAnimation implements KeyListener, ActionListener {
         right = false;
         down = false;
         left = false;
-        checkPlayerMovement = new Timer(Constants.howOftenPlayerPositionIsUpdated(), this);
-        checkPlayerMovement.start();
+        checkPlayerMovement = Constants.howOftenPlayerPositionIsUpdated();
     }
 }
