@@ -27,11 +27,7 @@ public class Bullet extends Entity {
         int x = pos[0];
         int y = pos[1];
 
-        if (x < 0 || y < 0 || x > Constants.getMapWidth() || y > Constants.getMapHeight()) {
-            return true;
-        }
-
-        return false;
+        return (x < 0 || y < 0 || x > Constants.getMapWidth() || y > Constants.getMapHeight()); 
     }
 
     /**
