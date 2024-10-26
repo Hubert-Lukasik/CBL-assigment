@@ -20,6 +20,9 @@ public class SelfDefenceGame implements ActionListener {
     private Ending endGame;
     private Timer updateEndingTimer;
     private Timer hasEndingFinished;
+    private Badending badEnding;
+    private Timer isPlayerStillAlive;
+    private Timer updateBadEndingTimer;
 
     /**
      * ActionListener for updating the content on the screen.
@@ -29,16 +32,31 @@ public class SelfDefenceGame implements ActionListener {
             gamePanel.update();
         }
 
+        if (e.getSource() == isPlayerStillAlive && player.isDead()) {
+            checkWhetherGameEnded.stop();
+            updateTimer.stop();
+            isPlayerStillAlive.stop();
+            updateBadEndingTimer = new Timer(15, this);
+            updateBadEndingTimer.start();
+            runBadEnding();
+        } 
+
         if (e.getSource() == checkWhetherGameEnded && shop.hasPlayerWon()) {
             checkWhetherGameEnded.stop();
             updateTimer.stop();
+            isPlayerStillAlive.stop();
             updateEndingTimer = new Timer(15, this);
             updateEndingTimer.start();
             this.runEnding();
         }
 
+
         if (e.getSource() == updateEndingTimer) {
             endGame.update();
+        }
+
+        if (e.getSource() == updateBadEndingTimer) {
+            badEnding.update();
         }
 
         if (e.getSource() == hasEndingFinished && endGame.hasEndingFinished()) {
@@ -96,11 +114,15 @@ public class SelfDefenceGame implements ActionListener {
 
         checkWhetherGameEnded = new Timer(100, this);
         checkWhetherGameEnded.start();
+
+        isPlayerStillAlive = new Timer(50, this);
+        isPlayerStillAlive.start();
     }
 
     private void runGame() {
         SwingUtilities.invokeLater(() -> {
             setup();
+
             frame = new JFrame("Self-defence Game");
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.setSize(Constants.getScreenWidth(), Constants.getScreenHeight());
@@ -118,7 +140,7 @@ public class SelfDefenceGame implements ActionListener {
     }
 
     /**
-     * Section responsible for running game ending.
+     * Section responsible for running good game ending.
      */
     public void runEnding() {
         SwingUtilities.invokeLater(() -> {
@@ -131,6 +153,20 @@ public class SelfDefenceGame implements ActionListener {
 
             hasEndingFinished = new Timer(100, this);
             hasEndingFinished.start();
+        });
+    }
+
+    /**
+     * Runs the bad ending (when player runs out of HPs).
+     */
+    public void runBadEnding() {
+        SwingUtilities.invokeLater(() -> {
+            frame.remove(gamePanel); 
+
+            badEnding = new Badending();
+
+            frame.add(badEnding);
+            frame.setVisible(true);
         });
     }
 
