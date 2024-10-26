@@ -16,6 +16,10 @@ public class SelfDefenceGame implements ActionListener {
     private PlayerAnimation playerAnimator;
     private Timer updateTimer;
     private TurretManager turretManager;
+    private Timer checkWhetherGameEnded;
+    private Ending endGame;
+    private Timer updateEndingTimer;
+    private Timer hasEndingFinished;
 
     /**
      * ActionListener for updating the content on the screen.
@@ -23,6 +27,23 @@ public class SelfDefenceGame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == updateTimer) {
             gamePanel.update();
+        }
+
+        if (e.getSource() == checkWhetherGameEnded && shop.hasPlayerWon()) {
+            checkWhetherGameEnded.stop();
+            updateTimer.stop();
+            updateEndingTimer = new Timer(15, this);
+            updateEndingTimer.start();
+            this.runEnding();
+        }
+
+        if (e.getSource() == updateEndingTimer) {
+            endGame.update();
+        }
+
+        if (e.getSource() == hasEndingFinished && endGame.hasEndingFinished()) {
+            updateEndingTimer.stop();
+            showScore();
         }
     }
 
@@ -34,7 +55,7 @@ public class SelfDefenceGame implements ActionListener {
         //Define player instance
         player = new Player("player_s", 200, 200);
 
-        player.giveCurrency(30);
+        player.giveCurrency(60);
 
         //Define TurretManager instance
         turretManager = new TurretManager();
@@ -50,6 +71,10 @@ public class SelfDefenceGame implements ActionListener {
         phasesManager = new Phases(shop, turretManager);
 
         phasesManager.startDefendPhase();
+        phasesManager.increaseLevel();
+        phasesManager.increaseLevel();
+        phasesManager.startPlanPhase();
+        
 
         //Define Painter instance, responsible for drawing
         gamePanel = new Painter(player, map, shop, turretManager);
@@ -68,6 +93,9 @@ public class SelfDefenceGame implements ActionListener {
 
         updateTimer = new Timer(15, this);
         updateTimer.start();
+
+        checkWhetherGameEnded = new Timer(100, this);
+        checkWhetherGameEnded.start();
     }
 
     private void runGame() {
@@ -84,6 +112,39 @@ public class SelfDefenceGame implements ActionListener {
             gamePanel.setFocusTraversalKeysEnabled(false);  
 
             phasesManager.startPlanPhase();
+
+            frame.setVisible(true);
+        });
+    }
+
+    /**
+     * Section responsible for running game ending.
+     */
+    public void runEnding() {
+        SwingUtilities.invokeLater(() -> {
+            frame.remove(gamePanel); 
+
+            endGame = new Ending(map, player, turretManager);
+
+            frame.add(endGame);
+            frame.setVisible(true);
+
+            hasEndingFinished = new Timer(100, this);
+            hasEndingFinished.start();
+        });
+    }
+
+    /**
+     * Section repsonsible for showing score player obtained.
+     */
+    public void showScore() {
+        SwingUtilities.invokeLater(() -> {
+            frame.remove(endGame); 
+
+            JPanel scoreScreen = new ScoreScreen(player, phasesManager);
+                        
+            frame.setSize(Constants.getScoreScreenWidth(), Constants.getScoreScreenHeight());
+            frame.add(scoreScreen);
 
             frame.setVisible(true);
         });
