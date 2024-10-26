@@ -126,7 +126,7 @@ public class Weapon implements ActionListener {
         }
     }
 
-    public void draw(Graphics g, Painter p) {
+    public void draw(Graphics g, JPanel p) {
         if (swing) {
             int[] position = userEntity.getPosition();
             g.drawImage(image, position[0] - 20, position[1] - 20, p);
