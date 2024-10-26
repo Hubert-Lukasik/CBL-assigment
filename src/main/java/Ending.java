@@ -7,7 +7,7 @@ import javax.swing.*;
 /**
  * Class gives the methods to run the ending of the game.
  */
-public class Ending extends JPanel implements ActionListener{
+public class Ending extends JPanel implements ActionListener {
     private Map map;
     private Player player;
     private TurretManager turretManager;
@@ -23,6 +23,9 @@ public class Ending extends JPanel implements ActionListener{
         this.repaint();
     }
 
+    /**
+     * ActionListener for checking whether the tank reached the end of the screen.
+     */
     public void actionPerformed(ActionEvent t) {
         if (t.getSource() == hasTankReachedTheEndTimer) {
             if (tank.getPosition()[0] > Constants.getMapWidth() + tank.getImage().getWidth()) {
@@ -50,7 +53,7 @@ public class Ending extends JPanel implements ActionListener{
     }
 
     /**
-     * Constructor for ending.
+     * Constructor for Ending.
      * @param m - Map object
      * @param p - Player object
      * @param tm - TurretManager object
