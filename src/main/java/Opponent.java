@@ -32,6 +32,7 @@ public class Opponent extends Entity implements ActionListener {
         newOpponent.setImage("test_char2");
         newOpponent.setPosition(rand.nextInt(100), rand.nextInt(500));
         newOpponent.addCollision();
+        newOpponent.setHealthPoints(100);
         opponents.add(newOpponent);
         newOpponent.setTimer();
     }
@@ -94,6 +95,11 @@ public class Opponent extends Entity implements ActionListener {
         boolean right = false;
         
         if (t.getSource() == checkPlayerPositionTimer) {
+
+            if (this.isDead()) {
+                kill(this);
+                opponents.remove(this);
+            }
 
             if (this.isAttacking()) {
                 return;

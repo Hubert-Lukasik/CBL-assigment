@@ -55,5 +55,6 @@ public class Player extends Entity {
     public Player(String filename, int positionX, int positionY) {
         this.setImage(filename);
         this.setPosition(positionX, positionY);
+        this.getWeapon().setDamage(50);
     }
 }
