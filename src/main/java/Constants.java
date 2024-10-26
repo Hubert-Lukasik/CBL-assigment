@@ -51,8 +51,10 @@ public class Constants {
     }
 
     //SHOP
-    private static final int TURRET_BUTTON_WIDTH = 50;
-    private static final int TURRET_BUTTON_HEIGHT = 50;
+    private static final int TURRET_BUTTON_WIDTH = 100;
+    private static final int TURRET_BUTTON_HEIGHT = 100;
+    private static final int ENDING_BUTTON_WIDTH = 100;
+    private static final int ENDING_BUTTON_HEIGHT = 100;
 
     public static int getTurretButtonWidth() {
         return TURRET_BUTTON_WIDTH;
@@ -60,6 +62,14 @@ public class Constants {
 
     public static int getTurretButtonHeight() {
         return TURRET_BUTTON_HEIGHT;
+    }
+
+    public static int getEndingButtonHeight() {
+        return ENDING_BUTTON_HEIGHT;
+    }
+
+    public static int getEndingButtonWidth() {
+        return ENDING_BUTTON_WIDTH;
     }
 
     //GAME SCREEN
@@ -109,6 +119,37 @@ public class Constants {
 
     public static int getBulletPositionUpdateDelay() {
         return BULLET_POSITION_UPDATE_DELAY;
+    }
+
+    //ENDING
+    private static final int ENDING_PRICE = 30;
+    
+    public static int getEndingPrice() {
+        return ENDING_PRICE;
+    }
+
+    //TANK
+    private static final int TANK_MOVEMENT_DELAY = 100;
+    private static final int TANK_STEP = 9;
+
+    public static int getTankDelay() {
+        return TANK_MOVEMENT_DELAY;
+    }
+
+    public static int getTankStep() {
+        return TANK_STEP;
+    }
+
+    //SCORE SCREEN
+    private static final int SCORE_SCREEN_WIDTH = 800;
+    private static final int SCORE_SCREEN_HEIGHT = 700;
+
+    public static int getScoreScreenWidth() {
+        return SCORE_SCREEN_WIDTH;
+    }
+
+    public static int getScoreScreenHeight() {
+        return SCORE_SCREEN_HEIGHT;
     }
 
   
