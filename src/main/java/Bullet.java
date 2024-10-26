@@ -1,6 +1,7 @@
 package src.main.java;
 
 import java.awt.*;
+import javax.swing.JPanel;
 
 /**
  * Class containing methods for entity.
@@ -53,7 +54,7 @@ public class Bullet extends Entity {
      * @param g - Graphics used by Swing
      * @param p - Painter object, game panel
      */
-    public void draw(Graphics g, Painter p) {
+    public void draw(Graphics g, JPanel p) {
         g.drawImage(this.getImage(), this.getPosition()[0], this.getPosition()[1], p);
     }
 

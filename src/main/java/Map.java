@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import javax.imageio.ImageIO;
+import javax.swing.JPanel;
 
 /**
 * MapBuilder class contains method to build a game map. 
@@ -102,7 +103,7 @@ public class Map {
      * Draw map tiles.
      * @param g - used by Swing
     */
-    public void draw(Graphics g, Painter p) {
+    public void draw(Graphics g, JPanel p) {
         for (int i = 0; i < tilePaths.size(); ++i) {
             java.awt.image.BufferedImage image = new BufferedImage(1, 1, 1);
 
