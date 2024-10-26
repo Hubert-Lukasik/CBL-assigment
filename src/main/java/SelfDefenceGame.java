@@ -141,7 +141,7 @@ public class SelfDefenceGame implements ActionListener {
         SwingUtilities.invokeLater(() -> {
             frame.remove(endGame); 
 
-            JPanel scoreScreen = new ScoreScreen(player, phasesManager);
+            JPanel scoreScreen = new Scorescreen(player, phasesManager);
                         
             frame.setSize(Constants.getScoreScreenWidth(), Constants.getScoreScreenHeight());
             frame.add(scoreScreen);

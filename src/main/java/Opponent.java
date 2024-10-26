@@ -196,7 +196,7 @@ public class Opponent extends Entity implements ActionListener {
     /**
      * Draw opponents in the ending section.
      */
-    public static void drawEndingOpponents (Graphics g, JPanel p) {
+    public static void drawEndingOpponents(Graphics g, JPanel p) {
         for (Entity o : endingOpponents) {
             o.setPosition(o.getPosition()[0] + 4 * Constants.getOpponentStep(), o.getPosition()[1]);
             g.drawImage(o.getImage(), o.getPosition()[0], o.getPosition()[1], p);

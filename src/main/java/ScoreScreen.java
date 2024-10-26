@@ -11,7 +11,7 @@ import javax.swing.*;
 /**
  * Class for score screen (screen showing obtained points to the player).
  */
-public class ScoreScreen extends JPanel {
+public class Scorescreen extends JPanel {
     private Phases phasesManager;
     private Player player; 
     private java.awt.image.BufferedImage endImg = new BufferedImage(1, 1, 1);
@@ -49,7 +49,7 @@ public class ScoreScreen extends JPanel {
      * @param p - Player object
      * @param pm - Phases object
      */
-    public ScoreScreen(Player p, Phases pm) {
+    public Scorescreen(Player p, Phases pm) {
         player = p;
         phasesManager = pm;
         calculateScore();
