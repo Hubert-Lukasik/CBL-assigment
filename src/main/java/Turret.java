@@ -1,6 +1,7 @@
 package src.main.java;
 
 import java.awt.*;
+import javax.swing.*;
 
 /**
 * Class describing all methods and variables relating to turrets.
@@ -30,7 +31,7 @@ public class Turret extends Entity {
      * @param g - used by Swing
      * @param p - game panel
      */
-    public void draw(Graphics g, Painter p) {
+    public void draw(Graphics g, JPanel p) {
         int[] position = getPosition();
     
         g.drawImage(this.getImage(), position[0], position[1], p);

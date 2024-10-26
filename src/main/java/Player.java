@@ -1,6 +1,7 @@
 package src.main.java;
 
 import java.awt.*;
+import javax.swing.JPanel;
 
 /**
  * Class containt all mechanics related to the player character.
@@ -8,6 +9,7 @@ import java.awt.*;
 public class Player extends Entity {
     
     private long currency = 0;
+    private boolean isHidden;
 
     public void giveCurrency(long x) {
         this.currency += x;
@@ -30,19 +32,32 @@ public class Player extends Entity {
 
         return false;
     }
+
+    //hides the player from the screen (used only during ending)
+    public void hide() {
+        isHidden = true;
+    }
+
+    //ensures opponents will follow tank (used only during ending)
+    public void moveTogetherWithTank(int x, int y) {
+        this.setPosition(x, y);
+    }
    
     /**
      * Draw Player character.
      * @param g - used by Swing
      */
-    public void draw(Graphics g, Painter p) {
-        int[] position = getPosition();
+    public void draw(Graphics g, JPanel p) {
 
-        g.drawImage(this.getImage(), position[0], position[1], p);
-        // Rectangle[] r = this.getHitbox();
-        // for (int i = 0; i < 5; i++) {
-        //     g.drawRect(r[i].x, r[i].y, r[i].width, r[i].height);
-        // }
+        if (!this.isHidden) {
+            int[] position = getPosition();
+
+            g.drawImage(this.getImage(), position[0], position[1], p);
+            // Rectangle[] r = this.getHitbox();
+            // for (int i = 0; i < 5; i++) {
+            //     g.drawRect(r[i].x, r[i].y, r[i].width, r[i].height);
+            // }
+        }
     }
 
 
@@ -55,5 +70,7 @@ public class Player extends Entity {
     public Player(String filename, int positionX, int positionY) {
         this.setImage(filename);
         this.setPosition(positionX, positionY);
+        this.setHealthPoints(Constants.getPlayerHealthPoints());
+        this.isHidden = false;
     }
 }

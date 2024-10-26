@@ -143,7 +143,7 @@ public class TurretManager implements ActionListener {
      * @param g - used by Swing
      * @param p - game panel
      */
-    public void draw(Graphics g, Painter p) {
+    public void draw(Graphics g, JPanel p) {
         for (Turret t: turrets) {
             t.draw(g, p);
         }

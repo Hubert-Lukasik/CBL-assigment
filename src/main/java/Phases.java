@@ -76,6 +76,11 @@ public class Phases implements ActionListener {
         
         //kills all opponents
         Opponent.killOpponents();
+
+        //check whether it is possible to buy ending
+        if (this.getLevel() >= 3) {
+            shop.playerSurvivedMoreThanThreeWaves();
+        }
         
         //show shop
         shop.showShop();
