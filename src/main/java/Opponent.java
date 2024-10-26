@@ -14,6 +14,7 @@ public class Opponent extends Entity implements ActionListener {
     
     private static Player player;
     private static ArrayList<Entity> opponents = new ArrayList<Entity>();
+    private static ArrayList<Entity> endingOpponents = new ArrayList<Entity>();
     private static Painter gamePanel;
 
     private Timer checkPlayerPositionTimer;
@@ -34,6 +35,18 @@ public class Opponent extends Entity implements ActionListener {
         newOpponent.addCollision();
         opponents.add(newOpponent);
         newOpponent.setTimer();
+    }
+
+    /**
+     * Adding opponent to ending sequance.
+     */
+    public static void endingAddOpponent() {
+        Opponent newOpponent = new Opponent();
+        newOpponent.setImage("test_char2");
+        newOpponent.setPosition(Constants.getTileWidht(), 
+            Constants.getTileHeight() 
+                + rand.nextInt(Constants.getMapHeight() - 3 * Constants.getTileHeight()));
+        endingOpponents.add(newOpponent);
     }
 
     /**
@@ -177,6 +190,16 @@ public class Opponent extends Entity implements ActionListener {
             // for (int j = 0; j < 5; j++) {
             //     g.drawRect(r[j].x, r[j].y, r[j].width, r[j].height);
             // }
+        }
+    }
+
+    /**
+     * Draw opponents in the ending section.
+     */
+    public static void drawEndingOpponents (Graphics g, JPanel p) {
+        for (Entity o : endingOpponents) {
+            o.setPosition(o.getPosition()[0] + 4 * Constants.getOpponentStep(), o.getPosition()[1]);
+            g.drawImage(o.getImage(), o.getPosition()[0], o.getPosition()[1], p);
         }
     }
 }
