@@ -17,7 +17,8 @@ public abstract class Entity {
     private int posY = 0;
     private static ArrayList<Entity> collisionEntities = new ArrayList<Entity>();
     private Weapon weapon = new Weapon(this);
-    private boolean[] currentDirection = {false, false, false, false};
+    private boolean[] currentDirection = {false, false, true, false};
+    private boolean tookDamage = false;
 
     private boolean isAttacking = false;
 
@@ -41,6 +42,17 @@ public abstract class Entity {
      */
     public void takeDamage(int damage) {
         healthPoints = healthPoints - damage;
+        if (damage > 0) {
+            tookDamage = true;
+        }        
+    }
+
+    public boolean getTookDamage() {
+        return tookDamage;
+    }
+
+    public void setTookDamage(boolean d) {
+        tookDamage = d;
     }
 
     public boolean isDead() {

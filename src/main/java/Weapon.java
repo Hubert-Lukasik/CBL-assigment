@@ -7,6 +7,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -21,8 +22,7 @@ public class Weapon implements ActionListener {
     private Timer animationTimer =  new Timer(100, this);
     private String direction = "s";
     private boolean swing;
-
-    Rectangle hitboxRectangle;
+    private ArrayList<Entity> ignoreList = new ArrayList<Entity>();
 
     boolean up;
     boolean left;
@@ -68,12 +68,12 @@ public class Weapon implements ActionListener {
             hitEntities.clear();
             return;
         }
-        if (t.getSource() == animationTimer && i < 4) {
+        if ((t.getSource() == animationTimer) && i < 4) {
             this.setImage("swing_" + direction + "_" + i);
             Rectangle hitRectangle = getHitbox(up, down, left, right);
-            ArrayList<Entity> hitEntity = userEntity.checkHit(hitRectangle);;
+            ArrayList<Entity> hitEntity = userEntity.checkHit(hitRectangle);
             for (Entity e: hitEntity) {
-                if (!hitEntities.contains(e)) {
+                if (!hitEntities.contains(e) && !ignoreList.contains(e)) {
                     e.takeDamage(damage);
                     hitEntities.add(e);
                 }
@@ -94,7 +94,7 @@ public class Weapon implements ActionListener {
             right = false;
         }
 
-
+        Rectangle hitboxRectangle;
         int eWidth = userEntity.getImage().getWidth();
         int eHeight = userEntity.getImage().getHeight();
         int[] pos = userEntity.getPosition();
@@ -160,11 +160,13 @@ public class Weapon implements ActionListener {
         if (swing) {
             int[] position = userEntity.getPosition();
             g.drawImage(image, position[0] - 20, position[1] - 20, p);
-            g.drawRect(hitboxRectangle.x, hitboxRectangle.y, hitboxRectangle.width, hitboxRectangle.height);
         }
     } 
 
+
+
     public Weapon(Entity e) {
         userEntity = e;
+        ignoreList.add(e);
     }
 }

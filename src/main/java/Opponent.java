@@ -17,6 +17,7 @@ public class Opponent extends Entity implements ActionListener {
     private static Painter gamePanel;
     private Timer checkPlayerPositionTimer;
     private static Random rand = new Random();
+    private boolean updateOpponent;
 
     private void setTimer() {
         this. checkPlayerPositionTimer = new Timer(20 + rand.nextInt(50), this);
@@ -32,6 +33,7 @@ public class Opponent extends Entity implements ActionListener {
         newOpponent.setPosition(rand.nextInt(100), rand.nextInt(500));
         newOpponent.addCollision();
         newOpponent.setHealthPoints(100);
+        newOpponent.getWeapon().setDamage(1);
         opponents.add(newOpponent);
         newOpponent.setTimer();
     }
@@ -41,6 +43,9 @@ public class Opponent extends Entity implements ActionListener {
      */
     public static void killOpponents() {
         kill(opponents);
+        for (Entity o: opponents) {
+            o.setHealthPoints(0);
+        }
         opponents.clear();
     }
 
@@ -89,6 +94,12 @@ public class Opponent extends Entity implements ActionListener {
      * Listener for updating position of the opponents.
      */
     public void actionPerformed(ActionEvent t) {
+
+        if (isDead()) {
+            opponents.remove(this);
+            kill(this);
+            return;
+        }
 
         boolean up = false;
         boolean down = false;
@@ -156,10 +167,25 @@ public class Opponent extends Entity implements ActionListener {
             String direction = Entity.getDirection(up, right, down, left);
 
             //opponent is moving
-            if (direction != "") {
+            if (direction != "" && !this.isAttacking()) {
                 this.setCurrentDirection(up, right, down, left);
-                this.setImage("opponent_" + direction);
+                this.setImage("opponent/opponent_" + direction);
+            } 
+
+            if (updateOpponent) {
+                boolean[] dir = this.getCurrentDirection();
+                String curDir = Entity.getDirection(dir[0], dir[1], dir[2], dir[3]);
+                this.setImage("opponent/opponent_" + curDir);
+                updateOpponent = false;
             }
+            
+            if (this.getTookDamage()) {
+                boolean[] dir = this.getCurrentDirection();
+                String curDir = Entity.getDirection(dir[0], dir[1], dir[2], dir[3]);
+                this.setImage("opponent_damage/opponent_" + curDir);
+                this.setTookDamage(false);
+                updateOpponent = true;
+            } 
             //}
             
             up = false;
@@ -211,10 +237,6 @@ public class Opponent extends Entity implements ActionListener {
             int[] position = opponents.get(i).getPosition();
             g.drawImage(opponents.get(i).getImage(), position[0], position[1], p);
             opponents.get(i).getWeapon().draw(g, p);
-            Rectangle[] r = opponents.get(i).getHitbox();
-            for (int j = 0; j < 5; j++) {
-                g.drawRect(r[j].x, r[j].y, r[j].width, r[j].height);
-            }
         }
     }
 }

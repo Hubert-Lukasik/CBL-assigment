@@ -15,6 +15,8 @@ public class PlayerAnimation implements KeyListener, ActionListener {
     private int step;
     private Timer checkPlayerMovement;
 
+    private boolean updatePlayer;
+
 
     /**
      * Update player position whenever timer issues actionPerformed.
@@ -57,8 +59,24 @@ public class PlayerAnimation implements KeyListener, ActionListener {
             //player is moving
             if (direction != "" && !player.isAttacking()) {
                 player.setCurrentDirection(up, right, down, left);
-                player.setImage("player_" + direction);
+                player.setImage("player/player_" + direction);
+            } 
+
+            if (updatePlayer) {
+                boolean[] dir = player.getCurrentDirection();
+                String curDir = Entity.getDirection(dir[0], dir[1], dir[2], dir[3]);
+                player.setImage("player/player_" + curDir);
+                updatePlayer = false;
             }
+            
+            if (player.getTookDamage()) {
+                boolean[] dir = player.getCurrentDirection();
+                String curDir = Entity.getDirection(dir[0], dir[1], dir[2], dir[3]);
+                player.setImage("player_damage/player_" + curDir);
+                player.setTookDamage(false);
+                updatePlayer = true;
+            } 
+
 
             player.setPosition(x, y);
         }
