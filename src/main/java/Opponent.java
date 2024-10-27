@@ -11,28 +11,23 @@ import javax.swing.*;
 /**
  * Class containing methods for opponents.
  */
-public class Opponent extends Entity implements ActionListener {
+public class Opponent extends Entity implements Runnable {
     
     private static Player player;
     private static ArrayList<Entity> opponents = new ArrayList<Entity>();
     private static ArrayList<Entity> endingOpponents = new ArrayList<Entity>();
     private static Painter gamePanel;
-    private Timer checkTargetPositionTimer;
     private static Random rand = new Random();
     private boolean updateOpponent;
     private static TurretManager turretManager;
 
-    private void setTimer() {
-        this. checkTargetPositionTimer = new Timer(
-            Constants.getMinimumDelayForCheckingPlayerPosition() + rand.nextInt(50), this);
-        checkTargetPositionTimer.start();
-    }
 
     /**
      * Add new opponent to show it on the screen.
      */
     public static void addOpponent() {
         Opponent newOpponent = new Opponent();
+        Thread opponentThread = new Thread(newOpponent);
         newOpponent.setImage("test_char2");
         int[] randPos = getRandomPossition();
         newOpponent.setPosition(randPos[0], randPos[1]);
@@ -40,7 +35,7 @@ public class Opponent extends Entity implements ActionListener {
         newOpponent.setHealthPoints(100);
         newOpponent.getWeapon().setDamage(25);
         opponents.add(newOpponent);
-        newOpponent.setTimer();
+        opponentThread.start();
     }
 
 
@@ -159,30 +154,31 @@ public class Opponent extends Entity implements ActionListener {
     }
 
     /**
-     * Listener for updating position of the opponents.
+     * Runs opponents.
      */
-    public void actionPerformed(ActionEvent t) {
-
-        if (isDead()) {
-            opponents.remove(this);
-            kill(this);
-            return;
-        }
+    public void run() {
 
         boolean up = false;
         boolean down = false;
         boolean left = false;
         boolean right = false;
         
-        if (t.getSource() == checkTargetPositionTimer) {
+        while (opponents.contains(this)) {
 
             if (this.isDead()) {
                 kill(this);
                 opponents.remove(this);
+                break;
+            }
+
+            try {
+                Thread.sleep(Constants.getDelayForCheckingPlayerPosition());
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
 
             if (this.isAttacking()) {
-                return;
+                continue;
             }
 
             int[] nearestTurret = turretManager.nearestTurret(
