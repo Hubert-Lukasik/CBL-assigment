@@ -4,6 +4,7 @@ import java.awt.event.*;
 import javax.swing.*;
 
 /**
+ * Self-Defence game.
  * GAME CREATED BY:
  * 
  * Project Group 138, members:
