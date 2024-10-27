@@ -170,8 +170,13 @@ public class Opponent extends Entity implements ActionListener {
 
             op.setPosition(x, y);
 
-            if (hittableEntity()) {
-                System.out.println("booja");
+            boolean[] dir = getCurrentDirection();
+
+            if (hittableEntity() && attackCycle == 8) {
+                this.getWeapon().swingWeapon(dir[0], dir[1], dir[2], dir[3]);
+                attackCycle = 0;
+            } else if (hittableEntity()) {
+                attackCycle++;
             }
 
             gamePanel.update();
