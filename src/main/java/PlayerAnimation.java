@@ -21,6 +21,7 @@ public class PlayerAnimation implements ActionListener {
     /**
      * Update player position whenever timer issues actionPerformed.
     */
+    @Override
     public void actionPerformed(ActionEvent t) {
         if (t.getSource() == checkPlayerMovement) {
 
