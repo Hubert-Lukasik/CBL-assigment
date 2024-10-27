@@ -15,7 +15,6 @@ public class Opponent extends Entity implements ActionListener {
     private static Player player;
     private static ArrayList<Entity> opponents = new ArrayList<Entity>();
     private static Painter gamePanel;
-
     private Timer checkPlayerPositionTimer;
     private static Random rand = new Random();
 
@@ -84,6 +83,8 @@ public class Opponent extends Entity implements ActionListener {
         return nearestOpponent;
     }
 
+    private int attackCycle = 0;
+
     /**
      * Listener for updating position of the opponents.
      */
@@ -139,7 +140,6 @@ public class Opponent extends Entity implements ActionListener {
 
             if (left && !collision[4]) {
                 x -= step;
-                this.getWeapon().swingWeapon(up, right, down, left);
             }
 
             
@@ -153,7 +153,6 @@ public class Opponent extends Entity implements ActionListener {
             }
 
 
-
             String direction = Entity.getDirection(up, right, down, left);
 
             //opponent is moving
@@ -162,7 +161,7 @@ public class Opponent extends Entity implements ActionListener {
                 this.setImage("opponent_" + direction);
             }
             //}
-
+            
             up = false;
             down = false;
             left = false;            
@@ -171,10 +170,34 @@ public class Opponent extends Entity implements ActionListener {
 
             op.setPosition(x, y);
 
+            if (hittableEntity()) {
+                System.out.println("booja");
+            }
+
             gamePanel.update();
         }
     }
 
+    private boolean hittableEntity() {
+        boolean[] collision = this.checkCollision();
+        int[] pos = this.getPosition();
+        int x = pos[0];
+        int y = pos[1];
+
+        for (int i = 1; i <= 4; i++) {
+            if (collision[i]) {
+                int width = this.getImage().getWidth();
+                int height = this.getImage().getHeight();
+                Rectangle hitCheck = new Rectangle(x - 20, y - 20, width + 40, height + 40);
+                for (Entity e : checkHit(hitCheck)) {
+                    if (!opponents.contains(e)) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
     /**
      * Draw an opponent.
      */
@@ -183,10 +206,10 @@ public class Opponent extends Entity implements ActionListener {
             int[] position = opponents.get(i).getPosition();
             g.drawImage(opponents.get(i).getImage(), position[0], position[1], p);
             opponents.get(i).getWeapon().draw(g, p);
-            // Rectangle[] r = opponents.get(i).getHitbox();
-            // for (int j = 0; j < 5; j++) {
-            //     g.drawRect(r[j].x, r[j].y, r[j].width, r[j].height);
-            // }
+            Rectangle[] r = opponents.get(i).getHitbox();
+            for (int j = 0; j < 5; j++) {
+                g.drawRect(r[j].x, r[j].y, r[j].width, r[j].height);
+            }
         }
     }
 }

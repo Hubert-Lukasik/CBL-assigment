@@ -23,7 +23,6 @@ public abstract class Entity {
 
     private java.awt.image.BufferedImage image = new BufferedImage(1, 1, 1);
 
-
     /**
      * Initialise amount of health points the entity has.
      * @param hp - starting amount of health points of the entity

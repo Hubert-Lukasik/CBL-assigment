@@ -62,7 +62,7 @@ public class Phases implements ActionListener {
         turretManager.startDefendPhase();
         
 
-        for (long i = 0; i < 3; ++i) {
+        for (long i = 0; i < 1; ++i) {
             Opponent.addOpponent();
         }
     }
