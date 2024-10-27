@@ -46,7 +46,7 @@ public class Opponent extends Entity implements Runnable {
                 pos[1] = rand.nextInt(40, Constants.getMapHeight() - 40);
             }
             case 2 -> {
-                pos[0] = Constants.getMapWidth() + 40;
+                pos[0] = Constants.getMapWidth() - 40;
                 pos[1] = rand.nextInt(40, Constants.getMapHeight() - 40);
             }
             case 3 -> {
@@ -55,7 +55,7 @@ public class Opponent extends Entity implements Runnable {
             }
             case 4 -> {
                 pos[0] = rand.nextInt(40, Constants.getMapWidth() - 40);
-                pos[1] = Constants.getMapHeight() + 40;
+                pos[1] = Constants.getMapHeight() - 40;
             }
             default -> {
                 pos[0] = 40;
