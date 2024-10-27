@@ -48,7 +48,7 @@ public class Player extends Entity {
      * @param g - used by Swing
      */
     public void draw(Graphics g, JPanel p) {
-
+        
         if (!this.isHidden) {
             int[] position = getPosition();
 
