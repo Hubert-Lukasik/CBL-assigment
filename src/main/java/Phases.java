@@ -98,6 +98,9 @@ public class Phases implements ActionListener {
         //award currency to the player
         player.giveCurrency(level * 13 + (level) * 7);
 
+        //reset health of player
+        player.setHealthPoints(100);
+
         //check whether it is possible to buy ending
         if (this.getLevel() >= 3) {
             shop.playerSurvivedMoreThanThreeWaves();
