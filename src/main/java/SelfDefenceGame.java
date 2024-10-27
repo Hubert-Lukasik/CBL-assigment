@@ -93,6 +93,7 @@ public class SelfDefenceGame implements ActionListener {
         
         Opponent.informAboutPlayer(player);
         Opponent.informAboutGamePanel(gamePanel);
+        Opponent.informAboutTurretManager(turretManager);
 
         Weapon.informAboutGamePanel(gamePanel);
 

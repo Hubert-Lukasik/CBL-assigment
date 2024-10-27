@@ -17,14 +17,15 @@ public class Opponent extends Entity implements ActionListener {
     private static ArrayList<Entity> opponents = new ArrayList<Entity>();
     private static ArrayList<Entity> endingOpponents = new ArrayList<Entity>();
     private static Painter gamePanel;
-    private Timer checkPlayerPositionTimer;
+    private Timer checkTargetPositionTimer;
     private static Random rand = new Random();
     private boolean updateOpponent;
+    private static TurretManager turretManager;
 
     private void setTimer() {
-        this. checkPlayerPositionTimer = new Timer(
+        this. checkTargetPositionTimer = new Timer(
             Constants.getMinimumDelayForCheckingPlayerPosition() + rand.nextInt(50), this);
-        checkPlayerPositionTimer.start();
+        checkTargetPositionTimer.start();
     }
 
     /**
@@ -76,6 +77,10 @@ public class Opponent extends Entity implements ActionListener {
         gamePanel = p;
     }
 
+    public static void informAboutTurretManager(TurretManager t) {
+        turretManager = t;
+    }
+
     /**
      * Find the nearest opponent to the specified coordinates.
      * @param x - x-coordinate of the specified position
@@ -106,6 +111,22 @@ public class Opponent extends Entity implements ActionListener {
     private int attackCycle = 0;
 
     /**
+     * Calculate "distance" between two points. 
+     * @param coordinates1 - first coordinates
+     * @param coordinates2 - second coordinates
+     * @return - sum of squared differences
+     */
+    private long calculateDistance(int[] coordinates1, int[] coordinates2) {
+        long distance = 0;
+        long x1 = (long) coordinates1[0];
+        long y1 = (long) coordinates1[1];
+        long x2 = (long) coordinates2[0];
+        long y2 = (long) coordinates2[1];
+        distance = (x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2);
+        return distance;
+    }
+
+    /**
      * Listener for updating position of the opponents.
      */
     public void actionPerformed(ActionEvent t) {
@@ -121,7 +142,7 @@ public class Opponent extends Entity implements ActionListener {
         boolean left = false;
         boolean right = false;
         
-        if (t.getSource() == checkPlayerPositionTimer) {
+        if (t.getSource() == checkTargetPositionTimer) {
 
             if (this.isDead()) {
                 kill(this);
@@ -131,10 +152,20 @@ public class Opponent extends Entity implements ActionListener {
             if (this.isAttacking()) {
                 return;
             }
-            int[] playerPosition = player.getPosition();    
+
+            int[] nearestTurret = turretManager.nearestTurret(
+                this.getPosition()[0], this.getPosition()[1]);
+            int[] playerPos = player.getPosition();
+            int[] targetPosition = new int[2];
+
+            if  (nearestTurret[0] != -1 && calculateDistance(nearestTurret, this.getPosition()) 
+                < calculateDistance(playerPos, this.getPosition())) {
+                targetPosition = nearestTurret;
+            } else {
+                targetPosition = playerPos;
+            }
 
             Opponent op = this;
-            // for (Opponent op : opponents) {
                 
             int[] opPosition = op.getPosition();
             boolean[] collision = op.checkCollision();
@@ -144,18 +175,18 @@ public class Opponent extends Entity implements ActionListener {
 
             int step = Constants.getOpponentStep();
 
-            if (Math.abs(x - playerPosition[0]) > Constants.getPlayerStep()) {
-                if (x < playerPosition[0]) {
+            if (Math.abs(x - targetPosition[0]) > Constants.getPlayerStep()) {
+                if (x < targetPosition[0]) {
                     right = true;
-                } else if (x > playerPosition[0]) {
+                } else if (x > targetPosition[0]) {
                     left = true;
                 }
             }
 
-            if (Math.abs(y - playerPosition[1]) > Constants.getPlayerStep()) {
-                if (y < playerPosition[1]) {
+            if (Math.abs(y - targetPosition[1]) > Constants.getPlayerStep()) {
+                if (y < targetPosition[1]) {
                     down = true;
-                } else if (y > playerPosition[1]) {
+                } else if (y > targetPosition[1]) {
                     up = true;
                 } 
             }
