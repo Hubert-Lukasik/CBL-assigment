@@ -62,7 +62,7 @@ public class Ending extends JPanel implements ActionListener {
         this.map = m;
         this.player = p;
         this.turretManager = tm;
-        player.setImage("player_w");
+        player.setImage("player/player_w");
         tank = new Tank(p);
         hasTankReachedTheEndTimer = new Timer(100, this);
         hasTankReachedTheEndTimer.start();

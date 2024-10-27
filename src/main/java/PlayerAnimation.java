@@ -54,32 +54,40 @@ public class PlayerAnimation implements ActionListener {
                 y += step;
             }
 
+            //Do not allow player to leave the game area
+            if (x >= Constants.getTileWidht() 
+                && x + player.getImage().getWidth()  
+                    <= Constants.getMapWidth() - Constants.getTileWidht() 
+                && y >= Constants.getTileHeight()
+                && y + player.getImage().getHeight() 
+                    <= Constants.getMapHeight() - Constants.getTileHeight()) {
 
-            String direction = Entity.getDirection(up, right, down, left);
+                String direction = Entity.getDirection(up, right, down, left);
 
-            //player is moving
-            if (direction != "" && !player.isAttacking()) {
-                player.setCurrentDirection(up, right, down, left);
-                player.setImage("player/player_" + direction);
-            } 
+                //player is moving
+                if (direction != "" && !player.isAttacking()) {
+                    player.setCurrentDirection(up, right, down, left);
+                    player.setImage("player/player_" + direction);
+                } 
 
-            if (updatePlayer) {
-                boolean[] dir = player.getCurrentDirection();
-                String curDir = Entity.getDirection(dir[0], dir[1], dir[2], dir[3]);
-                player.setImage("player/player_" + curDir);
-                updatePlayer = false;
+                if (updatePlayer) {
+                    boolean[] dir = player.getCurrentDirection();
+                    String curDir = Entity.getDirection(dir[0], dir[1], dir[2], dir[3]);
+                    player.setImage("player/player_" + curDir);
+                    updatePlayer = false;
+                }
+                
+                if (player.getTookDamage()) {
+                    boolean[] dir = player.getCurrentDirection();
+                    String curDir = Entity.getDirection(dir[0], dir[1], dir[2], dir[3]);
+                    player.setImage("player_damage/player_" + curDir);
+                    player.setTookDamage(false);
+                    updatePlayer = true;
+                } 
+
+
+                player.setPosition(x, y);
             }
-            
-            if (player.getTookDamage()) {
-                boolean[] dir = player.getCurrentDirection();
-                String curDir = Entity.getDirection(dir[0], dir[1], dir[2], dir[3]);
-                player.setImage("player_damage/player_" + curDir);
-                player.setTookDamage(false);
-                updatePlayer = true;
-            } 
-
-
-            player.setPosition(x, y);
         }
     }
 
@@ -87,8 +95,8 @@ public class PlayerAnimation implements ActionListener {
      * Makes player character go right.
      */
     public void goRight() {
-            right = true;
-            left = false;
+        right = true;
+        left = false;
     }
 
     public void relaseRight() {

@@ -11,9 +11,12 @@ public class Phases implements ActionListener {
     private String currentPhase;
     private long level;
     private static Timer planPhaseTimer; 
+    private static Timer checkWhetherOpponentsDead;
     private Random randomGen;
     private Shop shop;
     private TurretManager turretManager;
+    private Map map;
+    private Player player;
 
     public String getPhase() {
         return currentPhase;
@@ -52,6 +55,9 @@ public class Phases implements ActionListener {
         //set name of the phase
         currentPhase = "Defend";
 
+        //make a map
+        map.buildMap("map_defend.txt");
+
         //increase level
         this.increaseLevel();
 
@@ -61,10 +67,21 @@ public class Phases implements ActionListener {
         //make turrets online
         turretManager.startDefendPhase();
         
+        long numOfOpponentsToSpawn = level;
+        if (level % 2 == 0) {
+            numOfOpponentsToSpawn += level;
+        }
 
-        for (long i = 0; i < 4; ++i) {
+        else{
+            numOfOpponentsToSpawn += randomGen.nextInt(2);
+        }
+
+        for (long i = 0; i < Math.min(numOfOpponentsToSpawn, 200L); ++i) {
             Opponent.addOpponent();
         }
+
+        checkWhetherOpponentsDead = new Timer(60, this);
+        checkWhetherOpponentsDead.start(); 
     }
 
     /**
@@ -73,9 +90,15 @@ public class Phases implements ActionListener {
     public void startPlanPhase() {
         //set name of the phase
         currentPhase = "Plan";
+
+        //make a map
+        map.buildMap("map_plan.txt");
         
         //kills all opponents
         Opponent.killOpponents();
+
+        //award currency to the player
+        player.giveCurrency(level * 13 + (level / 2) * 7);
 
         //check whether it is possible to buy ending
         if (this.getLevel() >= 3) {
@@ -101,6 +124,11 @@ public class Phases implements ActionListener {
             planPhaseTimer.stop();
             startDefendPhase();
         }
+
+        if (t.getSource() == checkWhetherOpponentsDead && Opponent.howManyOpponents() == 0) {
+            checkWhetherOpponentsDead.stop();
+            startPlanPhase();
+        }
     }
 
 
@@ -108,11 +136,14 @@ public class Phases implements ActionListener {
      * Constructor for Phases instance.
      * @param s - shop
      */
-    public Phases(Shop s, TurretManager t) {
+    public Phases(Shop s, TurretManager t, Map m, Player p) {
         currentPhase = "Plan";
+        map = m;
         level = 0;
         randomGen = new Random();
         shop = s;
         turretManager = t;
+        player = p;
+        this.startPlanPhase();
     }
 }

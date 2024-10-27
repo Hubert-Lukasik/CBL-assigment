@@ -69,12 +69,9 @@ public class SelfDefenceGame implements ActionListener {
     private void setup() {
         //Define game map
         map = new Map();
-        map.buildMap("map_defend.txt");
-        
-        //Define player instance
-        player = new Player("player/player_s", 200, 200);
 
-        player.giveCurrency(60);
+        //Define player instance
+        player = new Player("player/player_n", 200, 200);
 
         //Define TurretManager instance
         turretManager = new TurretManager();
@@ -82,17 +79,11 @@ public class SelfDefenceGame implements ActionListener {
         //Add collision to player
         player.addCollision();
         
-        
         //Define shop
         shop = new Shop(player, turretManager);
 
         //Define phases manager
-        phasesManager = new Phases(shop, turretManager);
-
-        phasesManager.startDefendPhase();
-        phasesManager.increaseLevel();
-        phasesManager.increaseLevel();
-        phasesManager.startPlanPhase();
+        phasesManager = new Phases(shop, turretManager, map, player);
     
         //Define PlayerAnimation object, responsible for animating player character
         playerAnimator = new PlayerAnimation(player);
