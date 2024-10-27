@@ -12,7 +12,9 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-
+/**
+ * Class contains all mechanics for weapons.
+ */
 public class Weapon implements ActionListener {
     private static Painter gamePanel;
 
@@ -35,6 +37,11 @@ public class Weapon implements ActionListener {
         gamePanel = p;
     }
 
+
+    /**
+     * Sets current image of the weapon swing to specified image.
+     * @param filename - name of the file containing new image (without extension, png assumed)
+     */
     public void setImage(String filename) { 
         filename = filename + ".png";
         try {  
@@ -84,6 +91,15 @@ public class Weapon implements ActionListener {
 
     }
 
+
+    /**
+     * Creates a rectangle that represents a hitbox for the weapon.
+     * @param up - entity swinging the weapon is facing up
+     * @param down - entity swinging the weapon is facing down
+     * @param left - entity swinging the weapon is facing left
+     * @param right - entity swinging the weapon is facing right
+     * @return a rectangle based on position and direction of the entity that is using it.
+     */
     private Rectangle getHitbox(boolean up, boolean down, boolean left, boolean right) {
         if (up && down) {
             up = false;
@@ -141,6 +157,14 @@ public class Weapon implements ActionListener {
         return null;
     }
 
+
+    /**
+     * Causes weapon to swing to the direction it is given.
+     * @param up - entity swinging the weapon is facing up
+     * @param down - entity swinging the weapon is facing down
+     * @param left - entity swinging the weapon is facing left
+     * @param right - entity swinging the weapon is facing right
+     */
     public void swingWeapon(boolean up, boolean right, boolean down, boolean left) {
         if (swing) {
             return;
@@ -156,6 +180,11 @@ public class Weapon implements ActionListener {
         }
     }
 
+
+    /**
+     * Draw Player character.
+     * @param g - used by Swing
+     */
     public void draw(Graphics g, JPanel p) {
         if (swing) {
             int[] position = userEntity.getPosition();
@@ -165,6 +194,10 @@ public class Weapon implements ActionListener {
 
 
 
+    /**
+     * Creates a weapon.
+     * @param e - entity to which the weapon belongs
+     */
     public Weapon(Entity e) {
         userEntity = e;
         ignoreList.add(e);
