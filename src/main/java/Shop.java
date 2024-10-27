@@ -1,8 +1,10 @@
 package src.main.java;
 
 import java.awt.*;
+import java.awt.geom.*;
 import java.awt.event.*;
 import javax.swing.*;
+import org.junit.internal.RealSystem;
 
 /**
  * Contains methods and variables relevant for in-game shop.
@@ -112,20 +114,32 @@ public class Shop implements ActionListener, MouseListener {
 
         //react when player is only placing defences
         if (this.isPlacingDefences()) {
-            //right-bottom corner
+            //left-upper corner
             int x = e.getX(); 
             int y = e.getY();
 
             //don't allow to place turret beyond game screen
-            if (x - Constants.getTurretTileWidth() >= Constants.getTileWidht()
-                && x <= Constants.getMapWidth() - Constants.getTileWidht() 
-                && y - Constants.getTurretTileHeight() >= Constants.getTileHeight()
-                && y <= Constants.getMapHeight() - Constants.getTileHeight()) {
+            if (x >= Constants.getTileWidht()
+                && x + Constants.getTurretTileWidth() 
+                    <= Constants.getMapWidth() - Constants.getTileWidht() 
+                && y >= Constants.getTileHeight()
+                && y + Constants.getTurretTileHeight() 
+                    <= Constants.getMapHeight() - Constants.getTileHeight()) {
 
-                turretManager.addTurret(x - Constants.getTileWidht(), 
-                    y - Constants.getTileHeight());
+                Rectangle r = new Rectangle(x, y, Constants.getTurretTileWidth(), 
+                    Constants.getTurretTileHeight());
+                
+                if (player.checkHit(r).isEmpty()) { 
+                    turretManager.addTurret(x, y);
+                } else {
+                    this.setMessageToUser(
+                        "The turret collides with something and cannot be put here!");
+                    //return currency to the player
+                    player.giveCurrency(Constants.getTurretPrice());
+                }
+
             } else {
-                this.setMessageToUser("Turrets cannot be put outside the game area!");
+                this.setMessageToUser("The turret cannot be placed here!");
                 //return currency to the player
                 player.giveCurrency(Constants.getTurretPrice());
             }
