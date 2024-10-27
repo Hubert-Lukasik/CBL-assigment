@@ -313,9 +313,14 @@ public class Opponent extends Entity implements Runnable {
      */
     public static void draw(Graphics g, JPanel p) {
         for (int i = 0; i < opponents.size(); ++i) {
-            int[] position = opponents.get(i).getPosition();
-            g.drawImage(opponents.get(i).getImage(), position[0], position[1], p);
-            opponents.get(i).getWeapon().draw(g, p);
+            if (i < opponents.size()) {
+                int[] position = opponents.get(i).getPosition();
+                g.drawImage(opponents.get(i).getImage(), position[0], position[1], p);
+            }
+
+            if (i < opponents.size()) {
+                opponents.get(i).getWeapon().draw(g, p);
+            }
         }
     }
 
