@@ -32,9 +32,10 @@ public class Turret extends Entity {
      * @param p - game panel
      */
     public void draw(Graphics g, JPanel p) {
-        int[] position = getPosition();
-    
-        g.drawImage(this.getImage(), position[0], position[1], p);
+        if (!this.isDead()) {
+            int[] position = getPosition();
+            g.drawImage(this.getImage(), position[0], position[1], p);
+        }
     }
 
     /**

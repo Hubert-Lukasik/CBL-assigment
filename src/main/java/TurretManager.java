@@ -57,8 +57,19 @@ public class TurretManager implements ActionListener {
     public void actionPerformed(ActionEvent t) {
         if (t.getSource() == shootingTimer) {
             //shoot
-            for (Turret tur : turrets) {
-                addBullet(tur.getPosition()[0], tur.getPosition()[1]);
+            for (int i = 0; i < turrets.size(); ++i) {
+                if (i >= turrets.size()) {
+                    break;
+                }
+
+                Turret tur = turrets.get(i);
+                
+                if (tur.isDead()) {
+                    turrets.remove(tur);
+                    Entity.kill(tur);
+                } else {
+                    addBullet(tur.getPosition()[0], tur.getPosition()[1]);
+                }
             }
         }
 
@@ -119,6 +130,7 @@ public class TurretManager implements ActionListener {
 
         for (Turret t : turrets) {
             t.setOnline(true);
+            t.setHealthPoints(Constants.getTurretHealthPoints());
         }
     }
 

@@ -1,10 +1,8 @@
 package src.main.java;
 
 import java.awt.*;
-import java.awt.geom.*;
 import java.awt.event.*;
 import javax.swing.*;
-import org.junit.internal.RealSystem;
 
 /**
  * Contains methods and variables relevant for in-game shop.

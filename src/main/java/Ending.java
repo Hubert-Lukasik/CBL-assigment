@@ -14,6 +14,8 @@ public class Ending extends JPanel implements ActionListener {
     private Tank tank;
     private Timer hasTankReachedTheEndTimer;
     private boolean endingHasFinished;
+    private Timer drawOpponents;
+    boolean opponentsAreDrawn;
 
     public boolean hasEndingFinished() {
         return endingHasFinished;
@@ -33,6 +35,10 @@ public class Ending extends JPanel implements ActionListener {
                 endingHasFinished = true;
             }
         }
+
+        if (t.getSource() == drawOpponents) {
+            opponentsAreDrawn = true;
+        }
     }
     
     @Override
@@ -49,7 +55,9 @@ public class Ending extends JPanel implements ActionListener {
             player.draw(g, this);
         }
 
-        Opponent.drawEndingOpponents(g, this);
+        if (opponentsAreDrawn) {
+            Opponent.drawEndingOpponents(g, this);
+        }
     }
 
     /**
@@ -67,5 +75,8 @@ public class Ending extends JPanel implements ActionListener {
         hasTankReachedTheEndTimer = new Timer(100, this);
         hasTankReachedTheEndTimer.start();
         endingHasFinished = false;
+        drawOpponents = new Timer(200, this);
+        drawOpponents.start();
+        opponentsAreDrawn = true;
     }   
 }

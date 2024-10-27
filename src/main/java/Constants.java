@@ -50,14 +50,14 @@ public class Constants {
     
     //OPPONENT
     private static final int OPPONENT_STEP = 4;
-    private static final int MINIMUN_DELAY_FOR_CHECKING_PLAYER_POSITION = 100;
+    private static final int DELAY_FOR_CHECKING_PLAYER_POSITION = 100;
 
     public static int getOpponentStep() {
         return OPPONENT_STEP;
     }
 
-    public static int getMinimumDelayForCheckingPlayerPosition() {
-        return MINIMUN_DELAY_FOR_CHECKING_PLAYER_POSITION;
+    public static int getDelayForCheckingPlayerPosition() {
+        return DELAY_FOR_CHECKING_PLAYER_POSITION;
     }
 
 
@@ -105,7 +105,7 @@ public class Constants {
 
     private static final long TURRET_PRICE = 10;
     private static final int TURRET_HEALTH_POINTS = 20;
-    private static final int TURRET_DELAY = 4000;
+    private static final int TURRET_DELAY = 3000;
 
 
     public static long getTurretPrice() {
@@ -148,8 +148,8 @@ public class Constants {
     }
 
     //TANK
-    private static final int TANK_MOVEMENT_DELAY = 100;
-    private static final int TANK_STEP = 11;
+    private static final int TANK_MOVEMENT_DELAY = 55;
+    private static final int TANK_STEP = 15;
 
     public static int getTankDelay() {
         return TANK_MOVEMENT_DELAY;
