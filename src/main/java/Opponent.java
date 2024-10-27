@@ -71,7 +71,7 @@ public class Opponent extends Entity implements Runnable {
      */
     public static void endingAddOpponent() {
         Opponent newOpponent = new Opponent();
-        newOpponent.setImage("test_char2");
+        newOpponent.setImage("opponent/opponent_s");
         newOpponent.setPosition(Constants.getTileWidht(), 
             Constants.getTileHeight() 
                 + rand.nextInt(Constants.getMapHeight() - 3 * Constants.getTileHeight()));
