@@ -4,7 +4,11 @@ import java.awt.event.*;
 import javax.swing.*;
 
 /**
- * Responsible for maintaining game running and calling methods.
+ * GAME CREATED BY:
+ * 
+ * Project Group 138, members:
+ * @author Lars Kuppen (Student ID: 2146053)
+ * @author Hubert Lukasik (Student ID: 2146541)
  */
 public class SelfDefenceGame implements ActionListener {
     private JFrame frame;
