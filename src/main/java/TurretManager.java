@@ -123,6 +123,7 @@ public class TurretManager implements ActionListener {
 
         for (Turret t : turrets) {
             t.setOnline(true);
+            t.setHealthPoints(Constants.getTurretHealthPoints());
         }
     }
 
