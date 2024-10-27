@@ -27,3 +27,39 @@ Quick tips:
 -Place turrets mostly in the middle of the map
 -Walk backwards as soon as you hit an opponent to get out of range as quick as possible
 -Invest in turrets and don't save everything up for the ending, you get increasingly more currency after you survive more rounds
+
+
+Topics we learnt about:
+1. Version control using Git
+- we used Git to keep track of our project
+- we introduced new features on separate branches (we have 19 brunches in our repository)
+- we tried following good practices when adding comments to commits
+- we learnt how to resolve conflicts between branches when doing pull requests
+- we learnt how to collaborate on bigger programes using GitHub
+- we learn basics of Git commands
+
+Resources:
+a) Git Tutorial from Stanford University [access date: 7.10.2024]:
+  https://web.stanford.edu/class/cs124/lec/git_tutorial.pdf
+
+b) Good practices from freecodecamp.org [access date: 7.10.2024]:
+https://www.freecodecamp.org/news/git-best-practices-commits-and-code-reviews/
+
+How we  found them:
+searched “git” with site:edu and site:org filters
+
+
+2. Test driven-development
+- we implemented unit tests using JUnit
+- we wrote unit tests before writing actual code, according to classical style of TDD
+- we tested code after merging branches to check whether the new features work along the old ones
+- we learnt to think what can go wrong with new code  
+
+Resources:
+a) JUnit tutorial from California State University, Long Beach [access date: 9.10.2024]:
+https://home.csulb.edu/~pnguyen/cecs277/lecnotes/Unit%20Testing%20with%20JUnit.pdf
+
+b) General introduction to TDD by GeeksForGeeks [access date: 9.10.2024]:
+https://www.geeksforgeeks.org/test-driven-development-tdd/
+
+searched “test-driven-development” with site:edu and site:org filters
