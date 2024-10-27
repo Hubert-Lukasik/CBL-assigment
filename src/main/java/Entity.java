@@ -140,6 +140,10 @@ public abstract class Entity {
         boolean[] collision = new boolean[5];
         Rectangle[] r1 = this.getHitbox();
         for (Entity e: collisionEntities) {
+            if (e == null) {
+                continue;
+            }
+
             if (e != this) {
                 Rectangle[] r2 = e.getHitbox();
                 for (int j = 0; j <= 4; j++) {

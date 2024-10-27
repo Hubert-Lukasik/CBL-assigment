@@ -57,7 +57,13 @@ public class TurretManager implements ActionListener {
     public void actionPerformed(ActionEvent t) {
         if (t.getSource() == shootingTimer) {
             //shoot
-            for (Turret tur : turrets) {
+            for (int i = 0; i < turrets.size(); ++i) {
+                if (i >= turrets.size()) {
+                    break;
+                }
+
+                Turret tur = turrets.get(i);
+                
                 if (tur.isDead()) {
                     turrets.remove(tur);
                 } else {
