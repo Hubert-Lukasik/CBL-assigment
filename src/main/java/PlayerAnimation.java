@@ -6,7 +6,7 @@ import javax.swing.*;
 /**
  * Class is responsible for animating player character.
  */
-public class PlayerAnimation implements KeyListener, ActionListener {
+public class PlayerAnimation implements ActionListener {
     private Player player;
     private boolean right;
     private boolean left;
@@ -18,7 +18,7 @@ public class PlayerAnimation implements KeyListener, ActionListener {
 
     /**
      * Update player position whenever timer issues actionPerformed.
-     */
+    */
     public void actionPerformed(ActionEvent t) {
         if (t.getSource() == checkPlayerMovement) {
 
@@ -29,26 +29,25 @@ public class PlayerAnimation implements KeyListener, ActionListener {
             }
 
             int[] pos = player.getPosition();
-            boolean[] collision = player.checkCollision();
             int x = pos[0];
             int y = pos[1];
 
             
-            if (right && !collision[2]) {
+            if (right) {
                 x += step;
             }
 
-            if (left && !collision[4]) {
+            if (left) {
                 x -= step;
             }
 
             
-            if (up && !collision[1]) {
+            if (up) {
                 y -= step;
             }
 
             
-            if (down && !collision[3]) {
+            if (down) {
                 y += step;
             }
 
@@ -65,57 +64,76 @@ public class PlayerAnimation implements KeyListener, ActionListener {
     }
 
     /**
-     * KeyListener method responsible for detecting pressed WSAD keys.
+     * Makes player character go right.
      */
-    public void keyPressed(KeyEvent e) {
-        char key = e.getKeyChar();
+    public void goRight() {
+        boolean[] collision = player.checkCollision();
 
-        if (key == 'j') {
-            boolean[] curDir = player.getCurrentDirection(); 
-            player.getWeapon().swingWeapon(curDir[0], curDir[1], curDir[2], curDir[3]);
-        }
-
-        if (key == 'w') {
-            up = true;
-        }
-
-        if (key == 's') {
-            down = true;
-        }
-
-        if (key == 'a') {
-            left = true;
-        }
-
-        if (key == 'd') {
+        if (!collision[4]) {
             right = true;
+            left = false;
         }
     }
 
-    public void keyTyped(KeyEvent e) {}
-
+    public void relaseRight() {
+        right = false;
+    }
+    
     /**
-    * KeyListener method responsible for detecting released WSAD keys.
-    */
-    public void keyReleased(KeyEvent e) {
-        char key = e.getKeyChar();
-        
-        if (key == 'w') {
-            up = false;
-        }
+     * Makes player character go left.
+     */
+    public void goLeft() {
+        boolean[] collision = player.checkCollision();
 
-        if (key == 's') {
-            down = false;
-        }
-
-        if (key == 'a') {
-            left = false;
-        }
-
-        if (key == 'd') {
+        if (!collision[2]) {
+            left = true;
             right = false;
         }
-    } 
+    }
+
+    public void releaseLeft() {
+        left = false;
+    }
+
+    /**
+     * Makes player character go up.
+     */
+    public void goUp() {
+        boolean[] collision = player.checkCollision();
+
+        if (!collision[1]) {
+            up = true;
+            down = false;
+        }
+    }
+
+    public void releaseUp() {
+        up = false;
+    }
+
+    /**
+     * Makes player character go down.
+     */
+    public void goDown() {
+        boolean[] collision = player.checkCollision();
+
+        if (!collision[3]) {
+            down = true;
+            up = false;
+        }
+    }
+
+    public void releaseDown() {
+        down = false;
+    }
+
+    /**
+     * Makes player character use weapon.
+     */
+    public void useWeapon() {
+        boolean[] curDir = player.getCurrentDirection(); 
+        player.getWeapon().swingWeapon(curDir[0], curDir[1], curDir[2], curDir[3]);
+    }
     
     /**
      * Constructor for PlayerAnimation class.
