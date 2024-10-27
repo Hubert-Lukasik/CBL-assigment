@@ -40,7 +40,7 @@ public class Tank extends Entity implements ActionListener {
                 playerHasEnteredTank = true;
             } else if (!playerHasEnteredTank) {
                 if (playerX - currentTankPosition[0] <= this.getImage().getWidth()) {
-                    player.setImage("player_" + directionPlayerHasToEnter);
+                    player.setImage("player/player_" + directionPlayerHasToEnter);
                 }
 
                 this.setPosition(currentTankPosition[0] + Math.min(Constants.getTankStep(), 
