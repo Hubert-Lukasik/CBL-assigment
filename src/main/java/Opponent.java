@@ -45,24 +45,24 @@ public class Opponent extends Entity implements Runnable {
         int i = rand.nextInt(1, 5);
         switch (i) {
             case 1 -> {
-                pos[0] = 0;
-                pos[1] = rand.nextInt(Constants.getMapHeight());
+                pos[0] = 40;
+                pos[1] = rand.nextInt(40, Constants.getMapHeight() - 40);
             }
             case 2 -> {
-                pos[0] = Constants.getMapWidth();
-                pos[1] = rand.nextInt(Constants.getMapHeight());
+                pos[0] = Constants.getMapWidth() + 40;
+                pos[1] = rand.nextInt(40, Constants.getMapHeight() - 40);
             }
             case 3 -> {
-                pos[0] = rand.nextInt(Constants.getMapWidth());
-                pos[1] = 0;
+                pos[0] = rand.nextInt(40, Constants.getMapWidth() - 40);
+                pos[1] = 40;
             }
             case 4 -> {
-                pos[0] = rand.nextInt(Constants.getMapWidth());
-                pos[1] = Constants.getMapHeight();
+                pos[0] = rand.nextInt(40, Constants.getMapWidth() - 40);
+                pos[1] = Constants.getMapHeight() + 40;
             }
             default -> {
-                pos[0] = 0;
-                pos[1] = 0;  
+                pos[0] = 40;
+                pos[1] = 40;  
             }
         }
 

@@ -53,6 +53,10 @@ public class Player extends Entity {
             int[] position = getPosition();
             g.drawImage(this.getImage(), position[0], position[1], p);
         }
+
+        int height = Constants.getMapHeight();
+        int width = Constants.getMapWidth();
+        g.drawString("Health: " + getHealthPoints(), width - 100, height + 20);
     }
 
 
