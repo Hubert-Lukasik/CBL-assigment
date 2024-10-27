@@ -72,7 +72,7 @@ public class SelfDefenceGame implements ActionListener {
         map.buildMap("map_defend.txt");
         
         //Define player instance
-        player = new Player("player_s", 200, 200);
+        player = new Player("player/player_s", 200, 200);
 
         player.giveCurrency(60);
 
