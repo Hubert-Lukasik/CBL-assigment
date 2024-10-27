@@ -30,7 +30,7 @@ public class Constants {
     private static final int PLAYER_STEP = 8;
     private static final int PLAYER_STEP_ATTACK = 2;
     private static final int HOW_OFTEN_PLAYER_POSITION_UPDATED = 20;
-    private static final int PLAYER_HEALTH_POINTS = 20;
+    private static final int PLAYER_HEALTH_POINTS = 100;
 
     public static int getPlayerStep() {
         return PLAYER_STEP;
@@ -49,7 +49,7 @@ public class Constants {
     }
     
     //OPPONENT
-    private static final int OPPONENT_STEP = 2;
+    private static final int OPPONENT_STEP = 4;
     private static final int MINIMUN_DELAY_FOR_CHECKING_PLAYER_POSITION = 100;
 
     public static int getOpponentStep() {

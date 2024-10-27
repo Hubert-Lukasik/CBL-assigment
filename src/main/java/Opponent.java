@@ -37,7 +37,7 @@ public class Opponent extends Entity implements ActionListener {
         newOpponent.setPosition(rand.nextInt(100), rand.nextInt(500));
         newOpponent.addCollision();
         newOpponent.setHealthPoints(100);
-        newOpponent.getWeapon().setDamage(1);
+        newOpponent.getWeapon().setDamage(25);
         opponents.add(newOpponent);
         newOpponent.setTimer();
     }
@@ -244,7 +244,7 @@ public class Opponent extends Entity implements ActionListener {
 
             boolean[] dir = getCurrentDirection();
 
-            if (hittableEntity() && attackCycle == 8) {
+            if (hittableEntity() && attackCycle == 4) {
                 this.getWeapon().swingWeapon(dir[0], dir[1], dir[2], dir[3]);
                 attackCycle = 0;
             } else if (hittableEntity()) {
