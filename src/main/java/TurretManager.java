@@ -66,6 +66,7 @@ public class TurretManager implements ActionListener {
                 
                 if (tur.isDead()) {
                     turrets.remove(tur);
+                    Entity.kill(tur);
                 } else {
                     addBullet(tur.getPosition()[0], tur.getPosition()[1]);
                 }
