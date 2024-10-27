@@ -44,7 +44,8 @@ public class Turret extends Entity {
      */
     public Turret(int x, int y) {
         this.setPosition(x, y);
-        this.setImage("turretExample");
+        this.setImage("turret");
         this.setHealthPoints(Constants.getTurretHealthPoints());
+        this.addCollision();
     }
 }
