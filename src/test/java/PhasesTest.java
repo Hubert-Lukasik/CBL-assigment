@@ -3,6 +3,7 @@ package src.test.java;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import src.main.java.Map;
 import src.main.java.Opponent;
 import src.main.java.Phases;
 import src.main.java.Player;
@@ -21,8 +22,7 @@ public class PhasesTest {
      */
     @Before
     public void init() {
-        p = new Phases((new Shop(new Player("test_char", 0, 0), new TurretManager())), 
-            new TurretManager());
+        p = new Phases(new Shop(new Player("test_char", 0, 0), new TurretManager()), new TurretManager(), new Map(), new Player("test_char", 0, 0));
     }
 
     @Test
