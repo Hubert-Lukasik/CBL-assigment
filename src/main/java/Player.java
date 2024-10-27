@@ -51,8 +51,8 @@ public class Player extends Entity {
         
         if (!this.isHidden) {
             int[] position = getPosition();
-
-        g.drawImage(this.getImage(), position[0], position[1], p);
+            g.drawImage(this.getImage(), position[0], position[1], p);
+        }
     }
 
 
