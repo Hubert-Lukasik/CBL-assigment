@@ -17,6 +17,7 @@ public class Map {
     private ArrayList<String> tilePaths;
     private ArrayList<Integer> tileX; 
     private ArrayList<Integer> tileY;
+    private BufferedImage buffer;
 
     /**
      * Read map decription from the text file.
@@ -75,6 +76,9 @@ public class Map {
         tileX.clear();
         tileY.clear();
 
+        //it'll be necessary to draw whole map again
+        buffer = null;
+
         for (int row = 0; row < mapDescription.size(); ++row) {
             for (int column = 0; column < mapDescription.get(row).size(); ++column) {
 
@@ -104,19 +108,28 @@ public class Map {
      * @param g - used by Swing
     */
     public void draw(Graphics g, JPanel p) {
-        for (int i = 0; i < tilePaths.size(); ++i) {
-            java.awt.image.BufferedImage image = new BufferedImage(1, 1, 1);
 
-            try {
-                image = ImageIO.read(new File(tilePaths.get(i)));
-            } catch (IOException e) {
-                System.err.println("Something wrong happend while reading image");
-                continue;
+        //There is a need to draw everything
+        if (buffer == null) {
+            buffer = new BufferedImage(Constants.getMapWidth(), Constants.getMapHeight(), 1);
+            Graphics g2 = buffer.createGraphics();
+            for (int i = 0; i < tilePaths.size(); ++i) {
+                java.awt.image.BufferedImage image = new BufferedImage(1, 1, 1);
+
+                try {
+                    image = ImageIO.read(new File(tilePaths.get(i)));
+                } catch (IOException e) {
+                    System.err.println("Something wrong happend while reading image");
+                    continue;
+                }
+
+                g2.drawImage(image, tileX.get(i), tileY.get(i), p);
             }
 
-            g.drawImage(image, tileX.get(i), tileY.get(i), p);
-
+            g2.dispose();
         }
+
+        g.drawImage(buffer, 0, 0, p);
     }
 
     /**
@@ -126,6 +139,7 @@ public class Map {
         tilePaths = new ArrayList<String>();
         tileX = new ArrayList<Integer>();
         tileY = new ArrayList<Integer>();
+        buffer = null;
     }
 
 
