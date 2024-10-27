@@ -103,7 +103,7 @@ public class Constants {
 
     //TURRETS
 
-    private static final long TURRET_PRICE = 10;
+    private static final long TURRET_PRICE = 30;
     private static final int TURRET_HEALTH_POINTS = 20;
     private static final int TURRET_DELAY = 10000;
 
@@ -141,7 +141,7 @@ public class Constants {
     }
 
     //ENDING
-    private static final int ENDING_PRICE = 30;
+    private static final int ENDING_PRICE = 60;
     
     public static int getEndingPrice() {
         return ENDING_PRICE;
