@@ -56,6 +56,8 @@ public class Player extends Entity {
 
         int height = Constants.getMapHeight();
         int width = Constants.getMapWidth();
+        g.setColor(Color.BLACK);
+        g.setFont(new Font("Arial", Font.PLAIN, 15));
         g.drawString("Health: " + getHealthPoints(), width - 100, height + 20);
     }
 
