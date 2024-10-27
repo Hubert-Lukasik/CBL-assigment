@@ -156,12 +156,19 @@ public class TurretManager implements ActionListener {
      * @param p - game panel
      */
     public void draw(Graphics g, JPanel p) {
-        for (Turret t: turrets) {
-            t.draw(g, p);
+        for (int i = 0; i < turrets.size(); ++i) {
+            if (i >= turrets.size()) {
+                break;
+            }
+
+            turrets.get(i).draw(g, p);
         }
         
-        for (Bullet b : bullets) {
-            b.draw(g, p);
+        for (int i = 0; i < bullets.size(); ++i) {
+            if (i >= bullets.size()) {
+                break;
+            }
+            bullets.get(i).draw(g, p);
         }
     }
 
