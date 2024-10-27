@@ -8,6 +8,8 @@ SelfDefence game is a tower-defence-like game.
 In this game you will have to defend yourself from bigger and bigger waves of opponents.  The game is splitted into “plan” and “defend” phases. During the “plan” phase you are allowed to build new turrets. Enemies will appear only during the “defend” phase. Surviving enemies waves will grant you in-game currency, which can be used to buy defences during the “plan” phase. Surviving at least three attacks and having enough currency will allow you to end the game, but there will not be a limited amount of waves you may fight. 
 The more attacks you survives, the higher your score will be when finishing the game. 
 
+To run the game, run the "SelfDefence.java" file.
+
 Controls:
 The player will be controllable by the following keys with their functions:
 W - Player moves up
