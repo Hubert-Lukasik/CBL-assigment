@@ -139,10 +139,12 @@ public abstract class Entity {
     public boolean[] checkCollision() {
         boolean[] collision = new boolean[5];
         Rectangle[] r1 = this.getHitbox();
-        for (Entity e: collisionEntities) {
-            if (e == null) {
-                continue;
+        for (int i = 0; i < collisionEntities.size(); ++i) {
+            if(i >= collisionEntities.size()) {
+                break;
             }
+
+            Entity e = collisionEntities.get(i);
 
             if (e != this) {
                 Rectangle[] r2 = e.getHitbox();
