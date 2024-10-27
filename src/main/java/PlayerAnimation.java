@@ -31,25 +31,27 @@ public class PlayerAnimation implements ActionListener {
             int[] pos = player.getPosition();
             int x = pos[0];
             int y = pos[1];
+            boolean[] collision = player.checkCollision();
 
             
-            if (right) {
+            if (right && !collision[2]) {
                 x += step;
             }
 
-            if (left) {
+            if (left && !collision[4]) {
                 x -= step;
             }
 
             
-            if (up) {
+            if (up && !collision[1]) {
                 y -= step;
             }
 
             
-            if (down) {
+            if (down && !collision[3]) {
                 y += step;
             }
+
 
             String direction = Entity.getDirection(up, right, down, left);
 
@@ -67,12 +69,8 @@ public class PlayerAnimation implements ActionListener {
      * Makes player character go right.
      */
     public void goRight() {
-        boolean[] collision = player.checkCollision();
-
-        if (!collision[4]) {
             right = true;
             left = false;
-        }
     }
 
     public void relaseRight() {
@@ -83,12 +81,8 @@ public class PlayerAnimation implements ActionListener {
      * Makes player character go left.
      */
     public void goLeft() {
-        boolean[] collision = player.checkCollision();
-
-        if (!collision[2]) {
-            left = true;
-            right = false;
-        }
+        left = true;
+        right = false;
     }
 
     public void releaseLeft() {
@@ -99,12 +93,8 @@ public class PlayerAnimation implements ActionListener {
      * Makes player character go up.
      */
     public void goUp() {
-        boolean[] collision = player.checkCollision();
-
-        if (!collision[1]) {
-            up = true;
-            down = false;
-        }
+        up = true;
+        down = false;
     }
 
     public void releaseUp() {
@@ -115,12 +105,8 @@ public class PlayerAnimation implements ActionListener {
      * Makes player character go down.
      */
     public void goDown() {
-        boolean[] collision = player.checkCollision();
-
-        if (!collision[3]) {
-            down = true;
-            up = false;
-        }
+        down = true;
+        up = false;
     }
 
     public void releaseDown() {

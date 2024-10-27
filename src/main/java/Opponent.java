@@ -147,7 +147,6 @@ public class Opponent extends Entity implements ActionListener {
 
             if (left && !collision[4]) {
                 x -= step;
-                this.getWeapon().swingWeapon(up, right, down, left);
             }
 
             
