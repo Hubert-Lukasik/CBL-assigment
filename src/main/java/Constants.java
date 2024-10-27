@@ -120,6 +120,14 @@ public class Constants {
         return TURRET_DELAY;
     }
 
+    public static int getTurretTileWidth() {
+        return TILE_WIDTH;
+    }
+
+    public static int getTurretTileHeight() {
+        return TILE_HEIGHT;
+    }
+
     //BULLETS
     private static final int BULLET_STEP = 20;
     private static final int BULLET_POSITION_UPDATE_DELAY = 150;

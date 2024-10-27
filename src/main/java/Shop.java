@@ -112,15 +112,23 @@ public class Shop implements ActionListener, MouseListener {
 
         //react when player is only placing defences
         if (this.isPlacingDefences()) {
-            int x = e.getX() - Constants.getTileWidht();
-            int y = e.getY() - Constants.getTileHeight();
+            //right-bottom corner
+            int x = e.getX(); 
+            int y = e.getY();
 
-            /*
-            * TODO: now allow to put turret beyond the game window.
-            * TODO: collision detection with player.
-            */
+            //don't allow to place turret beyond game screen
+            if (x - Constants.getTurretTileWidth() >= Constants.getTileWidht()
+                && x <= Constants.getMapWidth() - Constants.getTileWidht() 
+                && y - Constants.getTurretTileHeight() >= Constants.getTileHeight()
+                && y <= Constants.getMapHeight() - Constants.getTileHeight()) {
 
-            turretManager.addTurret(x, y);
+                turretManager.addTurret(x - Constants.getTileWidht(), 
+                    y - Constants.getTileHeight());
+            } else {
+                this.setMessageToUser("Turrets cannot be put outside the game area!");
+                //return currency to the player
+                player.giveCurrency(Constants.getTurretPrice());
+            }
 
             this.setPlacingDefencesValue(false);
             this.showShop();
