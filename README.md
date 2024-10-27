@@ -27,4 +27,3 @@ Quick tips:
 -Place turrets mostly in the middle of the map
 -Walk backwards as soon as you hit an opponent to get out of range as quick as possible
 -Invest in turrets and don't save everything up for the ending, you get increasingly more currency after you survive more rounds
-
