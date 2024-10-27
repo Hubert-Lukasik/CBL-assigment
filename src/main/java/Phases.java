@@ -67,8 +67,16 @@ public class Phases implements ActionListener {
         //make turrets online
         turretManager.startDefendPhase();
         
+        long numOfOpponentsToSpawn = level;
+        if (level % 2 == 0) {
+            numOfOpponentsToSpawn += level;
+        }
 
-        for (long i = 0; i < Math.min(2*level, 100); ++i) {
+        else{
+            numOfOpponentsToSpawn += randomGen.nextInt(2);
+        }
+
+        for (long i = 0; i < Math.min(numOfOpponentsToSpawn, 200L); ++i) {
             Opponent.addOpponent();
         }
 
