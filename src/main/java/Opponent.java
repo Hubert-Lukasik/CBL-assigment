@@ -25,7 +25,7 @@ public class Opponent extends Entity implements Runnable {
     public static void addOpponent() {
         Opponent newOpponent = new Opponent();
         Thread opponentThread = new Thread(newOpponent);
-        newOpponent.setImage("test_char2");
+        newOpponent.setImage("opponent/opponent_s");
         int[] randPos = getRandomPossition();
         newOpponent.setPosition(randPos[0], randPos[1]);
         newOpponent.addCollision();
