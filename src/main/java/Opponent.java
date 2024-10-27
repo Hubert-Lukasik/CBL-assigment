@@ -34,12 +34,44 @@ public class Opponent extends Entity implements ActionListener {
     public static void addOpponent() {
         Opponent newOpponent = new Opponent();
         newOpponent.setImage("test_char2");
-        newOpponent.setPosition(rand.nextInt(100), rand.nextInt(500));
+        int[] randPos = getRandomPossition();
+        newOpponent.setPosition(randPos[0], randPos[1]);
         newOpponent.addCollision();
         newOpponent.setHealthPoints(100);
         newOpponent.getWeapon().setDamage(25);
         opponents.add(newOpponent);
         newOpponent.setTimer();
+    }
+
+
+    
+    private static int[] getRandomPossition() {
+        int[] pos = new int[2];
+        int i = rand.nextInt(1, 5);
+        switch (i) {
+            case 1 -> {
+                pos[0] = 0;
+                pos[1] = rand.nextInt(Constants.getMapHeight());
+            }
+            case 2 -> {
+                pos[0] = Constants.getMapWidth();
+                pos[1] = rand.nextInt(Constants.getMapHeight());
+            }
+            case 3 -> {
+                pos[0] = rand.nextInt(Constants.getMapWidth());
+                pos[1] = 0;
+            }
+            case 4 -> {
+                pos[0] = rand.nextInt(Constants.getMapWidth());
+                pos[1] = Constants.getMapHeight();
+            }
+            default -> {
+                pos[0] = 0;
+                pos[1] = 0;  
+            }
+        }
+
+        return pos;
     }
 
     /**

@@ -71,7 +71,7 @@ public class Phases implements ActionListener {
         if (level % 2 == 0) {
             numOfOpponentsToSpawn += 2 * level;
         } else {
-            numOfOpponentsToSpawn += level + randomGen.nextInt(10);
+            numOfOpponentsToSpawn += level + randomGen.nextInt(5, 10);
         }
 
         for (long i = 0; i < Math.min(numOfOpponentsToSpawn, 200L); ++i) {
