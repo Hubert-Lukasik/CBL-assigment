@@ -37,7 +37,7 @@ public class Ending extends JPanel implements ActionListener {
         }
 
         if (t.getSource() == drawOpponents) {
-           opponentsAreDrawn = true;
+            opponentsAreDrawn = true;
         }
     }
     

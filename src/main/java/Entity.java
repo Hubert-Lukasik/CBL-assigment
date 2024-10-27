@@ -140,7 +140,7 @@ public abstract class Entity {
         boolean[] collision = new boolean[5];
         Rectangle[] r1 = this.getHitbox();
         for (int i = 0; i < collisionEntities.size(); ++i) {
-            if(i >= collisionEntities.size()) {
+            if (i >= collisionEntities.size()) {
                 break;
             }
 
@@ -224,6 +224,13 @@ public abstract class Entity {
         return direction;
     }
 
+    /**
+     * Sets direction.
+     * @param up - is going up
+     * @param right - is going right
+     * @param down - is going down
+     * @param left 0 is goind left
+     */
     public void setCurrentDirection(boolean up, boolean right, boolean down, boolean left) {
         currentDirection[0] = up;
         currentDirection[1] = right;

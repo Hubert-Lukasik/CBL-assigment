@@ -1,9 +1,6 @@
 package src.main.java;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.*;
