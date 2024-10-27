@@ -69,11 +69,9 @@ public class Phases implements ActionListener {
         
         long numOfOpponentsToSpawn = level;
         if (level % 2 == 0) {
-            numOfOpponentsToSpawn += level;
-        }
-
-        else{
-            numOfOpponentsToSpawn += randomGen.nextInt(2);
+            numOfOpponentsToSpawn += 2 * level;
+        } else {
+            numOfOpponentsToSpawn += level + randomGen.nextInt(10);
         }
 
         for (long i = 0; i < Math.min(numOfOpponentsToSpawn, 200L); ++i) {
@@ -98,7 +96,7 @@ public class Phases implements ActionListener {
         Opponent.killOpponents();
 
         //award currency to the player
-        player.giveCurrency(level * 13 + (level / 2) * 7);
+        player.giveCurrency(level * 13 + (level) * 7);
 
         //check whether it is possible to buy ending
         if (this.getLevel() >= 3) {
