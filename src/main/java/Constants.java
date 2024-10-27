@@ -148,7 +148,7 @@ public class Constants {
     }
 
     //TANK
-    private static final int TANK_MOVEMENT_DELAY = 100;
+    private static final int TANK_MOVEMENT_DELAY = 55;
     private static final int TANK_STEP = 15;
 
     public static int getTankDelay() {
