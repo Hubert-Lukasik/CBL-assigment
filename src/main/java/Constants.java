@@ -50,10 +50,16 @@ public class Constants {
     
     //OPPONENT
     private static final int OPPONENT_STEP = 2;
+    private static final int MINIMUN_DELAY_FOR_CHECKING_PLAYER_POSITION = 100;
 
     public static int getOpponentStep() {
         return OPPONENT_STEP;
     }
+
+    public static int getMinimumDelayForCheckingPlayerPosition() {
+        return MINIMUN_DELAY_FOR_CHECKING_PLAYER_POSITION;
+    }
+
 
     //SHOP
     private static final int TURRET_BUTTON_WIDTH = 100;
@@ -135,7 +141,7 @@ public class Constants {
 
     //TANK
     private static final int TANK_MOVEMENT_DELAY = 100;
-    private static final int TANK_STEP = 9;
+    private static final int TANK_STEP = 11;
 
     public static int getTankDelay() {
         return TANK_MOVEMENT_DELAY;
@@ -157,5 +163,4 @@ public class Constants {
         return SCORE_SCREEN_HEIGHT;
     }
 
-  
 }

@@ -21,7 +21,8 @@ public class Opponent extends Entity implements ActionListener {
     private static Random rand = new Random();
 
     private void setTimer() {
-        this. checkPlayerPositionTimer = new Timer(20 + rand.nextInt(50), this);
+        this. checkPlayerPositionTimer = new Timer(
+            Constants.getMinimumDelayForCheckingPlayerPosition() + rand.nextInt(50), this);
         checkPlayerPositionTimer.start();
     }
 
@@ -202,7 +203,7 @@ public class Opponent extends Entity implements ActionListener {
      */
     public static void drawEndingOpponents(Graphics g, JPanel p) {
         for (Entity o : endingOpponents) {
-            o.setPosition(o.getPosition()[0] + 4 * Constants.getOpponentStep(), o.getPosition()[1]);
+            o.setPosition(o.getPosition()[0] + Constants.getOpponentStep(), o.getPosition()[1]);
             g.drawImage(o.getImage(), o.getPosition()[0], o.getPosition()[1], p);
         }
     }
