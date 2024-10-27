@@ -35,6 +35,7 @@ public class Painter extends JPanel {
      * @param p - Player instance
      * @param m - Map instance
      * @param s - Shop instance
+     * @param t - TurretManager instance
      */
     public Painter(Player p, Map m, Shop s, TurretManager t) {
         player = p;
