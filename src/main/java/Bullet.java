@@ -11,6 +11,9 @@ public class Bullet extends Entity {
     private int xChange;
     private int yChange;
 
+    private boolean isExploding = false;
+    private int explosionCount = 0;
+
     public int getXChange() {
         return xChange;
     }
@@ -44,9 +47,34 @@ public class Bullet extends Entity {
      */
     public boolean updatePosition() {
         int[] actPos = this.getPosition();
-        this.setPosition(actPos[0] + this.getXChange(), actPos[1] + this.getYChange());
-        
+        if (!isExploding) {
+            this.setPosition(actPos[0] + this.getXChange(), actPos[1] + this.getYChange());
+            checkExplosion();
+        } else {
+            if (explosionCount > 4) {
+                return true;
+            }
+            explosionCount++;
+        }
         return !this.isOutOfGameArea();
+    }
+
+
+    /**
+     * checks if the bullet should explode and damages opponents inside the explosion.
+     */
+    private void checkExplosion() {
+        int[] curPos = this.getPosition();
+        int width = this.getImage().getWidth();
+        int height = this.getImage().getHeight();
+        Rectangle hitbox = new Rectangle(curPos[0], curPos[1], width, height);
+        for (Entity e : checkHit(hitbox)) {
+            if (Opponent.getOpponents().contains(e)) {
+                isExploding = true;
+                e.takeDamage(50);
+                this.setImage("bullet_exploding");
+            }
+        }
     }
 
     /**
@@ -55,7 +83,9 @@ public class Bullet extends Entity {
      * @param p - Painter object, game panel
      */
     public void draw(Graphics g, JPanel p) {
-        g.drawImage(this.getImage(), this.getPosition()[0], this.getPosition()[1], p);
+        if (!(explosionCount > 4)) {
+            g.drawImage(this.getImage(), this.getPosition()[0], this.getPosition()[1], p);
+        }
     }
 
     
@@ -68,7 +98,7 @@ public class Bullet extends Entity {
      */
     public Bullet(int x, int y, int destX, int destY) {
         this.setPosition(x, y);
-        this.setImage("bulletTest");
+        this.setImage("bullet");
 
         double yDifference = destY - y;
         double xDifference = destX - x;
