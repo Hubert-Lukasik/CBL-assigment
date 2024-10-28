@@ -31,7 +31,7 @@ public class Opponent extends Entity implements Runnable {
         Opponent newOpponent = new Opponent();
         Thread opponentThread = new Thread(newOpponent);
         newOpponent.setImage("opponent/opponent_s");
-        int[] randPos = getRandomPossition();
+        int[] randPos = getRandomPosition();
         newOpponent.setPosition(randPos[0], randPos[1]);
         newOpponent.addCollision();
         newOpponent.setHealthPoints(100);
@@ -42,30 +42,29 @@ public class Opponent extends Entity implements Runnable {
 
 
     
-    private static int[] getRandomPossition() {
+    private static int[] getRandomPosition() {
         int[] pos = new int[2];
         int i = rand.nextInt(1, 5);
         switch (i) {
-            case 1 -> {
+            case 1:
                 pos[0] = 40;
-                pos[1] = rand.nextInt(40, Constants.getMapHeight() - 40);
-            }
-            case 2 -> {
+                pos[1] = 40 + rand.nextInt(Constants.getMapHeight() - 80);
+                break;
+            case 2:
                 pos[0] = Constants.getMapWidth() - 40;
-                pos[1] = rand.nextInt(40, Constants.getMapHeight() - 40);
-            }
-            case 3 -> {
-                pos[0] = rand.nextInt(40, Constants.getMapWidth() - 40);
+                pos[1] = 40 + rand.nextInt(Constants.getMapHeight() - 80);
+                break;
+            case 3:
+                pos[0] = 40 + rand.nextInt(Constants.getMapWidth() - 80);
                 pos[1] = 40;
-            }
-            case 4 -> {
-                pos[0] = rand.nextInt(40, Constants.getMapWidth() - 40);
+                break;
+            case 4:
+                pos[0] = 40 + rand.nextInt(Constants.getMapWidth() - 80);
                 pos[1] = Constants.getMapHeight() - 40;
-            }
-            default -> {
+                break;
+            default:
                 pos[0] = 40;
-                pos[1] = 40;  
-            }
+                pos[1] = 40; 
         }
 
         return pos;
