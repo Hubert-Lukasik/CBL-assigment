@@ -44,7 +44,7 @@ public class Opponent extends Entity implements Runnable {
     
     private static int[] getRandomPosition() {
         int[] pos = new int[2];
-        int i = rand.nextInt(1, 5);
+        int i = 1 + rand.nextInt(4);
         switch (i) {
             case 1:
                 pos[0] = 40;
