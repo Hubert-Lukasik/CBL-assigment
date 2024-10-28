@@ -1,10 +1,10 @@
-package src.test.java;
+package unitTests;
 
+import game.Map;
 import java.util.ArrayList;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
-import src.main.java.Map;
 
 
 /**

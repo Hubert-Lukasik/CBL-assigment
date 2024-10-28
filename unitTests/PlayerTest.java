@@ -1,9 +1,8 @@
-package src.test.java;
+package unitTests;
 
-
+import game.Player;
 import org.junit.Assert;
 import org.junit.Test;
-import src.main.java.Player;
 
 /**
  * Test player class features, mailny connected to shopping defences.

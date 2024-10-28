@@ -1,6 +1,6 @@
-package src.test.java;
+package unitTests;
 
-
+import game.Entity;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -8,7 +8,6 @@ import javax.imageio.ImageIO;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import src.main.java.Entity;
 
 /**
  * Dummy class to test Enity class. 

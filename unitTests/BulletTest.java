@@ -1,10 +1,11 @@
-package src.test.java;
+package unitTests;
 
+import game.Bullet;
+import game.Constants;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import src.main.java.Bullet;
-import src.main.java.Constants;
+
 
 /**
  * Tests for bullets.

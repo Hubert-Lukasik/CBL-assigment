@@ -1,14 +1,14 @@
-package src.test.java;
+package unitTests;
 
+import game.Map;
+import game.Opponent;
+import game.Phases;
+import game.Player;
+import game.Shop;
+import game.TurretManager;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import src.main.java.Map;
-import src.main.java.Opponent;
-import src.main.java.Phases;
-import src.main.java.Player;
-import src.main.java.Shop;
-import src.main.java.TurretManager;
 
 
 /**

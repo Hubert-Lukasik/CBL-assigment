@@ -1,9 +1,9 @@
-package src.test.java;
+package unitTests;
 
+import game.Turret;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import src.main.java.Turret;
 
 /**
  * Test for Turret class.

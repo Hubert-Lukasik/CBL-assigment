@@ -1,8 +1,8 @@
-package src.test.java;
+package unitTests;
 
+import game.Opponent;
 import org.junit.Assert;
 import org.junit.Test;
-import src.main.java.Opponent;
 
 /**
  * Unit tests for Opponent class.
