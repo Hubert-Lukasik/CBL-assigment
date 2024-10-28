@@ -1,10 +1,5 @@
 package game;
 
-/*import game.Map;
-import game.Opponent;
-import game.Player;
-import game.Shop;
-import game.TurretManager;*/
 import java.awt.event.*;
 import java.util.Random;
 import javax.swing.*; 

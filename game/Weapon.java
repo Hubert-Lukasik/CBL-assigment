@@ -1,7 +1,5 @@
 package game;
 
-/*import game.Entity;
-import game.Painter;*/
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

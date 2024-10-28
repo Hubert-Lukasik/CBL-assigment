@@ -1,7 +1,5 @@
 package game;
 
-/*import game.Phases;
-import game.Player;*/
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
