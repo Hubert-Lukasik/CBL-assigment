@@ -29,7 +29,7 @@ public class EntityTest {
     public void setup() {
         obj.setHealthPoints(-4);
         obj.setPosition(0, 0);
-        obj.setImage("test_char");
+        obj.setImage("tank");
     }
 
     @Test
@@ -85,7 +85,7 @@ public class EntityTest {
     public void testImageGetter() {
         java.awt.image.BufferedImage expected = new BufferedImage(1, 1, 1);
         try {
-            String path = (new File("files", "test_char.png")).getAbsolutePath();
+            String path = (new File("files", "tank.png")).getAbsolutePath();
             expected = ImageIO.read(new File(path));
         } catch (IOException e) {
             System.err.println("Test: Image test_char.png not found");
@@ -99,12 +99,12 @@ public class EntityTest {
         java.awt.image.BufferedImage expected = new BufferedImage(1, 1, 1);
         try {
             expected = ImageIO.read(new File(
-                new File("files", "test_char2.png").getAbsolutePath()));
+                new File("files", "turret.png").getAbsolutePath()));
         } catch (IOException e) {
             System.err.println("Test: Image test_char2.png not found");
         }
 
-        obj.setImage("test_char2");
+        obj.setImage("turret");
         Assert.assertArrayEquals(expected.getPropertyNames(), obj.getImage().getPropertyNames());
     }
 
@@ -113,7 +113,7 @@ public class EntityTest {
         java.awt.image.BufferedImage expected = new BufferedImage(1, 1, 1);
         try {
             expected = ImageIO.read(new File(
-                new File("files", "test_char.png").getAbsolutePath()));
+                new File("files", "tank.png").getAbsolutePath()));
         } catch (IOException e) {
             System.err.println("Test: Image test_char.png not found");
         }

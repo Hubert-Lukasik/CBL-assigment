@@ -22,7 +22,8 @@ public class PhasesTest {
      */
     @Before
     public void init() {
-        p = new Phases(new Shop(new Player("test_char", 0, 0), new TurretManager()), new TurretManager(), new Map(), new Player("test_char", 0, 0));
+        p = new Phases(new Shop(new Player("tank", 0, 0), new TurretManager()), 
+            new TurretManager(), new Map(), new Player("tank", 0, 0));
     }
 
     @Test
