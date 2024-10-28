@@ -1,6 +1,6 @@
-If you want to use VS Code - than just open the folder containg the whole project
+If you want to use VS Code, just open the folder containg the whole project and run file SelfDefenceGame.java (in game directory) from there.
 
-If you want to compile it - then execute the following commands:
+If you want to compile the code, execute the following commands while in the parent directory of game directory:
 
-javac game\*.java
+javac game/*.java
 java game.SelfDefenceGame
