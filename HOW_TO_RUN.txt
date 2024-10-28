@@ -1,0 +1,6 @@
+If you want to use VS Code - than just open the folder containg the whole project
+
+If you want to compile it - then execute the following commands:
+
+javac game\*.java
+java game.SelfDefenceGame
