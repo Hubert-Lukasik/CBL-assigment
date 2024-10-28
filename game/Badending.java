@@ -1,6 +1,6 @@
 package game;
 
-import game.Constants;
+//import game.Constants;
 import java.awt.*;
 import javax.swing.*;
 

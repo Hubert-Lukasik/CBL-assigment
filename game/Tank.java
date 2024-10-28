@@ -1,9 +1,9 @@
 package game;
 
-import game.Constants;
+/*import game.Constants;
 import game.Entity;
 import game.Opponent;
-import game.Player;
+import game.Player;*/
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;

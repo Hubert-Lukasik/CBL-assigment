@@ -1,10 +1,10 @@
 package game;
 
-import game.Constants;
+/*import game.Constants;
 import game.Entity;
 import game.Painter;
 import game.Player;
-import game.TurretManager;
+import game.TurretManager;*/
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Random;

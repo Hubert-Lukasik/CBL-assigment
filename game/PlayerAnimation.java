@@ -1,8 +1,8 @@
 package game;
 
-import game.Constants;
+/*import game.Constants;
 import game.Entity;
-import game.Player;
+import game.Player;*/
 import java.awt.event.*;
 import javax.swing.*;
 

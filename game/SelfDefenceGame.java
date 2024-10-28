@@ -1,6 +1,6 @@
 package game;
 
-import game.Badending;
+/*import game.Badending;
 import game.Constants;
 import game.Ending;
 import game.Map;
@@ -12,6 +12,7 @@ import game.PlayerAnimation;
 import game.ScoreScreen;
 import game.Shop;
 import game.TurretManager;
+*/
 import java.awt.event.*;
 import javax.swing.*;
 
