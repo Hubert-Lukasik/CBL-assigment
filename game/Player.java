@@ -1,5 +1,7 @@
 package game;
 
+import game.Constants;
+import game.Entity;
 import java.awt.*;
 import javax.swing.JPanel;
 

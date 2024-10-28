@@ -1,5 +1,10 @@
 package game;
 
+import game.Constants;
+import game.Map;
+import game.Player;
+import game.TurretManager;
+import game.tank;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;

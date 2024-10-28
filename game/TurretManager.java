@@ -1,5 +1,9 @@
 package game;
 
+import game.Bullet;
+import game.Entity;
+import game.Opponent;
+import game.Turret;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;

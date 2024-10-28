@@ -1,5 +1,17 @@
 package game;
 
+import game.Badending;
+import game.Constants;
+import game.Ending;
+import game.Map;
+import game.Opponent;
+import game.Painter;
+import game.Phases;
+import game.Player;
+import game.PlayerAnimation;
+import game.ScoreScreen;
+import game.Shop;
+import game.TurretManager;
 import java.awt.event.*;
 import javax.swing.*;
 

@@ -1,5 +1,7 @@
 package game;
 
+import game.Constants;
+import game.Weapon;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.File;

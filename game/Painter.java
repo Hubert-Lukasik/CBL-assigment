@@ -1,5 +1,10 @@
 package game;
 
+import game.Map;
+import game.Opponent;
+import game.Player;
+import game.Shop;
+import game.TurretManager;
 import java.awt.*;
 import javax.swing.*;
 
