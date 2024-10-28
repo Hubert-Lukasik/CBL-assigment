@@ -1,4 +1,4 @@
-package src.main.java;
+package game;
 
 /**
  * Contains all constants import for the game.

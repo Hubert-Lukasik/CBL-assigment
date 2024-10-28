@@ -1,4 +1,4 @@
-package src.main.java;
+package game;
 
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -172,9 +172,22 @@ public abstract class Entity {
     public ArrayList<Entity> checkHit(Rectangle r1) {
         ArrayList<Entity> hitEntities = new ArrayList<Entity>();
         for (int i = 0; i < collisionEntities.size(); ++i) {
+            if (i >= collisionEntities.size()) {
+                break;
+            }
+
+
             if (collisionEntities.get(i) != this) {
+                if (collisionEntities.get(i) == null) {
+                    continue;
+                }
+
                 Rectangle[] r2 = collisionEntities.get(i).getHitbox();
                 if (r1.intersects(r2[0])) {
+                    if (collisionEntities.get(i) == null) {
+                        continue;
+                    }
+
                     hitEntities.add(collisionEntities.get(i));
                 }
             }
